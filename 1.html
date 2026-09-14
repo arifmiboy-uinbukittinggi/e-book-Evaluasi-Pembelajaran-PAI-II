@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 1 — Pondasi Perkuliahan: Kontrak, Etika, dan Visi Pembelajaran</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e8e4d9;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  :root {
+    --gold: #c9a961;
+    --gold-light: #e4cc8a;
+    --gold-dark: #8a7340;
+    --navy: #0a0e1a;
+    --navy-soft: #141a2e;
+    --cream: #f5efe0;
+    --text-muted: #a8a192;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAVIGATION */
+  .nav {
+    position: sticky;
+    top: 0;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.85);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+  }
+  .hero-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  .hero-meta span strong { color: var(--gold); font-weight: 500; }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--cream);
+    margin: 4rem 0 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .content h2::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 60%;
+    background: var(--gold);
+  }
+  .content h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin: 2.5rem 0 1rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .content h4 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin: 1.8rem 0 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .content p {
+    color: #d4cfc0;
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+    text-align: justify;
+  }
+  .content ul, .content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: #d4cfc0;
+  }
+  .content li { margin-bottom: 0.6rem; }
+  .content strong { color: var(--gold-light); font-weight: 600; }
+  .content em { color: var(--gold); font-style: italic; }
+
+  /* VIDEO BOX */
+  .video-box {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    text-align: center;
+  }
+  .video-box .icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .video-box h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .video-box p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* KEY CONCEPTS */
+  .key-concept {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.6));
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .key-concept h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .key-concept ul { margin-top: 1rem; }
+  .key-concept li strong { color: var(--cream); }
+
+  /* CASE STUDY */
+  .case-study {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .case-study::before {
+    content: '📖';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .case-study h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+  }
+  .case-study .lesson {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(201, 169, 97, 0.3);
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* REFLECTION */
+  .reflection {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.06), transparent);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .reflection h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* TABLE */
+  .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(20, 26, 46, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .content table th {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--navy);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .content table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    color: #d4cfc0;
+    font-size: 0.95rem;
+  }
+  .content table tr:last-child td { border-bottom: none; }
+  .content table tr:hover td { background: rgba(201, 169, 97, 0.05); }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(201, 169, 97, 0.06);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .tip-box h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: rgba(180, 60, 60, 0.08);
+    border: 1px solid rgba(220, 100, 100, 0.3);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .warning-box h4 {
+    color: #e8a0a0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* REFERENCES */
+  .references {
+    background: rgba(20, 26, 46, 0.5);
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+  }
+  .references h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-style: normal;
+  }
+  .references ol {
+    margin-top: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .references li { margin-bottom: 0.8rem; }
+  .references em { color: var(--cream); }
+
+  /* NAVIGATION FOOTER */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    flex-wrap: wrap;
+  }
+  .chapter-nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 3px;
+  }
+  .chapter-nav a:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* FORMATIVE TEST */
+  .test-section {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    margin: 4rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .test-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .test-header .icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .test-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    padding-left: 0;
+  }
+  .test-header h2::before { display: none; }
+  .test-header p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .test-warning {
+    background: rgba(220, 170, 60, 0.1);
+    border: 1px solid rgba(220, 170, 60, 0.3);
+    color: var(--gold-light);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  /* FORM FIELDS */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .form-group label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-group label .required { color: #e8a0a0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 4px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(10, 14, 26, 0.9);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+  }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--navy); color: var(--cream); }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* QUESTION BLOCK */
+  .question-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .question-block:hover {
+    border-color: rgba(201, 169, 97, 0.4);
+  }
+  .question-block.correct {
+    border-color: #6abf69;
+    background: rgba(106, 191, 105, 0.08);
+  }
+  .question-block.incorrect {
+    border-color: #d97070;
+    background: rgba(217, 112, 112, 0.08);
+  }
+  .question-number {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.8rem;
+  }
+  .question-text {
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: inline;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: rgba(20, 26, 46, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #d4cfc0;
+    font-size: 0.95rem;
+  }
+  .option-label:hover {
+    background: rgba(201, 169, 97, 0.08);
+    border-color: var(--gold);
+  }
+  .option-label input { margin-top: 3px; accent-color: var(--gold); cursor: pointer; }
+  .option-label input:checked + span { color: var(--gold-light); font-weight: 500; }
+  .option-label.correct-answer {
+    background: rgba(106, 191, 105, 0.15);
+    border-color: #6abf69;
+  }
+  .option-label.wrong-answer {
+    background: rgba(217, 112, 112, 0.15);
+    border-color: #d97070;
+  }
+  .feedback {
+    display: none;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct {
+    background: rgba(106, 191, 105, 0.1);
+    color: #8fd98e;
+    border-left: 3px solid #6abf69;
+  }
+  .feedback.incorrect {
+    background: rgba(217, 112, 112, 0.1);
+    color: #e8a0a0;
+    border-left: 3px solid #d97070;
+  }
+
+  /* ESSAY */
+  .essay-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .essay-block textarea {
+    min-height: 120px;
+    resize: vertical;
+    margin-top: 1rem;
+  }
+  .essay-counter {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* BUTTONS */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201, 169, 97, 0.4);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  /* RESULTS */
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.8));
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .result-panel.show { display: block; animation: fadeIn 0.6s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-panel h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .score-card {
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+  .score-card .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .score-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .score-card .value small { font-size: 1rem; color: var(--text-muted); }
+  .total-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin: 1rem 0;
+    text-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+  }
+  .total-score small { font-size: 1.5rem; color: var(--text-muted); }
+  .grade-badge {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .ornament { color: var(--gold); margin: 0 0.8rem; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.7rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.2rem; }
+    .test-section { padding: 2rem 1.2rem; }
+    .hero-meta { gap: 1rem; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo">EVALUASI <span>PAI II</span></div>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="index.html#pertemuan">Pertemuan</a>
+    <a href="index.html#penulis">Penulis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">Pertemuan Pertama · OBE 2026</span>
+  <div class="hero-chapter">Bab I</div>
+  <h1>Pondasi Perkuliahan: <em>Kontrak, Etika,</em><br>dan Visi Pembelajaran</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">
+    Memahami kontrak kuliah, aturan akademik, dan visi pembelajaran Evaluasi PAI
+    berbasis <em>Outcome-Based Education</em> sebagai fondasi perjalanan akademik semester ini.
+  </p>
+  <div class="hero-meta">
+    <span><strong>Penulis:</strong> Dr. Arifmiboy, S. Ag., M. Pd.</span>
+    <span><strong>Homebase:</strong> UIN Bukittinggi</span>
+    <span><strong>Bobot:</strong> 2%</span>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PENDAHULUAN -->
+  <h2>Pendahuluan</h2>
+  <p>
+    Setiap perjalanan akademik yang bermakna dimulai dari <strong>kesepakatan yang jelas</strong>,
+    <strong>komitmen etis</strong>, dan <strong>visi yang terarah</strong>. Dalam mata kuliah
+    <em>Evaluasi Pembelajaran PAI II</em>, ketiga elemen ini dirangkum dalam pertemuan pertama
+    sebagai pondasi yang akan menopang seluruh proses pembelajaran selama satu semester.
+  </p>
+  <p>
+    Kontrak kuliah bukan sekadar formalitas administratif. Ia adalah <em>covenant akademik</em>—
+    sebuah perjanjian moral antara dosen dan mahasiswa yang mengatur hak, kewajiban, ekspektasi,
+    dan standar pencapaian. Dalam kerangka <em>Outcome-Based Education</em> (OBE), kontrak kuliah
+    menjadi lebih strategis karena ia mencerminkan <strong>Capaian Pembelajaran Mata Kuliah (CPMK)</strong>
+    yang harus dikuasai mahasiswa di akhir semester.
+  </p>
+  <p>
+    Etika akademik, di sisi lain, adalah <strong>jantung dari integritas evaluasi</strong>. Seorang
+    calon evaluator pembelajaran PAI yang akan mengukur hasil belajar siswa harus terlebih dahulu
+    menjunjung tinggi kejujuran, objektivitas, dan keadilan dalam setiap aktivitas akademik. Tanpa
+    etika, instrumen evaluasi secanggih apa pun akan kehilangan makna.
+  </p>
+  <p>
+    Melalui pertemuan ini, mahasiswa diajak untuk tidak hanya memahami <em>apa</em> yang akan
+    dipelajari, tetapi juga <em>mengapa</em> hal itu penting, <em>bagaimana</em> prosesnya
+    dilaksanakan, dan <em>nilai-nilai</em> apa yang harus dijunjung sepanjang perjalanan.
+  </p>
+
+  <div class="video-box">
+    <div class="icon">🎬</div>
+    <h4>Video: Orientasi Perkuliahan OBE</h4>
+    <p>Simak penjelasan dosen pengampu tentang kontrak, aturan, dan visi pembelajaran semester ini.</p>
+  </div>
+
+  <!-- KONSEP KUNCI -->
+  <div class="key-concept">
+    <h4>🔑 Konsep Kunci</h4>
+    <ul>
+      <li><strong>Kontrak Kuliah:</strong> Kesepakatan tertulis antara dosen dan mahasiswa mengenai aturan, bobot penilaian, jadwal, dan ekspektasi pembelajaran selama satu semester.</li>
+      <li><strong>CPMK (Capaian Pembelajaran Mata Kuliah):</strong> Kemampuan yang diharapkan dikuasai mahasiswa setelah menyelesaikan suatu mata kuliah.</li>
+      <li><strong>Sub-CPMK:</strong> Turunan CPMK yang mewakili kemampuan akhir tiap tahapan belajar (per pertemuan).</li>
+      <li><strong>OBE (Outcome-Based Education):</strong> Paradigma pendidikan yang berfokus pada capaian pembelajaran (outcome) sebagai pusat desain kurikulum, pelaksanaan, dan evaluasi.</li>
+      <li><strong>Etika Akademik:</strong> Prinsip kejujuran, integritas, objektivitas, dan tanggung jawab dalam seluruh aktivitas akademik, termasuk evaluasi pembelajaran.</li>
+    </ul>
+  </div>
+
+  <!-- STUDI KASUS -->
+  <div class="case-study">
+    <h4>Studi Kasus 1: Kegagalan Akibat Kontrak yang Kabur</h4>
+    <p>
+      Di sebuah perguruan tinggi, seorang dosen tidak menjelaskan kontrak kuliah secara rinci di
+      awal semester. Mahasiswa baru menyadari bobot UAS ternyata 40% ketika minggu ke-14. Akibatnya,
+      banyak mahasiswa yang panik, nilai akhir tidak mencerminkan kemampuan sebenarnya, dan terjadi
+      protes massal. Evaluasi akhir menunjukkan bahwa 65% mahasiswa merasa tidak diperlakukan secara
+      adil.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Kontrak kuliah yang transparan di awal semester adalah kunci
+      kepercayaan akademik. Ketidakjelasan di awal melahirkan ketidakadilan di akhir.
+    </div>
+  </div>
+
+  <!-- REFLEKSI -->
+  <div class="reflection">
+    <h4>💭 Refleksi untuk Mahasiswa PAI</h4>
+    <p>
+      Dalam tradisi Islam, <em>'aqd</em> (perjanjian) memiliki dimensi spiritual yang dalam—ia bukan
+      sekadar kontrak duniawi, melainkan amanah yang akan dipertanyakan. Sebagai calon evaluator
+      pembelajaran PAI, renungkan: bagaimana Anda akan menerjemahkan nilai-nilai kejujuran, keadilan,
+      dan amanah ini ketika kelak menyusun instrumen penilaian untuk siswa Anda?
+    </p>
+  </div>
+
+  <!-- LANDASAN TEORETIS -->
+  <h2>1.1 <em>Landasan Teoretis</em> Kontrak, Etika, dan OBE</h2>
+
+  <h3>1.1.1 Outcome-Based Education (OBE)</h3>
+  <p>
+    <em>Outcome-Based Education</em> (OBE) adalah paradigma pendidikan yang menempatkan
+    <strong>capaian pembelajaran (learning outcomes)</strong> sebagai titik awal desain kurikulum,
+    pelaksanaan pembelajaran, dan evaluasi. Menurut Spady (1994), OBE menuntut seluruh komponen
+    pendidikan—tujuan, materi, metode, dan penilaian—untuk selaras dengan outcome yang ditargetkan.
+  </p>
+  <p>
+    Dalam konteks mata kuliah ini, OBE diterjemahkan melalui hierarki:
+    <strong>CPL → CPMK → Sub-CPMK → Indikator → Kegiatan Pembelajaran → Asesmen</strong>.
+    Setiap pertemuan dirancang untuk mencapai Sub-CPMK tertentu, yang pada gilirannya
+    berkontribusi pada pencapaian CPMK dan CPL prodi.
+  </p>
+
+  <h3>1.1.2 Teori Kontrak Pembelajaran (Learning Contract)</h3>
+  <p>
+    Knowles (1975) memperkenalkan konsep <em>learning contract</em> sebagai instrumen
+    <strong>andragogi</strong>—pembelajaran orang dewasa—yang menekankan kemitraan antara
+    fasilitator dan pebelajar. Kontrak pembelajaran meningkatkan <em>self-directed learning</em>,
+    motivasi intrinsik, dan akuntabilitas bersama.
+  </p>
+  <p>
+    Dalam konteks Indonesia, kontrak kuliah juga memiliki dimensi <strong>yuridis</strong>:
+    ia menjadi rujukan ketika terjadi sengketa akademik, sehingga harus disusun secara
+    tertulis, transparan, dan disepakati bersama.
+  </p>
+
+  <h3>1.1.3 Etika Akademik dalam Evaluasi</h3>
+  <p>
+    AERA, APA, &amp; NCME (2014) merumuskan <em>Standards for Educational and Psychological Testing</em>
+    yang menekankan prinsip: <strong>validitas, keadilan, transparansi, dan tanggung jawab profesional</strong>.
+    Dalam konteks PAI, etika evaluasi juga bersumber dari nilai-nilai Islam: <em>shidq</em> (kejujuran),
+    <em>'adl</em> (keadilan), dan <em>amanah</em> (tanggung jawab).
+  </p>
+
+  <!-- KOMPONEN KONTRAK -->
+  <h2>1.2 <em>Komponen Kontrak Kuliah</em> Evaluasi PAI II</h2>
+
+  <h3>1.2.1 Identitas Mata Kuliah</h3>
+  <table>
+    <tr><th>Komponen</th><th>Keterangan</th></tr>
+    <tr><td>Nama Mata Kuliah</td><td>Evaluasi Pembelajaran PAI II</td></tr>
+    <tr><td>Semester</td><td>Ganjil 2026/2027</td></tr>
+    <tr><td>SKS</td><td>3 SKS</td></tr>
+    <tr><td>Dosen Pengampu</td><td>Dr. Arifmiboy, S. Ag., M. Pd.</td></tr>
+    <tr><td>Homebase</td><td>UIN Sjech M. Djamil Djambek Bukittinggi</td></tr>
+    <tr><td>Paradigma</td><td>Outcome-Based Education (OBE)</td></tr>
+  </table>
+
+  <h3>1.2.2 Capaian Pembelajaran Mata Kuliah (CPMK)</h3>
+  <p>
+    Setelah menyelesaikan mata kuliah ini, mahasiswa diharapkan mampu:
+  </p>
+  <ol>
+    <li><strong>CPMK-1:</strong> Menulis Laporan Proyek Perkuliahan</li>
+    <li><strong>CPMK-2:</strong> Mempresentasikan Proyek Perkuliahan</li>
+    <li><strong>CPMK-3:</strong> Menulis Laporan Penelitian/Kunjungan Sekolah terkait proses dan bentuk penilaian</li>
+  </ol>
+
+  <h3>1.2.3 Sistem Penilaian dan Bobot</h3>
+  <p>
+    Penilaian dilakukan secara berkelanjutan sepanjang 16 pertemuan dengan komposisi sebagai berikut:
+  </p>
+  <table>
+    <tr><th>Pertemuan</th><th>Bentuk Penilaian</th><th>Bobot</th></tr>
+    <tr><td>1</td><td>Kehadiran &amp; Partisipasi</td><td>2%</td></tr>
+    <tr><td>2–7</td><td>Tugas Kelompok (Analisis, Kisi-kisi, Butir Soal)</td><td>31%</td></tr>
+    <tr><td>8</td><td>Ujian Tengah Semester (UTS)</td><td>20%</td></tr>
+    <tr><td>9–15</td><td>Tugas Kelompok (Rubrik, Uji Coba, SPSS, Kunjungan)</td><td>37%</td></tr>
+    <tr><td>16</td><td>Ujian Akhir Semester (UAS)</td><td>20%</td></tr>
+    <tr style="background: rgba(201, 169, 97, 0.1);"><td colspan="2"><strong>TOTAL</strong></td><td><strong>100%</strong></td></tr>
+  </table>
+
+  <h3>1.2.4 Aturan Kehadiran dan Etika Kelas</h3>
+  <ul>
+    <li>Kehadiran minimal <strong>75%</strong> untuk mengikuti UAS.</li>
+    <li>Keterlambatan lebih dari 15 menit dicatat sebagai <em>half-attendance</em>.</li>
+    <li>Pakaian rapi, sopan, dan menutup aurat sesuai adab akademik Islam.</li>
+    <li>Non-aktifkan ponsel atau silent mode selama perkuliahan.</li>
+    <li>Plagiarisme dalam bentuk apa pun akan mendapat <strong>nilai E</strong> dan sanksi akademik.</li>
+    <li>Integritas dalam mengerjakan tugas dan ujian adalah harga mati.</li>
+  </ul>
+
+  <div class="warning-box">
+    <h4>⚠️ Integritas Akademik</h4>
+    <p>
+      Segala bentuk plagiarisme, kecurangan, atau penggunaan AI tanpa atribusi akan dikenakan
+      sanksi sesuai peraturan akademik UIN Bukittinggi. Sebagai calon evaluator PAI, Anda
+      diharapkan menjadi <strong>teladan integritas</strong>—karena Anda kelak akan mengukur
+      kejujuran siswa.
+    </p>
+  </div>
+
+  <!-- VISI PEMBELAJARAN -->
+  <h2>1.3 <em>Visi Pembelajaran</em> Berbasis OBE</h2>
+  <p>
+    Mata kuliah ini dirancang dengan visi: <em>"Membentuk calon pendidik PAI yang kompeten
+    dalam merancang, melaksanakan, dan menginterpretasi evaluasi pembelajaran secara profesional,
+    berkeadilan, dan berlandaskan nilai-nilai Islam."</em>
+  </p>
+  <p>
+    Untuk mencapai visi tersebut, pembelajaran akan dilaksanakan melalui pendekatan:
+  </p>
+  <ul>
+    <li><strong>Student-Centered Learning:</strong> Mahasiswa sebagai pusat aktivitas.</li>
+    <li><strong>Project-Based Learning:</strong> Proyek nyata berupa instrumen evaluasi PAI.</li>
+    <li><strong>School-Based Observation:</strong> Kunjungan sekolah untuk eksplorasi praktik penilaian.</li>
+    <li><strong>Reflective Practice:</strong> Refleksi berkelanjutan atas pengalaman belajar.</li>
+  </ul>
+
+  <div class="tip-box">
+    <h4>💡 Tips Sukses di Mata Kuliah Ini</h4>
+    <ul>
+      <li>Hadir tepat waktu dan berpartisipasi aktif dalam setiap diskusi.</li>
+      <li>Bentuk kelompok yang solid sejak pertemuan pertama.</li>
+      <li>Simpan seluruh tugas sebagai portofolio—akan berguna untuk proyek akhir.</li>
+      <li>Jangan menunda; akumulasi tugas akan memberatkan menjelang UTS/UAS.</li>
+      <li>Konsultasikan kesulitan kepada dosen pengampu sedini mungkin.</li>
+    </ul>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <h2>Kesimpulan</h2>
+  <p>
+    Pertemuan pertama ini telah meletakkan tiga pilar fondasi perkuliahan: <strong>kontrak</strong>
+    sebagai peta jalan akademik, <strong>etika</strong> sebagai kompas moral, dan <strong>visi OBE</strong>
+    sebagai arah capaian. Ketiga pilar ini akan menopang perjalanan 16 pertemuan ke depan—mulai dari
+    analisis CP-TP-KKTP, penyusunan kisi-kisi dan butir soal, uji coba instrumen dengan SPSS,
+    hingga kunjungan sekolah dan presentasi hasil.
+  </p>
+  <p>
+    Ingatlah: evaluasi pembelajaran PAI bukan sekadar soal angka dan nilai. Ia adalah
+    <em>amanah profesional</em> untuk memastikan setiap siswa mendapatkan penilaian yang adil,
+    valid, dan bermakna—sebagaimana diajarkan dalam tradisi pendidikan Islam.
+  </p>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>📚 Daftar Pustaka</h3>
+    <ol>
+      <li>AERA, APA, &amp; NCME. (2014). <em>Standards for Educational and Psychological Testing</em>. Washington, DC: AERA.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2010). <em>Kerangka Dasar untuk Pembelajaran, Pengajaran, dan Asesmen</em>. (A. Prihantoro, Penerj.). Yogyakarta: Pustaka Pelajar.</li>
+      <li>Arikunto, S. (2002). <em>Dasar-dasar Evaluasi Pendidikan</em> (Edisi Revisi). Jakarta: PT Bumi Aksara.</li>
+      <li>Arifmiboy. (2024). Penguatan Kapasitas Guru MAN 4 Tanah Datar di Bidang Evaluasi Pembelajaran. <em>Laporan PKM Berbasis Prodi</em>.</li>
+      <li>Arifmiboy. (2025). Pendampingan Guru Madrasah Tsanawiyah dalam Merancang Asesmen Hasil Belajar. <em>Laporan PKM Berbasis Prodi</em>.</li>
+      <li>Azwar, S. (2005). <em>Tes Prestasi: Fungsi dan Pengembangan Pengukuran Prestasi Belajar</em>. Yogyakarta: Pustaka Belajar.</li>
+      <li>Knowles, M. S. (1975). <em>Self-Directed Learning: A Guide for Learners and Teachers</em>. New York: Cambridge.</li>
+      <li>Spady, W. G. (1994). <em>Outcome-Based Education: Critical Issues and Answers</em>. Arlington, VA: American Association of School Administrators.</li>
+      <li>Sudijono, A. (2011). <em>Pengantar Evaluasi Pendidikan</em>. Jakarta: PT RajaGrafindo Persada.</li>
+      <li>Uno, H. B., &amp; Koni, S. (2012). <em>Assessment Pembelajaran</em>. Jakarta: Bumi Aksara.</li>
+    </ol>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <div class="chapter-nav">
+    <a href="index.html">← Kembali ke Daftar Bab</a>
+    <a href="2.html">Bab Selanjutnya: Bedah Kurikulum →</a>
+  </div>
+
+  <!-- ============================================
+       UJI FORMATIF
+       ============================================ -->
+  <section class="test-section" id="uji-formatif">
+    <div class="test-header">
+      <div class="icon">📋</div>
+      <h2>Uji Formatif Pertemuan 1</h2>
+      <p>Kontrak, Etika, dan Visi Pembelajaran Evaluasi PAI II</p>
+    </div>
+
+    <div class="test-warning">
+      ⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu sebelum mengirim!
+    </div>
+
+    <!-- DATA MAHASISWA -->
+    <h3 style="color: var(--gold); margin-bottom: 1.5rem;">📋 Data Mahasiswa</h3>
+    <form id="studentForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" required>
+        </div>
+        <div class="form-group">
+          <label>NIM <span class="required">*</span></label>
+          <input type="text" id="nim" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>📅 Tanggal Ujian <span class="required">*</span></label>
+          <input type="date" id="tanggal" required>
+        </div>
+        <div class="form-group">
+          <label>Fakultas <span class="required">*</span></label>
+          <select id="fakultas" required>
+            <option value="">Pilih Fakultas</option>
+            <option>FTIK</option>
+            <option>FUAD</option>
+            <option>FSE</option>
+            <option>FDAI</option>
+            <option>FISHUM</option>
+            <option>FDAK</option>
+            <option>FPSB</option>
+            <option>FASAL</option>
+            <option>FAH</option>
+            <option>FEI</option>
+            <option>FST</option>
+            <option>F Kedokteran</option>
+            <option>F Pertanian</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jurusan / Prodi <span class="required">*</span></label>
+          <input type="text" id="prodi" required>
+        </div>
+        <div class="form-group">
+          <label>Konsentrasi</label>
+          <input type="text" id="konsentrasi">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Semester <span class="required">*</span></label>
+          <select id="semester" required>
+            <option value="">Pilih Semester</option>
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+            <option>Semester 5</option>
+            <option>Semester 6</option>
+            <option>Semester 7</option>
+            <option>Semester 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kelas <span class="required">*</span></label>
+          <input type="text" id="kelas" placeholder="Contoh: PAI-3A" required>
+        </div>
+      </div>
+
+      <!-- PILIHAN GANDA -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian A — Pilihan Ganda <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(10 soal × 10 poin = 100)</span></h3>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">1</span>
+        <span class="question-text">Kontrak kuliah dalam paradigma OBE berfungsi sebagai...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q1" value="a"><span>a. Peta jalan akademik yang menyelaraskan ekspektasi dosen dan mahasiswa</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="b"><span>b. Dokumen administratif yang bersifat simbolis</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="c"><span>c. Alat untuk menghukum mahasiswa yang melanggar</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="d"><span>d. Daftar nilai akhir mahasiswa</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">2</span>
+        <span class="question-text">CPMK merupakan singkatan dari...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q2" value="a"><span>a. Capaian Pembelajaran Mahasiswa Konsentrasi</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="b"><span>b. Kompetensi Pembelajaran Mata Kuliah</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="c"><span>c. Capaian Pembelajaran Mata Kuliah</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="d"><span>d. Capaian Pendidikan Mahasiswa Kuliah</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">3</span>
+        <span class="question-text">Bobot penilaian Ujian Tengah Semester (UTS) dalam mata kuliah ini adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q3" value="a"><span>a. 10%</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="b"><span>b. 20%</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="c"><span>c. 30%</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="d"><span>d. 40%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">4</span>
+        <span class="question-text">Bobot penilaian Ujian Akhir Semester (UAS) dalam mata kuliah ini adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q4" value="a"><span>a. 10%</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="b"><span>b. 20%</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="c"><span>c. 30%</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="d"><span>d. 40%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">5</span>
+        <span class="question-text">OBE dalam paradigma pendidikan merupakan singkatan dari...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q5" value="a"><span>a. Outcome-Based Education</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="b"><span>b. Objective-Based Evaluation</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="c"><span>c. Open-Book Examination</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="d"><span>d. Organized Basic Education</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">6</span>
+        <span class="question-text">Bobot penilaian kehadiran dan partisipasi pada pertemuan pertama adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q6" value="a"><span>a. 5%</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="b"><span>b. 10%</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="c"><span>c. 2%</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="d"><span>d. 1%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">7</span>
+        <span class="question-text">Dalam etika evaluasi pembelajaran PAI, prinsip yang bersumber dari nilai Islam <em>'adl</em> bermakna...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q7" value="a"><span>a. Kejujuran</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="b"><span>b. Tanggung jawab</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="c"><span>c. Kepercayaan</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="d"><span>d. Keadilan</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">8</span>
+        <span class="question-text">Sub-CPMK pada pertemuan ke-8 dalam RPS mata kuliah ini adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q8" value="a"><span>a. Menyusun rubrik penilaian hasil belajar</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="b"><span>b. Ujian Tengah Semester (UTS)</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="c"><span>c. Merumuskan butir angket</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="d"><span>d. Praktek uji coba instrumen</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">9</span>
+        <span class="question-text">Tokoh yang memperkenalkan konsep <em>learning contract</em> dalam andragogi adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q9" value="a"><span>a. Malcolm Knowles</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="b"><span>b. William Spady</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="c"><span>c. Benjamin Bloom</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="d"><span>d. Robert Gagné</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">10</span>
+        <span class="question-text">Syarat minimal kehadiran mahasiswa untuk dapat mengikuti UAS adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q10" value="a"><span>a. 50%</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="b"><span>b. 60%</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="c"><span>c. 75%</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="d"><span>d. 100%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- ESSAY -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian B — Essay <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(5 soal × 20 poin = 100)</span></h3>
+
+      <div class="essay-block">
+        <span class="question-number">1</span>
+        <span class="question-text">Jelaskan secara komprehensif mengapa kontrak kuliah menjadi fondasi penting dalam pembelajaran berbasis OBE! Berikan minimal tiga alasan teoretis dan satu contoh konkret!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">2</span>
+        <span class="question-text">Analisis hubungan hierarkis antara CPL, CPMK, dan Sub-CPMK dalam mata kuliah Evaluasi Pembelajaran PAI II! Gambarkan alurnya dan jelaskan bagaimana ketiganya saling menopang!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">3</span>
+        <span class="question-text">Sebagai calon evaluator pembelajaran PAI, bagaimana Anda menerjemahkan nilai-nilai Islam (<em>shidq</em>, <em>'adl</em>, <em>amanah</em>) ke dalam prinsip etika evaluasi? Berikan contoh penerapannya!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">4</span>
+        <span class="question-text">Rancanglah sebuah klausul kontrak kuliah ideal untuk mata kuliah Evaluasi Pembelajaran PAI II yang mencakup aspek: identitas, capaian, penilaian, etika, dan sanksi! Tuliskan minimal 5 klausul!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">5</span>
+        <span class="question-text">Berdasarkan visi pembelajaran mata kuliah ini, analisislah bagaimana pendekatan <em>Project-Based Learning</em> dan <em>School-Based Observation</em> dapat membentuk kompetensi evaluator PAI yang profesional!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="submitTest()">✉️ Kirim Jawaban &amp; Lihat Hasil</button>
+        <button type="button" class="btn btn-secondary" onclick="resetTest()">🔄 Mulai Ulang</button>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="resultPanel">
+        <h3>📊 Hasil Uji Formatif</h3>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="label">Data Mahasiswa</div>
+            <div class="value" id="dataStatus" style="font-size: 1.3rem;">—</div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian A (PG)</div>
+            <div class="value"><span id="scoreA">0</span><small>/100</small></div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian B (Essay)</div>
+            <div class="value"><span id="scoreB">0</span><small>/100</small></div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">Total Skor Akhir</div>
+        <div class="total-score"><span id="totalScore">0</span><small>/100</small></div>
+        <div class="grade-badge" id="gradeBadge">—</div>
+
+        <div class="btn-group" style="margin-top: 2rem;">
+          <button type="button" class="btn btn-secondary" onclick="downloadPDF()">📥 Unduh PDF Lengkap</button>
+          <button type="button" class="btn btn-secondary" onclick="downloadScore()">📊 Unduh Skor Saja</button>
+          <button type="button" class="btn btn-secondary" onclick="emailDosen()">✉️ Kirim Email Dosen</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Dr. Arifmiboy, S. Ag., M. Pd.</span>
+  <span class="ornament">◆</span>
+  <span>Evaluasi Pembelajaran PAI II</span>
+  <span class="ornament">◆</span>
+  <span>UIN Bukittinggi</span>
+</footer>
+
+<script>
+  // ============================================
+  // KUNCI JAWABAN PG
+  // ============================================
+  const answerKey = {
+    q1: 'a', q2: 'c', q3: 'b', q4: 'b', q5: 'a',
+    q6: 'c', q7: 'd', q8: 'b', q9: 'a', q10: 'c'
+  };
+
+  const feedbackText = {
+    q1: 'Kontrak kuliah dalam OBE menyelaraskan ekspektasi dan capaian antara dosen dan mahasiswa.',
+    q2: 'CPMK = Capaian Pembelajaran Mata Kuliah, yaitu kemampuan yang ditargetkan setelah menyelesaikan mata kuliah.',
+    q3: 'Bobot UTS dalam mata kuliah ini adalah 20%.',
+    q4: 'Bobot UAS dalam mata kuliah ini adalah 20%.',
+    q5: 'OBE = Outcome-Based Education, paradigma yang berpusat pada capaian pembelajaran.',
+    q6: 'Bobot kehadiran & partisipasi pertemuan 1 adalah 2%.',
+    q7: "'Adl dalam Islam bermakna keadilan—prinsip utama dalam evaluasi.",
+    q8: 'Pertemuan ke-8 adalah Ujian Tengah Semester (UTS).',
+    q9: 'Malcolm Knowles memperkenalkan learning contract dalam teori andragogi.',
+    q10: 'Syarat minimal kehadiran untuk mengikuti UAS adalah 75%.'
+  };
+
+  // ============================================
+  // ESSAY COUNTER
+  // ============================================
+  document.querySelectorAll('.essay-answer').forEach(ta => {
+    const counter = ta.nextElementSibling;
+    ta.addEventListener('input', () => {
+      counter.textContent = ta.value.length + ' karakter';
+    });
+  });
+
+  // ============================================
+  // SUBMIT TEST
+  // ============================================
+  function submitTest() {
+    // Validasi data mahasiswa
+    const fields = ['nama', 'nim', 'tanggal', 'fakultas', 'prodi', 'semester', 'kelas'];
+    let dataValid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      if (!el.value.trim()) {
+        dataValid = false;
+        el.style.borderColor = '#d97070';
+      } else {
+        el.style.borderColor = 'rgba(201, 169, 97, 0.25)';
+      }
+    });
+
+    // Validasi PG
+    let pgAnswered = 0;
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) pgAnswered++;
+    }
+
+    // Validasi Essay
+    let essayAnswered = 0;
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      if (ta.value.trim().length >= 20) essayAnswered++;
+    });
+
+    if (!dataValid) {
+      alert('⚠️ Mohon lengkapi semua data mahasiswa terlebih dahulu!');
+      return;
+    }
+    if (pgAnswered < 10) {
+      alert(`⚠️ Mohon jawab semua 10 soal pilihan ganda! (baru ${pgAnswered}/10 terjawab)`);
+      return;
+    }
+    if (essayAnswered < 5) {
+      alert(`⚠️ Mohon jawab semua 5 soal essay dengan minimal 20 karakter! (baru ${essayAnswered}/5 terjawab)`);
+      return;
+    }
+
+    // Hitung skor PG
+    let scoreA = 0;
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const block = document.querySelector(`.question-block[data-correct]`);
+      const blocks = document.querySelectorAll('.question-block[data-correct]');
+      const currentBlock = blocks[i - 1];
+      const feedback = currentBlock.querySelector('.feedback');
+      const correctAnswer = currentBlock.dataset.correct;
+      const userAnswer = selected.value;
+
+      // Reset styling
+      currentBlock.classList.remove('correct', 'incorrect');
+      currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+        lbl.classList.remove('correct-answer', 'wrong-answer');
+      });
+
+      if (userAnswer === correctAnswer) {
+        scoreA += 10;
+        currentBlock.classList.add('correct');
+        feedback.className = 'feedback show correct';
+        feedback.innerHTML = '✓ <strong>Benar!</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('correct-answer');
+      } else {
+        currentBlock.classList.add('incorrect');
+        feedback.className = 'feedback show incorrect';
+        feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('wrong-answer');
+        // Tandai jawaban benar
+        currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+          const input = lbl.querySelector('input');
+          if (input.value === correctAnswer) lbl.classList.add('correct-answer');
+        });
+      }
+    }
+
+    // Hitung skor Essay (berdasarkan panjang & kelengkapan kata kunci)
+    let scoreB = 0;
+    const essays = document.querySelectorAll('.essay-answer');
+    const keywords = [
+      ['kontrak', 'obe', 'capaian', 'transparan', 'kesepakatan'],
+      ['cpl', 'cpmk', 'sub-cpmk', 'hierarki', 'turunan'],
+      ['shidq', 'adl', 'amanah', 'kejujuran', 'keadilan'],
+      ['klausul', 'identitas', 'penilaian', 'etika', 'sanksi'],
+      ['project', 'observation', 'sekolah', 'profesional', 'kompetensi']
+    ];
+
+    essays.forEach((ta, idx) => {
+      const text = ta.value.toLowerCase();
+      const length = ta.value.trim().length;
+      let baseScore = 0;
+      if (length >= 200) baseScore = 16;
+      else if (length >= 100) baseScore = 12;
+      else if (length >= 50) baseScore = 8;
+      else baseScore = 4;
+
+      let keywordHits = 0;
+      keywords[idx].forEach(kw => {
+        if (text.includes(kw)) keywordHits++;
+      });
+      const keywordBonus = Math.min(keywordHits * 1, 4);
+      const essayScore = Math.min(baseScore + keywordBonus, 20);
+      scoreB += essayScore;
+    });
+
+    // Total
+    const total = Math.round((scoreA + scoreB) / 2);
+
+    // Grade
+    let grade = 'E';
+    if (total >= 85) grade = 'A';
+    else if (total >= 75) grade = 'B+';
+    else if (total >= 65) grade = 'B';
+    else if (total >= 55) grade = 'C+';
+    else if (total >= 45) grade = 'C';
+    else if (total >= 35) grade = 'D';
+
+    // Tampilkan hasil
+    document.getElementById('dataStatus').textContent = '✓ Lengkap';
+    document.getElementById('dataStatus').style.color = '#8fd98e';
+    document.getElementById('scoreA').textContent = scoreA;
+    document.getElementById('scoreB').textContent = scoreB;
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('gradeBadge').textContent = 'Grade: ' + grade;
+    document.getElementById('resultPanel').classList.add('show');
+    document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ============================================
+  // RESET TEST
+  // ============================================
+  function resetTest() {
+    if (!confirm('Yakin ingin mengulang uji formatif? Semua jawaban akan dihapus.')) return;
+    document.getElementById('studentForm').reset();
+    document.querySelectorAll('.question-block').forEach(b => {
+      b.classList.remove('correct', 'incorrect');
+      b.querySelector('.feedback').className = 'feedback';
+      b.querySelectorAll('.option-label').forEach(l => {
+        l.classList.remove('correct-answer', 'wrong-answer');
+      });
+    });
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      ta.value = '';
+      ta.nextElementSibling.textContent = '0 karakter';
+    });
+    document.getElementById('resultPanel').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ============================================
+  // DOWNLOAD PDF (PRINT)
+  // ============================================
+  function downloadPDF() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html><head><title>Hasil Uji Formatif - ${nama}</title>
+      <style>
+        body { font-family: Georgia, serif; padding: 40px; color: #222; line-height: 1.7; }
+        h1 { color: #8a7340; border-bottom: 2px solid #c9a961; padding-bottom: 10px; }
+        h2 { color: #8a7340; margin-top: 30px; font-size: 1.2rem; }
+        .info { background: #f9f6ee; padding: 15px; border-left: 4px solid #c9a961; margin: 20px 0; }
+        .score-box { text-align: center; font-size: 2rem; color: #8a7340; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #c9a961; color: #fff; }
+        .essay { background: #fafafa; padding: 10px; margin: 10px 0; border-left: 3px solid #c9a961; }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }
+      </style></head><body>
+      <h1>Hasil Uji Formatif Pertemuan 1</h1>
+      <p style="font-style: italic;">Evaluasi Pembelajaran PAI II — Dr. Arifmiboy, S. Ag., M. Pd.</p>
+      <div class="info">
+        <strong>Nama:</strong> ${nama}<br>
+        <strong>NIM:</strong> ${nim}<br>
+        <strong>Prodi:</strong> ${prodi}<br>
+        <strong>Tanggal:</strong> ${document.getElementById('tanggal').value}
+      </div>
+      <div class="score-box">
+        Total Skor: ${total}/100<br>
+        <span style="font-size: 1.2rem;">${grade}</span>
+      </div>
+      <h2>Bagian A — Pilihan Ganda</h2>
+      <table>
+        <tr><th>No</th><th>Soal</th><th>Jawaban Anda</th><th>Kunci</th><th>Status</th></tr>
+        ${Array.from({length: 10}).map((_, i) => {
+          const qName = 'q' + (i+1);
+          const selected = document.querySelector(`input[name="${qName}"]:checked`);
+          const correct = answerKey[qName];
+          const user = selected ? selected.value : '-';
+          const status = user === correct ? '✓ Benar' : '✗ Salah';
+          const qText = document.querySelectorAll('.question-block[data-correct]')[i].querySelector('.question-text').textContent;
+          return `<tr><td>${i+1}</td><td>${qText}</td><td>${user}</td><td>${correct}</td><td>${status}</td></tr>`;
+        }).join('')}
+      </table>
+      <h2>Bagian B — Essay</h2>
+      ${Array.from(document.querySelectorAll('.essay-block')).map((block, i) => {
+        const q = block.querySelector('.question-text').textContent;
+        const a = block.querySelector('.essay-answer').value;
+        return `<div class="essay"><strong>Soal ${i+1}:</strong> ${q}<br><br><em>Jawaban:</em><br>${a.replace(/\n/g, '<br>')}</div>`;
+      }).join('')}
+      <div class="footer">
+        Dokumen ini digenerate otomatis pada ${new Date().toLocaleString('id-ID')}<br>
+        © 2026 Evaluasi Pembelajaran PAI II — UIN Bukittinggi
+      </div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => printWindow.print(), 500);
+  }
+
+  // ============================================
+  // DOWNLOAD SKOR SAJA
+  // ============================================
+  function downloadScore() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const content = `HASIL UJI FORMATIF PERTEMUAN 1
+Evaluasi Pembelajaran PAI II
+Dr. Arifmiboy, S. Ag., M. Pd.
+UIN Sjech M. Djamil Djambek Bukittinggi
+========================================
+
+Nama      : ${nama}
+NIM       : ${nim}
+Tanggal   : ${document.getElementById('tanggal').value}
+Prodi     : ${document.getElementById('prodi').value}
+Kelas     : ${document.getElementById('kelas').value}
+
+----------------------------------------
+SKOR
+----------------------------------------
+Bagian A (Pilihan Ganda) : ${scoreA} / 100
+Bagian B (Essay)         : ${scoreB} / 100
+----------------------------------------
+TOTAL SKOR               : ${total} / 100
+GRADE                    : ${grade}
+========================================
+
+Tanggal Cetak: ${new Date().toLocaleString('id-ID')}
+`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Skor_UjiFormatif_P1_${nim}_${nama.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================
+  // EMAIL DOSEN
+  // ============================================
+  function emailDosen() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const kelas = document.getElementById('kelas').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const subject = encodeURIComponent(`Hasil Uji Formatif P1 - ${nama} (${nim})`);
+    const body = encodeURIComponent(
+`Yth. Dr. Arifmiboy, S. Ag., M. Pd.
+
+Berikut saya sampaikan hasil Uji Formatif Pertemuan 1 mata kuliah Evaluasi Pembelajaran PAI II:
+
+Data Mahasiswa:
+- Nama : ${nama}
+- NIM  : ${nim}
+- Prodi: ${prodi}
+- Kelas: ${kelas}
+
+Hasil Penilaian:
+- Bagian A (PG)    : ${scoreA}/100
+- Bagian B (Essay) : ${scoreB}/100
+- TOTAL            : ${total}/100
+- Grade            : ${grade}
+
+Terima kasih.
+
+Hormat saya,
+${nama}`
+    );
+
+    window.location.href = `mailto:arifmiboy@uinbukittinggi.ac.id?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>
