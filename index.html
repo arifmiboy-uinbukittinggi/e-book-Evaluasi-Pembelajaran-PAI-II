@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluasi Pembelajaran PAI II — Dr. Arifmiboy, S. Ag., M. Pd</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     RESET & BASE
+     ============================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e8e4d9;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ============================================
+     PALETTE & VARIABLES
+     ============================================ */
+  :root {
+    --gold: #c9a961;
+    --gold-light: #e4cc8a;
+    --gold-dark: #8a7340;
+    --navy: #0a0e1a;
+    --navy-soft: #141a2e;
+    --cream: #f5efe0;
+    --text-muted: #a8a192;
+  }
+
+  /* ============================================
+     BACKGROUND ORNAMENTS
+     ============================================ */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ============================================
+     NAVIGATION
+     ============================================ */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 1.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.7);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ============================================
+     HERO SECTION
+     ============================================ */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 6rem 4rem;
+    position: relative;
+    z-index: 1;
+    gap: 4rem;
+  }
+  .hero-content { animation: fadeInLeft 1.2s ease; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    padding: 0.5rem 1.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 2rem 0;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  .hero-author {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+  .hero-affiliation {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 2.5rem;
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+    color: var(--navy);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-radius: 2px;
+    transition: all 0.4s;
+    box-shadow: 0 10px 40px rgba(201, 169, 97, 0.25);
+  }
+  .hero-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 50px rgba(201, 169, 97, 0.4);
+  }
+  .hero-cta-arrow { transition: transform 0.3s; }
+  .hero-cta:hover .hero-cta-arrow { transform: translateX(5px); }
+
+  /* ============================================
+     BOOK COVER
+     ============================================ */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1500px;
+    animation: fadeInRight 1.2s ease;
+  }
+  .book-wrapper {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .book-wrapper:hover { transform: rotateY(-15deg) rotateX(5deg); }
+  .book-cover {
+    width: 340px;
+    height: 480px;
+    background: linear-gradient(135deg, #1a2340 0%, #0a0e1a 100%);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(201, 169, 97, 0.1),
+      inset 0 0 60px rgba(201, 169, 97, 0.05);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .book-cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 20px; height: 100%;
+    background: linear-gradient(90deg, rgba(0,0,0,0.5), transparent);
+    z-index: 3;
+  }
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    border: 1px solid rgba(201, 169, 97, 0.4);
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* ============================================
+     GAMBAR COVER BUKU
+     GANTI FILE: ganti "cover-buku.png" dengan nama file cover Anda
+     Letakkan file cover-buku.png di folder yang sama dengan file HTML ini
+     ============================================ */
+  .book-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+  }
+  .book-badge {
+    position: absolute;
+    top: 25px; right: 25px;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 0.4rem 0.9rem;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+    z-index: 4;
+    border-radius: 2px;
+  }
+  .book-shadow {
+    position: absolute;
+    bottom: -30px; left: 50%;
+    transform: translateX(-50%);
+    width: 80%; height: 30px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.5), transparent 70%);
+    filter: blur(10px);
+  }
+
+  /* ============================================
+     SECTION HEADERS
+     ============================================ */
+  .section {
+    padding: 8rem 6rem;
+    position: relative;
+    z-index: 1;
+  }
+  .section-label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    color: var(--cream);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .section-title em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+  }
+
+  /* ============================================
+     MEETINGS / PERTEMUAN GRID
+     ============================================ */
+  .meetings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .meeting-card {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8) 0%, rgba(10, 14, 26, 0.9) 100%);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    padding: 2rem;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    border-radius: 4px;
+    backdrop-filter: blur(10px);
+  }
+  .meeting-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    transform: scaleX(0);
+    transition: transform 0.5s;
+  }
+  .meeting-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(201, 169, 97, 0.1);
+  }
+  .meeting-card:hover::before { transform: scaleX(1); }
+  .meeting-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+    font-style: italic;
+  }
+  .meeting-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .meeting-label::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--gold);
+  }
+  .meeting-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .meeting-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: gap 0.3s;
+  }
+  .meeting-card:hover .meeting-link { gap: 1rem; }
+
+  /* UTS & UAS special styling */
+  .meeting-card.exam {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.12) 0%, rgba(20, 26, 46, 0.9) 100%);
+    border: 1px solid var(--gold);
+  }
+  .meeting-card.exam .meeting-number {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ============================================
+     AUTHOR SECTION
+     ============================================ */
+  .author-section {
+    background: linear-gradient(180deg, transparent 0%, rgba(20, 26, 46, 0.5) 50%, transparent 100%);
+  }
+  .author-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+  }
+  .author-photo-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+  .author-photo-frame {
+    width: 320px;
+    height: 400px;
+    position: relative;
+  }
+  .author-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -15px; left: -15px;
+    width: 100%; height: 100%;
+    border: 1px solid var(--gold);
+    z-index: -1;
+  }
+  /* ============================================
+     FOTO PENULIS
+     GANTI FILE: ganti "photo-penulis.png" dengan nama file foto Anda
+     Letakkan file photo-penulis.png di folder yang sama dengan file HTML ini
+     ============================================ */
+  .author-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(30%) contrast(1.05);
+    transition: filter 0.4s;
+  }
+  .author-photo-frame:hover .author-photo { filter: grayscale(0%) contrast(1.1); }
+  .author-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .author-info .credentials {
+    color: var(--gold);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  .author-info .bio {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .author-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .author-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .author-meta-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    min-width: 120px;
+  }
+  .author-meta-value {
+    color: var(--cream);
+    font-size: 0.95rem;
+  }
+  .author-meta-value a {
+    color: var(--cream);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .author-meta-value a:hover { color: var(--gold); }
+
+  /* ============================================
+     FOOTER
+     ============================================ */
+  footer {
+    padding: 3rem 6rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .ornament {
+    color: var(--gold);
+    margin: 0 1rem;
+  }
+
+  /* ============================================
+     ANIMATIONS
+     ============================================ */
+  @keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .meeting-card { animation: fadeInUp 0.8s ease backwards; }
+  .meeting-card:nth-child(1) { animation-delay: 0.05s; }
+  .meeting-card:nth-child(2) { animation-delay: 0.1s; }
+  .meeting-card:nth-child(3) { animation-delay: 0.15s; }
+  .meeting-card:nth-child(4) { animation-delay: 0.2s; }
+  .meeting-card:nth-child(5) { animation-delay: 0.25s; }
+  .meeting-card:nth-child(6) { animation-delay: 0.3s; }
+  .meeting-card:nth-child(7) { animation-delay: 0.35s; }
+  .meeting-card:nth-child(8) { animation-delay: 0.4s; }
+  .meeting-card:nth-child(9) { animation-delay: 0.45s; }
+  .meeting-card:nth-child(10) { animation-delay: 0.5s; }
+  .meeting-card:nth-child(11) { animation-delay: 0.55s; }
+  .meeting-card:nth-child(12) { animation-delay: 0.6s; }
+  .meeting-card:nth-child(13) { animation-delay: 0.65s; }
+  .meeting-card:nth-child(14) { animation-delay: 0.7s; }
+  .meeting-card:nth-child(15) { animation-delay: 0.75s; }
+  .meeting-card:nth-child(16) { animation-delay: 0.8s; }
+
+  /* ============================================
+     RESPONSIVE
+     ============================================ */
+  @media (max-width: 968px) {
+    .nav { padding: 1rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+    .hero-visual { order: -1; }
+    .book-cover { width: 260px; height: 370px; }
+    .section { padding: 5rem 2rem; }
+    .author-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .author-photo-frame { width: 260px; height: 320px; }
+    footer { padding: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     NAVIGATION
+     ============================================ -->
+<nav class="nav">
+  <div class="nav-logo">EVALUASI <span>PAI II</span></div>
+  <div class="nav-links">
+    <a href="#home">Beranda</a>
+    <a href="#pertemuan">Pertemuan</a>
+    <a href="#penulis">Penulis</a>
+  </div>
+</nav>
+
+<!-- ============================================
+     HERO SECTION
+     ============================================ -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="hero-tag">Edisi OBE · 2026</span>
+    <h1 class="hero-title">Evaluasi <em>Pembelajaran</em><br>PAI II</h1>
+    <div class="hero-divider"></div>
+    <p class="hero-author">Dr. Arifmiboy, S. Ag., M. Pd</p>
+    <p class="hero-affiliation">Universitas Islam Negeri Sjech M. Djamil Djambek Bukittinggi</p>
+    <a href="#pertemuan" class="hero-cta">
+      Jelajahi 16 Pertemuan
+      <span class="hero-cta-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="book-wrapper">
+      <div class="book-cover">
+        <div class="book-badge">OBE 2026</div>
+        <!-- ============================================
+             GAMBAR COVER BUKU
+             GANTI FILE: ganti "cover-buku.png" di bawah ini
+             dengan nama file cover buku Anda.
+             Letakkan file tersebut di folder yang sama
+             dengan file HTML ini.
+             ============================================ -->
+        <img src="cover-buku.png" alt="Cover Buku Evaluasi Pembelajaran PAI II" onerror="this.style.display='none'; this.parentElement.innerHTML += '<div style=&quot;position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:2rem;text-align:center;z-index:1;&quot;><div style=&quot;font-family:Playfair Display,serif;font-size:2rem;color:#c9a961;font-style:italic;margin-bottom:1rem;&quot;>Evaluasi</div><div style=&quot;font-family:Playfair Display,serif;font-size:1.4rem;color:#f5efe0;margin-bottom:2rem;&quot;>Pembelajaran PAI II</div><div style=&quot;width:60px;height:1px;background:#c9a961;margin-bottom:2rem;&quot;></div><div style=&quot;font-family:Cormorant Garamond,serif;font-size:0.9rem;color:#a8a192;letter-spacing:2px;&quot;>Dr. Arifmiboy</div></div>';">
+      </div>
+      <div class="book-shadow"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     16 PERTEMUAN SECTION
+     ============================================ -->
+<section class="section" id="pertemuan">
+  <span class="section-label">Silabus Perkuliahan</span>
+  <h2 class="section-title">Enam Belas <em>Pertemuan</em></h2>
+  <p class="section-subtitle">Perjalanan akademik dari fondasi evaluasi hingga implementasi nyata di ruang kelas PAI</p>
+
+  <div class="meetings-grid">
+
+    <a href="1.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">01</div>
+      <div class="meeting-label">Pertemuan Pertama</div>
+      <h3 class="meeting-title">Pondasi Perkuliahan: Kontrak, Etika, dan Visi Pembelajaran</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="2.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">02</div>
+      <div class="meeting-label">Pertemuan Kedua</div>
+      <h3 class="meeting-title">Bedah Kurikulum: Analisis CP, TP, dan KKTP dalam PAI</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="3.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">03</div>
+      <div class="meeting-label">Pertemuan Ketiga</div>
+      <h3 class="meeting-title">Arsitektur Tes: Merancang Kisi-Kisi Objektif &amp; Esai</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="4.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">04</div>
+      <div class="meeting-label">Pertemuan Keempat</div>
+      <h3 class="meeting-title">Menyentuh Ranah Rasa: Instrumen Non-Tes untuk Aspek Afektif</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="5.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">05</div>
+      <div class="meeting-label">Pertemuan Kelima</div>
+      <h3 class="meeting-title">Seni Merangkai Soal: Butir-Butir Tes Objektif yang Bermutu</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="6.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">06</div>
+      <div class="meeting-label">Pertemuan Keenam</div>
+      <h3 class="meeting-title">Esai yang Menggugah: Merumuskan Soal Uraian Berkualitas</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="7.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">07</div>
+      <div class="meeting-label">Pertemuan Ketujuh</div>
+      <h3 class="meeting-title">Angket yang Berbicara: Mengukur Afektivitas Peserta Didik</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="8.html" target="_blank" class="meeting-card exam">
+      <div class="meeting-number">08</div>
+      <div class="meeting-label">Evaluasi Tengah Semester</div>
+      <h3 class="meeting-title">Ujian Tengah Semester (UTS)</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="9.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">09</div>
+      <div class="meeting-label">Pertemuan Kesembilan</div>
+      <h3 class="meeting-title">Standar Penilaian: Menyusun Rubrik yang Adil &amp; Transparan</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="10.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">10</div>
+      <div class="meeting-label">Pertemuan Kesepuluh</div>
+      <h3 class="meeting-title">Simulasi Lapangan: Uji Coba Instrumen Pembelajaran</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="11.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">11</div>
+      <div class="meeting-label">Pertemuan Kesebelas</div>
+      <h3 class="meeting-title">Alkimia Nilai: Penskoran &amp; Pengolahan Data yang Akurat</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="12.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">12</div>
+      <div class="meeting-label">Pertemuan Keduabelas</div>
+      <h3 class="meeting-title">Validitas &amp; Reliabilitas: Bedah Instrumen dengan SPSS</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="13.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">13</div>
+      <div class="meeting-label">Pertemuan Ketigabelas</div>
+      <h3 class="meeting-title">Ekspedisi Sekolah: Observasi Praktik Penilaian PAI</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="14.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">14</div>
+      <div class="meeting-label">Pertemuan Keempatbelas</div>
+      <h3 class="meeting-title">Merangkai Kisah: Laporan Kunjungan Sekolah</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="15.html" target="_blank" class="meeting-card">
+      <div class="meeting-number">15</div>
+      <div class="meeting-label">Pertemuan Kelimabelas</div>
+      <h3 class="meeting-title">Panggung Presentasi: Berbagi Temuan Evaluasi Pembelajaran</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+    <a href="16.html" target="_blank" class="meeting-card exam">
+      <div class="meeting-number">16</div>
+      <div class="meeting-label">Evaluasi Akhir Semester</div>
+      <h3 class="meeting-title">Ujian Akhir Semester (UAS)</h3>
+      <span class="meeting-link">Buka Materi →</span>
+    </a>
+
+  </div>
+</section>
+
+<!-- ============================================
+     AUTHOR SECTION
+     ============================================ -->
+<section class="section author-section" id="penulis">
+  <span class="section-label">Tentang Penulis</span>
+  <h2 class="section-title">Sang <em>Penulis</em></h2>
+  <p class="section-subtitle">Dedikasi dalam memajukan evaluasi pembelajaran Pendidikan Agama Islam</p>
+
+  <div class="author-grid">
+    <div class="author-photo-wrapper">
+      <div class="author-photo-frame">
+        <!-- ============================================
+             FOTO PENULIS
+             GANTI FILE: ganti "photo-penulis.png" di bawah ini
+             dengan nama file foto penulis Anda.
+             Letakkan file tersebut di folder yang sama
+             dengan file HTML ini.
+             ============================================ -->
+        <img src="photo-penulis.png" alt="Dr. Arifmiboy, S. Ag., M. Pd" class="author-photo" onerror="this.style.display='none'; this.parentElement.innerHTML += '<div style=&quot;position:absolute;inset:0;background:linear-gradient(135deg,#1a2340,#0a0e1a);display:flex;align-items:center;justify-content:center;font-family:Playfair Display,serif;font-size:5rem;color:#c9a961;font-style:italic;&quot;>A</div>';">
+      </div>
+    </div>
+
+    <div class="author-info">
+      <h3>Dr. Arifmiboy, S. Ag., M. Pd</h3>
+      <p class="credentials">Dosen Pendidikan Agama Islam</p>
+      <p class="bio">
+        Seorang akademisi yang berdedikasi dalam bidang evaluasi pembelajaran Pendidikan Agama Islam.
+        Berpengalaman dalam pendampingan guru madrasah, penguatan kapasitas evaluasi pembelajaran,
+        serta penelitian kolaborasi internasional. Buku ini merupakan hasil refleksi panjang atas
+        praktik evaluasi pembelajaran PAI berbasis <em>Outcome-Based Education</em> (OBE).
+      </p>
+      <div class="author-meta">
+        <div class="author-meta-item">
+          <span class="author-meta-label">Homebase</span>
+          <span class="author-meta-value">UIN Sjech M. Djamil Djambek Bukittinggi</span>
+        </div>
+        <div class="author-meta-item">
+          <span class="author-meta-label">Email</span>
+          <span class="author-meta-value"><a href="mailto:arifmiboy@uinbukittinggi.ac.id">arifmiboy@uinbukittinggi.ac.id</a></span>
+        </div>
+        <div class="author-meta-item">
+          <span class="author-meta-label">Edisi</span>
+          <span class="author-meta-value">OBE · Semester Ganjil 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer>
+  <span>© 2026 Dr. Arifmiboy, S. Ag., M. Pd</span>
+  <span class="ornament">◆</span>
+  <span>UIN Sjech M. Djamil Djambek Bukittinggi</span>
+  <span class="ornament">◆</span>
+  <span>Evaluasi Pembelajaran PAI II</span>
+</footer>
+
+</body>
+</html>

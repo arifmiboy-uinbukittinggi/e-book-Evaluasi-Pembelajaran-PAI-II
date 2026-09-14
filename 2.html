@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 2 — Bedah Kurikulum: Analisis CP, TP, dan KKTP dalam PAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e8e4d9;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  :root {
+    --gold: #c9a961;
+    --gold-light: #e4cc8a;
+    --gold-dark: #8a7340;
+    --navy: #0a0e1a;
+    --navy-soft: #141a2e;
+    --cream: #f5efe0;
+    --text-muted: #a8a192;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAVIGATION */
+  .nav {
+    position: sticky;
+    top: 0;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.85);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+  }
+  .hero-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  .hero-meta span strong { color: var(--gold); font-weight: 500; }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--cream);
+    margin: 4rem 0 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .content h2::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 60%;
+    background: var(--gold);
+  }
+  .content h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin: 2.5rem 0 1rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .content h4 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin: 1.8rem 0 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .content p {
+    color: #d4cfc0;
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+    text-align: justify;
+  }
+  .content ul, .content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: #d4cfc0;
+  }
+  .content li { margin-bottom: 0.6rem; }
+  .content strong { color: var(--gold-light); font-weight: 600; }
+  .content em { color: var(--gold); font-style: italic; }
+
+  /* VIDEO BOX */
+  .video-box {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    text-align: center;
+  }
+  .video-box .icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .video-box h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .video-box p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+  }
+
+  /* KEY CONCEPTS */
+  .key-concept {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.6));
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .key-concept h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .key-concept ul { margin-top: 1rem; }
+  .key-concept li strong { color: var(--cream); }
+
+  /* CASE STUDY */
+  .case-study {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .case-study::before {
+    content: '📖';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .case-study h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+  }
+  .case-study .lesson {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(201, 169, 97, 0.3);
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* REFLECTION */
+  .reflection {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.06), transparent);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .reflection h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* TABLE */
+  .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(20, 26, 46, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .content table th {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--navy);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .content table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    color: #d4cfc0;
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  .content table tr:last-child td { border-bottom: none; }
+  .content table tr:hover td { background: rgba(201, 169, 97, 0.05); }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(201, 169, 97, 0.06);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .tip-box h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: rgba(180, 60, 60, 0.08);
+    border: 1px solid rgba(220, 100, 100, 0.3);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .warning-box h4 {
+    color: #e8a0a0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.6));
+    border-left: 4px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 15px;
+    font-size: 5rem;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    opacity: 0.4;
+  }
+  .quote-box .quote-source {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+
+  /* INFOGRAPHIC */
+  .infographic {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+  }
+  .infographic h4 {
+    text-align: center;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .flow-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .flow-item {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.15), rgba(20, 26, 46, 0.6));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 280px;
+    color: var(--cream);
+    font-weight: 500;
+    position: relative;
+  }
+  .flow-item strong { color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  /* REFERENCES */
+  .references {
+    background: rgba(20, 26, 46, 0.5);
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+  }
+  .references h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-style: normal;
+  }
+  .references h4 {
+    color: var(--gold-light);
+    margin: 1.5rem 0 0.8rem;
+    font-size: 1rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .references ol, .references ul {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .references li { margin-bottom: 0.8rem; }
+  .references em { color: var(--cream); }
+
+  /* CHAPTER NAVIGATION */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    flex-wrap: wrap;
+  }
+  .chapter-nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 3px;
+  }
+  .chapter-nav a:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* FORMATIVE TEST */
+  .test-section {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    margin: 4rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .test-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .test-header .icon {
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .test-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    padding-left: 0;
+  }
+  .test-header h2::before { display: none; }
+  .test-header p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .test-warning {
+    background: rgba(220, 170, 60, 0.1);
+    border: 1px solid rgba(220, 170, 60, 0.3);
+    color: var(--gold-light);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  /* FORM FIELDS */
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-group label .required { color: #e8a0a0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 4px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(10, 14, 26, 0.9);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+  }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--navy); color: var(--cream); }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* QUESTION BLOCK */
+  .question-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .question-block:hover { border-color: rgba(201, 169, 97, 0.4); }
+  .question-block.correct {
+    border-color: #6abf69;
+    background: rgba(106, 191, 105, 0.08);
+  }
+  .question-block.incorrect {
+    border-color: #d97070;
+    background: rgba(217, 112, 112, 0.08);
+  }
+  .question-number {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.8rem;
+  }
+  .question-text {
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: inline;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: rgba(20, 26, 46, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #d4cfc0;
+    font-size: 0.95rem;
+  }
+  .option-label:hover {
+    background: rgba(201, 169, 97, 0.08);
+    border-color: var(--gold);
+  }
+  .option-label input { margin-top: 3px; accent-color: var(--gold); cursor: pointer; }
+  .option-label input:checked + span { color: var(--gold-light); font-weight: 500; }
+  .option-label.correct-answer {
+    background: rgba(106, 191, 105, 0.15);
+    border-color: #6abf69;
+  }
+  .option-label.wrong-answer {
+    background: rgba(217, 112, 112, 0.15);
+    border-color: #d97070;
+  }
+  .feedback {
+    display: none;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct {
+    background: rgba(106, 191, 105, 0.1);
+    color: #8fd98e;
+    border-left: 3px solid #6abf69;
+  }
+  .feedback.incorrect {
+    background: rgba(217, 112, 112, 0.1);
+    color: #e8a0a0;
+    border-left: 3px solid #d97070;
+  }
+
+  /* ESSAY */
+  .essay-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .essay-block textarea {
+    min-height: 120px;
+    resize: vertical;
+    margin-top: 1rem;
+  }
+  .essay-counter {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* BUTTONS */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201, 169, 97, 0.4);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  /* RESULTS */
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.8));
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .result-panel.show { display: block; animation: fadeIn 0.6s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-panel h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .score-card {
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+  .score-card .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .score-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .score-card .value small { font-size: 1rem; color: var(--text-muted); }
+  .total-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin: 1rem 0;
+    text-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+  }
+  .total-score small { font-size: 1.5rem; color: var(--text-muted); }
+  .grade-badge {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .ornament { color: var(--gold); margin: 0 0.8rem; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.7rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.2rem; }
+    .test-section { padding: 2rem 1.2rem; }
+    .hero-meta { gap: 1rem; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo">EVALUASI <span>PAI II</span></div>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="index.html#pertemuan">Pertemuan</a>
+    <a href="index.html#penulis">Penulis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">Pertemuan Kedua · OBE 2026</span>
+  <div class="hero-chapter">Bab II</div>
+  <h1>Bedah Kurikulum: <em>Analisis CP, TP,</em><br>dan KKTP dalam PAI</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">
+    Menelaah Capaian Pembelajaran, Tujuan Pembelajaran, dan Kriteria Ketercapaian Tujuan Pembelajaran
+    dalam Kurikulum Merdeka sebagai fondasi perancangan evaluasi pembelajaran PAI yang presisi.
+  </p>
+  <div class="hero-meta">
+    <span><strong>Penulis:</strong> Dr. Arifmiboy, S. Ag., M. Pd.</span>
+    <span><strong>Homebase:</strong> UIN Bukittinggi</span>
+    <span><strong>Bobot:</strong> 5%</span>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PENDAHULUAN -->
+  <h2>Pendahuluan</h2>
+  <p>
+    Kurikulum adalah <strong>jantung dari proses pendidikan</strong>. Ia bukan sekadar daftar materi
+    yang harus disampaikan, melainkan sebuah <em>blueprint</em> yang mengatur arah, isi, proses, dan
+    evaluasi pembelajaran. Di Indonesia, transformasi kurikulum dari KTSP (2006) → Kurikulum 2013 →
+    Kurikulum Merdeka (2022) membawa perubahan paradigma yang fundamental dalam cara guru merancang,
+    melaksanakan, dan mengevaluasi pembelajaran.
+  </p>
+  <p>
+    Dalam <strong>Kurikulum Merdeka</strong>, tiga elemen kunci menjadi pilar utama perancangan
+    pembelajaran: <strong>Capaian Pembelajaran (CP)</strong>, <strong>Tujuan Pembelajaran (TP)</strong>,
+    dan <strong>Kriteria Ketercapaian Tujuan Pembelajaran (KKTP)</strong>. Ketiga elemen ini
+    membentuk hierarki yang selaras—dari capaian tingkat fase, diturunkan menjadi tujuan per
+    pembelajaran, dan diukur melalui kriteria yang operasional.
+  </p>
+  <p>
+    Bagi calon evaluator pembelajaran PAI, penguasaan terhadap analisis CP-TP-KKTP bukan sekadar
+    kompetensi administratif. Ia adalah <em>prasyarat epistemologis</em> untuk merancang instrumen
+    evaluasi yang <strong>valid</strong> (mengukur apa yang seharusnya diukur) dan <strong>reliabel</strong>
+    (konsisten dalam pengukurannya). Tanpa pemahaman yang utuh tentang CP-TP-KKTP, evaluator
+    berisiko menyusun instrumen yang tidak selaras dengan capaian yang ditargetkan—sebuah kesalahan
+    fatal dalam evaluasi pembelajaran.
+  </p>
+
+  <div class="quote-box">
+    Dan tidak ada suatu binatang melata pun di bumi melainkan Allah-lah yang memberi rezekinya, dan Dia mengetahui tempat berdiam binatang itu dan tempat penyimpanannya. Semua tertulis dalam Kitab yang nyata (Lauh mahfuzh).
+    <span class="quote-source">— QS. Hud [11]: 6</span>
+  </div>
+
+  <p>
+    Ayat ini mengingatkan kita bahwa segala sesuatu—termasuk proses pendidikan—memiliki
+    <em>ketentuan</em> dan <em>ukuran</em> yang telah ditetapkan. Dalam konteks evaluasi,
+    CP-TP-KKTP adalah "ukuran" yang harus dipatuhi agar penilaian menjadi adil dan bermakna.
+  </p>
+
+  <div class="video-box">
+    <div class="icon">🎬</div>
+    <h4>Video: Bedah Kurikulum Merdeka PAI</h4>
+    <p>Simak penjelasan komprehensif tentang CP, TP, dan KKTP dalam Kurikulum Merdeka untuk mata pelajaran PAI.</p>
+  </div>
+
+  <!-- KONSEP KUNCI -->
+  <div class="key-concept">
+    <h4>🔑 Konsep Kunci</h4>
+    <ul>
+      <li><strong>Capaian Pembelajaran (CP):</strong> Kompetensi yang diharapkan dicapai peserta didik pada akhir setiap fase perkembangan (setiap 2-3 tahun).</li>
+      <li><strong>Tujuan Pembelajaran (TP):</strong> Deskripsi pencapaian tiga dimensi (kapasitas, disposisi, konten) yang diperoleh melalui serangkaian kegiatan pembelajaran.</li>
+      <li><strong>Kriteria Ketercapaian Tujuan Pembelajaran (KKTP):</strong> Tolok ukur spesifik yang digunakan guru untuk menilai apakah TP telah tercapai.</li>
+      <li><strong>Fase Pembelajaran:</strong> Pembagian jenjang pendidikan menjadi 6 fase (A-F) dalam Kurikulum Merdeka.</li>
+      <li><strong>Elemen PAI:</strong> 5 elemen mata pelajaran PAI: Al-Qur'an Hadis, Akidah, Akhlak, Fikih, Sejarah Peradaban Islam.</li>
+      <li><strong>Backward Design:</strong> Pendekatan desain kurikulum yang dimulai dari tujuan akhir, kemudian asesmen, baru aktivitas pembelajaran.</li>
+    </ul>
+  </div>
+
+  <!-- STUDI KASUS 1 -->
+  <div class="case-study">
+    <h4>Studi Kasus 1: Ketidakselarasan CP dan Instrumen Evaluasi</h4>
+    <p>
+      Seorang guru PAI di sebuah MTs di Sumatera Barat merancang soal UAS tentang "Sejarah
+      Khulafaur Rasyidin" dengan 40 soal pilihan ganda yang hanya menguji hafalan nama dan
+      tahun. Padahal, CP untuk Fase D (SMP/MTs) menuntut siswa mampu <em>menganalisis</em>
+      keteladanan para khalifah dan <em>mengaitkan</em> nilai-nilainya dengan kehidupan
+      kontemporer. Akibatnya, siswa yang hafal tetapi tidak paham konsep mendapat nilai tinggi,
+      sementara siswa yang paham tetapi kurang hafal detail sejarah mendapat nilai rendah.
+      Evaluasi tidak mencerminkan capaian yang sesungguhnya.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Instrumen evaluasi harus selaras dengan level kognitif
+      yang dituntut oleh CP. Jika CP menuntut analisis, maka instrumen harus menguji analisis—
+      bukan sekadar hafalan.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 2 -->
+  <div class="case-study">
+    <h4>Studi Kasus 2: Keberhasilan Analisis CP-TP-KKTP di MAN 4 Tanah Datar</h4>
+    <p>
+      Dalam kegiatan PKM Berbasis Prodi tahun 2024, tim dosen UIN Bukittinggi mendampingi
+      guru-guru MAN 4 Tanah Datar dalam menganalisis CP dan merumuskan TP-KKTP untuk mata
+      pelajaran PAI. Setelah pelatihan intensif selama 3 hari, guru-guru berhasil menyusun
+      12 modul ajar yang selaras dengan CP Fase E. Hasilnya, pada evaluasi akhir semester,
+      ketercapaian kompetensi siswa meningkat dari rata-rata 68% menjadi 82%, dan guru
+      melaporkan bahwa proses evaluasi menjadi lebih terarah dan adil.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Analisis CP-TP-KKTP yang sistematis meningkatkan kualitas
+      evaluasi dan ketercapaian kompetensi siswa secara signifikan.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 3 -->
+  <div class="case-study">
+    <h4>Studi Kasus 3: Kesalahan Umum dalam Merumuskan KKTP</h4>
+    <p>
+      Seorang guru PAI merumuskan KKTP untuk materi "Shalat Berjamaah" sebagai berikut:
+      "Siswa memahami shalat berjamaah." KKTP ini terlalu umum, tidak terukur, dan tidak
+      operasional. Ketika diminta menilai, guru tersebut bingung menentukan apakah siswa
+      sudah "memahami" atau belum karena tidak ada indikator perilaku yang jelas. Akibatnya,
+      penilaian menjadi subjektif dan tidak konsisten antar siswa.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> KKTP harus dirumuskan dengan kata kerja operasional yang
+      terukur, spesifik, dan dapat diobservasi. Hindari kata-kata abstrak seperti "memahami",
+      "mengerti", atau "menyadari" tanpa indikator perilaku yang jelas.
+    </div>
+  </div>
+
+  <!-- REFLEKSI -->
+  <div class="reflection">
+    <h4>💭 Refleksi untuk Mahasiswa PAI</h4>
+    <p>
+      Dalam tradisi Islam, konsep <em>miqdar</em> (ukuran) dan <em>mizan</em> (timbangan)
+      sangat ditekankan. Allah SWT berfirman: <em>"Dan langit telah ditinggikan-Nya dan
+      Dia ciptakan keseimbangan. Agar kamu tidak merusak keseimbangan itu"</em> (QS.
+      Ar-Rahman: 7-8). Dalam evaluasi pembelajaran, CP-TP-KKTP adalah "timbangan" yang
+      harus kita jaga—jangan sampai kita menyimpangkannya dengan instrumen yang tidak adil.
+    </p>
+    <p>
+      Renungkan: ketika Anda kelak menjadi guru PAI, bagaimana Anda memastikan bahwa
+      instrumen evaluasi Anda benar-benar mencerminkan "timbangan" yang adil sesuai
+      dengan CP yang telah ditetapkan?
+    </p>
+  </div>
+
+  <!-- LANDASAN TEORETIS -->
+  <h2>2.1 <em>Landasan Teoretis</em> Analisis Kurikulum</h2>
+
+  <h3>2.1.1 Kurikulum Merdeka: Paradigma Baru Pendidikan Indonesia</h3>
+  <p>
+    Kurikulum Merdeka diluncurkan oleh Kemendikbudristek pada tahun 2022 sebagai respons
+    terhadap tantangan pendidikan abad 21 dan dampak pandemi COVID-19. Paradigma ini
+    menekankan <strong>fleksibilitas guru</strong>, <strong>pembelajaran berbasis kompetensi</strong>,
+    dan <strong>penguatan karakter Profil Pelajar Pancasila</strong>.
+  </p>
+  <p>
+    Berbeda dengan Kurikulum 2013 yang sangat preskriptif, Kurikulum Merdeka memberikan
+    otonomi lebih besar kepada guru untuk mengembangkan pembelajaran sesuai konteks dan
+    kebutuhan peserta didik. Namun, otonomi ini dibingkai oleh CP yang menjadi standar
+    nasional—sehingga guru tetap harus memastikan bahwa pembelajaran mereka mencapai
+    capaian yang telah ditetapkan.
+  </p>
+
+  <h3>2.1.2 Teori Backward Design (Wiggins &amp; McTighe)</h3>
+  <p>
+    Grant Wiggins dan Jay McTighe (2005) memperkenalkan konsep <em>Understanding by Design</em>
+    (UbD) dengan pendekatan <strong>backward design</strong>—desain mundur. Pendekatan ini
+    membalik logika tradisional perancangan pembelajaran:
+  </p>
+  <ol>
+    <li><strong>Tahap 1 — Identifikasi Hasil yang Diinginkan:</strong> Apa yang harus diketahui dan dapat dilakukan siswa? (→ CP &amp; TP)</li>
+    <li><strong>Tahap 2 — Tentukan Bukti Penilaian:</strong> Bagaimana kita tahu siswa telah mencapainya? (→ KKTP &amp; Asesmen)</li>
+    <li><strong>Tahap 3 — Rencanakan Pembelajaran:</strong> Kegiatan apa yang mendukung pencapaian? (→ Aktivitas Pembelajaran)</li>
+  </ol>
+  <p>
+    Dalam konteks Kurikulum Merdeka, backward design menjadi landasan filosofis yang kuat:
+    guru harus memulai dari CP, merumuskan TP dan KKTP, baru kemudian merancang aktivitas
+    pembelajaran. Evaluasi bukan "tempelan" di akhir, melainkan bagian integral dari desain.
+  </p>
+
+  <!-- INFOGRAPHIC: BACKWARD DESIGN -->
+  <div class="infographic">
+    <h4>🔗 Alur Backward Design dalam Kurikulum Merdeka</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>TAHAP 1: Tujuan</strong>
+        Analisis CP → Rumuskan TP → Tentukan Alur TP
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>TAHAP 2: Asesmen</strong>
+        Rumuskan KKTP → Rancang Instrumen → Tentukan Kriteria
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>TAHAP 3: Pembelajaran</strong>
+        Susun Kegiatan → Pilih Metode → Siapkan Media
+      </div>
+    </div>
+  </div>
+
+  <h3>2.1.3 Taksonomi Bloom Revisi (Anderson &amp; Krathwohl)</h3>
+  <p>
+    Anderson dan Krathwohl (2001) merevisi Taksonomi Bloom menjadi dua dimensi:
+    <strong>Dimensi Proses Kognitif</strong> dan <strong>Dimensi Pengetahuan</strong>.
+    Revisi ini sangat relevan untuk analisis CP-TP-KKTP karena membantu guru menentukan
+    level kognitif yang dituntut oleh setiap kompetensi.
+  </p>
+
+  <table>
+    <tr>
+      <th>Level Kognitif</th>
+      <th>Kata Kerja Operasional</th>
+      <th>Contoh dalam PAI</th>
+    </tr>
+    <tr>
+      <td><strong>C1 — Mengingat</strong></td>
+      <td>Menyebutkan, menghafal, mengidentifikasi</td>
+      <td>Menyebutkan 5 rukun Islam</td>
+    </tr>
+    <tr>
+      <td><strong>C2 — Memahami</strong></td>
+      <td>Menjelaskan, merangkum, mengklasifikasi</td>
+      <td>Menjelaskan makna syahadat</td>
+    </tr>
+    <tr>
+      <td><strong>C3 — Menerapkan</strong></td>
+      <td>Menggunakan, mendemonstrasikan, menghitung</td>
+      <td>Mendemonstrasikan shalat fardhu</td>
+    </tr>
+    <tr>
+      <td><strong>C4 — Menganalisis</strong></td>
+      <td>Membedakan, mengorganisasi, mengatribusi</td>
+      <td>Menganalisis hikmah zakat</td>
+    </tr>
+    <tr>
+      <td><strong>C5 — Mengevaluasi</strong></td>
+      <td>Memeriksa, mengkritik, menilai</td>
+      <td>Menilai keteladanan khulafaur rasyidin</td>
+    </tr>
+    <tr>
+      <td><strong>C6 — Mencipta</strong></td>
+      <td>Merumuskan, merancang, mengkonstruksi</td>
+      <td>Merancang program dakwah remaja</td>
+    </tr>
+  </table>
+
+  <h3>2.1.4 Teori Constructive Alignment (Biggs &amp; Tang)</h3>
+  <p>
+    John Biggs dan Catherine Tang (2011) memperkenalkan konsep <em>constructive alignment</em>
+    yang menekankan keselarasan antara tiga komponen: <strong>Intended Learning Outcomes (ILO)</strong>,
+    <strong>Teaching and Learning Activities (TLA)</strong>, dan <strong>Assessment Tasks (AT)</strong>.
+  </p>
+  <p>
+    Dalam konteks Kurikulum Merdeka:
+  </p>
+  <ul>
+    <li><strong>ILO</strong> → direpresentasikan oleh CP dan TP</li>
+    <li><strong>AT</strong> → direpresentasikan oleh KKTP dan instrumen asesmen</li>
+    <li><strong>TLA</strong> → direpresentasikan oleh aktivitas pembelajaran</li>
+  </ul>
+  <p>
+    Keselarasan ketiga komponen ini adalah kunci validitas evaluasi. Jika TP menuntut level
+    kognitif C4 (menganalisis), tetapi asesmen hanya menguji C1 (mengingat), maka terjadi
+    <em>misalignment</em> yang merusak validitas evaluasi.
+  </p>
+
+  <h3>2.1.5 Dimensi Pengetahuan dalam Evaluasi PAI</h3>
+  <p>
+    Anderson dan Krathwohl (2001) juga mengidentifikasi empat dimensi pengetahuan yang
+    perlu dipertimbangkan dalam perancangan evaluasi PAI:
+  </p>
+  <table>
+    <tr>
+      <th>Dimensi Pengetahuan</th>
+      <th>Deskripsi</th>
+      <th>Contoh dalam PAI</th>
+    </tr>
+    <tr>
+      <td><strong>Faktual</strong></td>
+      <td>Elemen dasar, terminologi, detail spesifik</td>
+      <td>Nama 25 nabi, jumlah rakaat shalat</td>
+    </tr>
+    <tr>
+      <td><strong>Konseptual</strong></td>
+      <td>Klasifikasi, prinsip, generalisasi, teori</td>
+      <td>Konsep tauhid, prinsip zakat</td>
+    </tr>
+    <tr>
+      <td><strong>Prosedural</strong></td>
+      <td>Cara melakukan, metode, teknik</td>
+      <td>Tata cara wudhu, metode dakwah</td>
+    </tr>
+    <tr>
+      <td><strong>Metakognitif</strong></td>
+      <td>Pengetahuan tentang kognisi diri</td>
+      <td>Refleksi kualitas ibadah, strategi menghafal Al-Qur'an</td>
+    </tr>
+  </table>
+
+  <!-- KOMPONEN CP-TP-KKTP -->
+  <h2>2.2 <em>Komponen</em> CP, TP, dan KKTP</h2>
+
+  <h3>2.2.1 Capaian Pembelajaran (CP)</h3>
+  <p>
+    <strong>Capaian Pembelajaran (CP)</strong> adalah kompetensi pembelajaran yang harus
+    dicapai peserta didik pada setiap fase perkembangan. CP disusun oleh Kemendikbudristek
+    sebagai standar nasional dan menjadi acuan bagi guru dalam merencanakan pembelajaran.
+  </p>
+
+  <h4>Fase Pembelajaran dalam Kurikulum Merdeka</h4>
+  <table>
+    <tr>
+      <th>Fase</th>
+      <th>Jenjang</th>
+      <th>Usia</th>
+      <th>Durasi</th>
+    </tr>
+    <tr><td><strong>Fase A</strong></td><td>Kelas 1-2 SD/MI</td><td>6-8 tahun</td><td>2 tahun</td></tr>
+    <tr><td><strong>Fase B</strong></td><td>Kelas 3-4 SD/MI</td><td>8-10 tahun</td><td>2 tahun</td></tr>
+    <tr><td><strong>Fase C</strong></td><td>Kelas 5-6 SD/MI</td><td>10-12 tahun</td><td>2 tahun</td></tr>
+    <tr><td><strong>Fase D</strong></td><td>Kelas 7-9 SMP/MTs</td><td>12-15 tahun</td><td>3 tahun</td></tr>
+    <tr><td><strong>Fase E</strong></td><td>Kelas 10 SMA/MA</td><td>15-16 tahun</td><td>1 tahun</td></tr>
+    <tr><td><strong>Fase F</strong></td><td>Kelas 11-12 SMA/MA</td><td>16-18 tahun</td><td>2 tahun</td></tr>
+  </table>
+
+  <h4>Lima Elemen Mata Pelajaran PAI</h4>
+  <p>
+    Mata pelajaran PAI dan Budi Pekerti dalam Kurikulum Merdeka terdiri dari lima elemen:
+  </p>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Elemen</th>
+      <th>Fokus Kompetensi</th>
+    </tr>
+    <tr><td>1</td><td><strong>Al-Qur'an dan Hadis</strong></td><td>Membaca, menganalisis, dan mengamalkan isi kandungan Al-Qur'an dan Hadis</td></tr>
+    <tr><td>2</td><td><strong>Akidah</strong></td><td>Memahami dan mengimplementasikan rukun iman</td></tr>
+    <tr><td>3</td><td><strong>Akhlak</strong></td><td>Membiasakan akhlak mulia dan menjauhi akhlak tercela</td></tr>
+    <tr><td>4</td><td><strong>Fikih</strong></td><td>Memahami dan melaksanakan hukum Islam dalam kehidupan</td></tr>
+    <tr><td>5</td><td><strong>Sejarah Peradaban Islam (SPI)</strong></td><td>Mengambil ibrah dari sejarah peradaban Islam</td></tr>
+  </table>
+
+  <h4>Contoh CP PAI Fase D (SMP/MTs) — Elemen Fikih</h4>
+  <div class="tip-box">
+    <p style="margin: 0; font-style: italic;">
+      "Peserta didik mampu menganalisis ketentuan syariat Islam tentang muamalah (jual beli,
+      khiyar, hutang piutang, riba, dan perbankan syariah) serta mempraktikkan ketentuan
+      syariat Islam tentang muamalah dalam kehidupan sehari-hari."
+    </p>
+    <p style="margin-top: 0.8rem; color: var(--gold); font-size: 0.85rem; margin-bottom: 0;">
+      — Capaian Pembelajaran PAI Fase D, Elemen Fikih (Kemendikbudristek, 2022)
+    </p>
+  </div>
+
+  <h3>2.2.2 Tujuan Pembelajaran (TP)</h3>
+  <p>
+    <strong>Tujuan Pembelajaran (TP)</strong> adalah deskripsi pencapaian tiga dimensi yang
+    diperoleh peserta didik melalui serangkaian kegiatan pembelajaran:
+  </p>
+  <ul>
+    <li><strong>Kapasitas:</strong> Apa yang dapat dilakukan peserta didik (kompetensi)</li>
+    <li><strong> Disposisi:</strong> Bagaimana perilaku yang diharapkan (sikap)</li>
+    <li><strong>Konten:</strong> Apa yang dipelajari (materi)</li>
+  </ul>
+
+  <h4>Komponen TP yang Baik</h4>
+  <table>
+    <tr>
+      <th>Komponen</th>
+      <th>Deskripsi</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td><strong>Kompetensi</strong></td>
+      <td>Kata kerja operasional yang terukur</td>
+      <td>Menganalisis, mendemonstrasikan, merumuskan</td>
+    </tr>
+    <tr>
+      <td><strong>Konten</strong></td>
+      <td>Materi atau isi yang dipelajari</td>
+      <td>Ketentuan jual beli dalam Islam</td>
+    </tr>
+    <tr>
+      <td><strong>Variasi</strong></td>
+      <td>Kontekstualisasi atau tingkat kedalaman</td>
+      <td>Dalam kehidupan sehari-hari di masyarakat Minangkabau</td>
+    </tr>
+  </table>
+
+  <h4>Contoh TP yang Dirumuskan dari CP Fikih Fase D</h4>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Tujuan Pembelajaran</th>
+      <th>Level Kognitif</th>
+    </tr>
+    <tr>
+      <td>TP-1</td>
+      <td>Peserta didik mampu <strong>menganalisis</strong> ketentuan syariat Islam tentang <strong>jual beli</strong> dengan menunjukkan contoh dalam kehidupan sehari-hari</td>
+      <td>C4</td>
+    </tr>
+    <tr>
+      <td>TP-2</td>
+      <td>Peserta didik mampu <strong>membandingkan</strong> jual beli yang sah dan tidak sah menurut hukum Islam</td>
+      <td>C4</td>
+    </tr>
+    <tr>
+      <td>TP-3</td>
+      <td>Peserta didik mampu <strong>menyajikan</strong> paparan tentang larangan riba dalam transaksi modern</td>
+      <td>C6</td>
+    </tr>
+    <tr>
+      <td>TP-4</td>
+      <td>Peserta didik mampu <strong>mempraktikkan</strong> akad jual beli sesuai syariat Islam dalam simulasi</td>
+      <td>C3</td>
+    </tr>
+  </table>
+
+  <h3>2.2.3 Kriteria Ketercapaian Tujuan Pembelajaran (KKTP)</h3>
+  <p>
+    <strong>KKTP</strong> adalah tolok ukur spesifik yang digunakan guru untuk menilai
+    apakah TP telah dicapai oleh peserta didik. KKTP menggantikan istilah KKM (Kriteria
+    Ketuntasan Minimal) dalam Kurikulum 2013.
+  </p>
+
+  <h4>Tiga Pendekatan Penentuan KKTP</h4>
+  <table>
+    <tr>
+      <th>Pendekatan</th>
+      <th>Deskripsi</th>
+      <th>Kelebihan</th>
+      <th>Kekurangan</th>
+    </tr>
+    <tr>
+      <td><strong>1. Menggunakan Deskripsi Kriteria</strong></td>
+      <td>Guru menyusun rubrik dengan deskripsi tingkat capaian</td>
+      <td>Detail, transparan, mudah dipahami siswa</td>
+      <td>Membutuhkan waktu lama untuk menyusun</td>
+    </tr>
+    <tr>
+      <td><strong>2. Menggunakan Rubrik</strong></td>
+      <td>Guru menggunakan rubrik analitik atau holistik</td>
+      <td>Objektif, konsisten, dapat digunakan berulang</td>
+      <td>Perlu pelatihan untuk menyusun rubrik yang baik</td>
+    </tr>
+    <tr>
+      <td><strong>3. Menggunakan Contoh Karya/Hasil</strong></td>
+      <td>Guru menggunakan contoh karya siswa sebagai pembanding</td>
+      <td>Konkret, mudah dipahami</td>
+      <td>Subjektif jika contoh tidak representatif</td>
+    </tr>
+  </table>
+
+  <h4>Contoh KKTP untuk TP "Menganalisis Ketentuan Jual Beli"</h4>
+  <table>
+    <tr>
+      <th>Indikator Ketercapaian</th>
+      <th>Kriteria "Perlu Intervensi"</th>
+      <th>Kriteria "Cukup"</th>
+      <th>Kriteria "Mahir"</th>
+    </tr>
+    <tr>
+      <td>Menjelaskan rukun dan syarat jual beli</td>
+      <td>Belum mampu menyebutkan rukun</td>
+      <td>Mampu menyebutkan 3 dari 4 rukun</td>
+      <td>Mampu menyebutkan dan menjelaskan seluruh rukun</td>
+    </tr>
+    <tr>
+      <td>Membedakan jual beli sah dan tidak sah</td>
+      <td>Belum mampu membedakan</td>
+      <td>Mampu membedakan dengan 1-2 contoh</td>
+      <td>Mampu membedakan dengan contoh kontekstual</td>
+    </tr>
+    <tr>
+      <td>Menganalisis kasus jual beli modern</td>
+      <td>Belum mampu menganalisis</td>
+      <td>Mampu menganalisis 1 kasus sederhana</td>
+      <td>Mampu menganalisis kasus kompleks dengan argumentasi</td>
+    </tr>
+  </table>
+
+  <!-- ANALISIS CP-TP-KKTP -->
+  <h2>2.3 <em>Analisis</em> CP-TP-KKTP dalam PAI</h2>
+
+  <h3>2.3.1 Langkah-Langkah Analisis CP</h3>
+  <p>
+    Analisis CP merupakan proses bedah dokumen CP untuk mengidentifikasi kompetensi yang
+    harus dicapai. Berikut langkah-langkah sistematis yang direkomendasikan:
+  </p>
+  <ol>
+    <li><strong>Membaca CP secara utuh:</strong> Pahami narasi CP secara menyeluruh sebelum membedahnya.</li>
+    <li><strong>Mengidentifikasi kata kerja operasional:</strong> Tandai semua kata kerja yang menunjukkan kompetensi.</li>
+    <li><strong>Mengidentifikasi konten:</strong> Tandai materi atau topik yang menjadi isi kompetensi.</li>
+    <li><strong>Menentukan level kognitif:</strong> Petakan kata kerja ke dalam Taksonomi Bloom.</li>
+    <li><strong>Mengidentifikasi dimensi pengetahuan:</strong> Tentukan apakah konten bersifat faktual, konseptual, prosedural, atau metakognitif.</li>
+    <li><strong>Memetakan elemen PAI:</strong> Pastikan CP masuk dalam salah satu dari 5 elemen PAI.</li>
+    <li><strong>Mengidentifikasi kompetensi lintas elemen:</strong> Beberapa CP menuntut integrasi antar elemen.</li>
+  </ol>
+
+  <h3>2.3.2 Contoh Analisis CP PAI Fase E (Kelas 10 SMA/MA)</h3>
+  <p>
+    Berikut contoh analisis CP untuk Elemen Al-Qur'an Hadis Fase E:
+  </p>
+  <div class="tip-box">
+    <p style="margin: 0; font-style: italic;">
+      "Peserta didik mampu menganalisis Q.S. al-Mujādilah/58: 11, Q.S. ar-Ra'd/13: 11, dan
+      Hadis terkait tentang perintah menuntut ilmu serta implementasinya dalam kehidupan
+      sehari-hari."
+    </p>
+  </div>
+
+  <table>
+    <tr>
+      <th>Aspek Analisis</th>
+      <th>Hasil Analisis</th>
+    </tr>
+    <tr>
+      <td><strong>Kata Kerja Operasional</strong></td>
+      <td>Menganalisis, mengimplementasikan</td>
+    </tr>
+    <tr>
+      <td><strong>Level Kognitif</strong></td>
+      <td>C4 (Menganalisis) dan C3 (Mengimplementasikan)</td>
+    </tr>
+    <tr>
+      <td><strong>Konten</strong></td>
+      <td>Q.S. al-Mujādilah/58: 11, Q.S. ar-Ra'd/13: 11, Hadis terkait</td>
+    </tr>
+    <tr>
+      <td><strong>Dimensi Pengetahuan</strong></td>
+      <td>Konseptual (makna ayat) + Metakognitif (implementasi diri)</td>
+    </tr>
+    <tr>
+      <td><strong>Elemen PAI</strong></td>
+      <td>Al-Qur'an Hadis</td>
+    </tr>
+    <tr>
+      <td><strong>Kompetensi Lintas Elemen</strong></td>
+      <td>Akhlak (implementasi nilai ilmu dalam perilaku)</td>
+    </tr>
+  </table>
+
+  <h3>2.3.3 Merumuskan TP dari CP yang Telah Dianalisis</h3>
+  <p>
+    Dari CP yang telah dianalisis di atas, dapat dirumuskan beberapa TP sebagai berikut:
+  </p>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Tujuan Pembelajaran</th>
+      <th>Level Kognitif</th>
+      <th>Dimensi Pengetahuan</th>
+    </tr>
+    <tr>
+      <td>TP-1</td>
+      <td>Peserta didik mampu <strong>membaca</strong> Q.S. al-Mujādilah/58: 11 dan Q.S. ar-Ra'd/13: 11 dengan tartil</td>
+      <td>C3</td>
+      <td>Prosedural</td>
+    </tr>
+    <tr>
+      <td>TP-2</td>
+      <td>Peserta didik mampu <strong>menjelaskan</strong> isi kandungan kedua ayat tentang menuntut ilmu</td>
+      <td>C2</td>
+      <td>Konseptual</td>
+    </tr>
+    <tr>
+      <td>TP-3</td>
+      <td>Peserta didik mampu <strong>menganalisis</strong> keterkaitan antara kedua ayat dan hadis terkait</td>
+      <td>C4</td>
+      <td>Konseptual</td>
+    </tr>
+    <tr>
+      <td>TP-4</td>
+      <td>Peserta didik mampu <strong>mengidentifikasi</strong> perilaku menuntut ilmu dalam kehidupan sehari-hari</td>
+      <td>C2</td>
+      <td>Metakognitif</td>
+    </tr>
+    <tr>
+      <td>TP-5</td>
+      <td>Peserta didik mampu <strong>mempresentasikan</strong> refleksi pribadi tentang komitmen menuntut ilmu</td>
+      <td>C6</td>
+      <td>Metakognitif</td>
+    </tr>
+  </table>
+
+  <h3>2.3.4 Menyusun KKTP untuk Setiap TP</h3>
+  <p>
+    Berikut contoh KKTP untuk TP-3: "Peserta didik mampu menganalisis keterkaitan antara
+    kedua ayat dan hadis terkait":
+  </p>
+  <table>
+    <tr>
+      <th>Indikator</th>
+      <th>Perlu Intervensi</th>
+      <th>Cukup</th>
+      <th>Mahir</th>
+    </tr>
+    <tr>
+      <td>Menjelaskan makna mufradat</td>
+      <td>Belum mampu menerjemahkan</td>
+      <td>Mampu menerjemahkan 70% mufradat</td>
+      <td>Mampu menerjemahkan seluruh mufradat dengan tepat</td>
+    </tr>
+    <tr>
+      <td>Mengidentifikasi tema utama</td>
+      <td>Belum mampu mengidentifikasi</td>
+      <td>Mampu mengidentifikasi 1 tema</td>
+      <td>Mampu mengidentifikasi 2+ tema dengan argumentasi</td>
+    </tr>
+    <tr>
+      <td>Menganalisis keterkaitan ayat-hadis</td>
+      <td>Belum mampu menganalisis</td>
+      <td>Mampu menganalisis dengan 1 argumen</td>
+      <td>Mampu menganalisis dengan 2+ argumen yang koheren</td>
+    </tr>
+  </table>
+
+  <!-- INFOGRAPHIC: ALUR ANALISIS -->
+  <div class="infographic">
+    <h4>🔗 Alur Analisis CP → TP → KKTP</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>1. BEDAH CP</strong>
+        Identifikasi KKO + Konten + Level Kognitif + Elemen PAI
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>2. RUMUSKAN TP</strong>
+        Kapasitas + Konten + Disposisi = TP yang Operasional
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>3. SUSUN ALUR TP</strong>
+        Urutkan TP secara logis berdasarkan hierarki kompetensi
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>4. RUMUSKAN KKTP</strong>
+        Indikator + Kriteria + Rubrik Penilaian
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>5. RANCANG ASESMEN</strong>
+        Instrumen yang selaras dengan KKTP
+      </div>
+    </div>
+  </div>
+
+  <!-- TABEL PERBANDINGAN -->
+  <h3>2.3.5 Perbandingan Kurikulum 2013 dan Kurikulum Merdeka</h3>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>Kurikulum 2013</th>
+      <th>Kurikulum Merdeka</th>
+    </tr>
+    <tr>
+      <td><strong>Struktur Kompetensi</strong></td>
+      <td>KI (Kompetensi Inti) dan KD (Kompetensi Dasar)</td>
+      <td>CP (Capaian Pembelajaran)</td>
+    </tr>
+    <tr>
+      <td><strong>Satuan Waktu</strong></td>
+      <td>Per tahun</td>
+      <td>Per fase (2-3 tahun)</td>
+    </tr>
+    <tr>
+      <td><strong>Tujuan Pembelajaran</strong></td>
+      <td>Diatur pusat melalui Silabus</td>
+      <td>Dikembangkan guru secara mandiri</td>
+    </tr>
+    <tr>
+      <td><strong>Kriteria Ketuntasan</strong></td>
+      <td>KKM (Kriteria Ketuntasan Minimal)</td>
+      <td>KKTP (Kriteria Ketercapaian Tujuan Pembelajaran)</td>
+    </tr>
+    <tr>
+      <td><strong>Fleksibilitas Guru</strong></td>
+      <td>Terbatas</td>
+      <td>Tinggi</td>
+    </tr>
+    <tr>
+      <td><strong>Pendekatan Asesmen</strong></td>
+      <td>Sumatif dominan</td>
+      <td>Formatif dan sumatif seimbang</td>
+    </tr>
+    <tr>
+      <td><strong>Profil Lulusan</strong></td>
+      <td>Lulusan kompeten secara akademis</td>
+      <td>Profil Pelajar Pancasila</td>
+    </tr>
+  </table>
+
+  <!-- DIMENSI SPIRITUAL -->
+  <h2>2.4 <em>Dimensi Spiritual</em> Analisis Kurikulum dalam Islam</h2>
+  <p>
+    Dalam perspektif Islam, kurikulum bukan sekadar dokumen administratif, melainkan
+    <em>amanah</em> yang harus dilaksanakan dengan penuh kesadaran. Allah SWT berfirman:
+  </p>
+  <div class="quote-box">
+    Wahai orang-orang yang beriman! Janganlah kamu mengkhianati Allah dan Rasul dan (janganlah) kamu mengkhianati amanat yang dipercayakan kepadamu, sedang kamu mengetahui.
+    <span class="quote-source">— QS. Al-Anfal [8]: 27</span>
+  </div>
+  <p>
+    CP-TP-KKTP adalah "amanat" yang dipercayakan kepada guru. Menyimpangkannya dengan
+    instrumen yang tidak selaras adalah bentuk pengkhianatan terhadap amanah tersebut.
+    Oleh karena itu, analisis CP-TP-KKTP harus dilakukan dengan:
+  </p>
+  <ul>
+    <li><strong>Itqan</strong> (kesungguhan): Menganalisis dengan teliti dan mendalam</li>
+    <li><strong>Amanah</strong> (kejujuran): Tidak memanipulasi capaian demi kepentingan administratif</li>
+    <li><strong>'Adl</strong> (keadilan): Memastikan KKTP adil bagi seluruh peserta didik</li>
+    <li><strong>Ihsan</strong> (keunggulan): Menyusun TP dan KKTP dengan kualitas terbaik</li>
+  </ul>
+
+  <!-- TIPS PRAKTIS -->
+  <div class="tip-box">
+    <h4>💡 Tips Praktis Analisis CP-TP-KKTP</h4>
+    <ul>
+      <li><strong>Gunakan stabilo warna-warni:</strong> Tandai kata kerja (merah), konten (biru), dan konteks (hijau) dalam CP.</li>
+      <li><strong>Buat matriks analisis:</strong> Petakan setiap CP ke dalam tabel KKO-Konten-Level Kognitif.</li>
+      <li><strong>Diskusi dengan rekan sejawat:</strong> Analisis CP akan lebih kaya dengan perspektif kolega.</li>
+      <li><strong>Konsultasikan dengan pengawas:</strong> Validasi analisis dengan pengawas madrasah/sekolah.</li>
+      <li><strong>Simpan dokumentasi:</strong> Arsipkan hasil analisis sebagai referensi untuk tahun berikutnya.</li>
+      <li><strong>Update berkala:</strong> Revisi analisis ketika ada perubahan regulasi atau konteks.</li>
+      <li><strong>Integrasikan dengan profil pelajar Pancasila:</strong> Pastikan TP tidak hanya kognitif tetapi juga afektif dan psikomotorik.</li>
+      <li><strong>Gunakan aplikasi:</strong> Manfaatkan tools digital seperti Canva atau Miro untuk membuat peta analisis visual.</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ Kesalahan Umum dalam Analisis CP-TP-KKTP</h4>
+    <ul>
+      <li>Tidak membaca CP secara utuh—langsung memotong-motong tanpa memahami konteks</li>
+      <li>Merumuskan TP yang terlalu umum atau terlalu spesifik</li>
+      <li>Menggunakan kata kerja operasional yang tidak terukur (misal: "memahami", "menghayati")</li>
+      <li>KKTP tidak selaras dengan TP—mengukur kompetensi yang berbeda</li>
+      <li>Mengabaikan dimensi afektif dan psikomotorik dalam PAI</li>
+      <li>Tidak mempertimbangkan karakteristik peserta didik dan konteks lokal</li>
+      <li>Menyalin TP dari guru lain tanpa adaptasi</li>
+    </ul>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <h2>Kesimpulan</h2>
+  <p>
+    Pertemuan kedua ini telah menguraikan secara komprehensif tentang analisis CP, TP, dan
+    KKTP dalam Kurikulum Merdeka—khususnya untuk mata pelajaran PAI. Ketiga elemen ini
+    membentuk hierarki yang selaras: CP sebagai standar nasional, TP sebagai tujuan operasional
+    per pembelajaran, dan KKTP sebagai tolok ukur ketercapaian.
+  </p>
+  <p>
+    Landasan teoretis dari <em>backward design</em> (Wiggins &amp; McTighe), Taksonomi Bloom
+    Revisi (Anderson &amp; Krathwohl), dan <em>constructive alignment</em> (Biggs &amp; Tang)
+    memberikan kerangka kokoh untuk memahami mengapa analisis CP-TP-KKTP menjadi prasyarat
+    epistemologis bagi perancangan evaluasi pembelajaran yang valid dan reliabel.
+  </p>
+  <p>
+    Sebagai calon evaluator PAI, Anda kini memiliki bekal untuk menganalisis CP secara
+    sistematis, merumuskan TP yang operasional, dan menyusun KKTP yang terukur. Keterampilan
+    ini akan menjadi fondasi bagi pertemuan-pertemuan selanjutnya—mulai dari penyusunan
+    kisi-kisi, perumusan butir soal, uji coba instrumen, hingga kunjungan sekolah.
+  </p>
+  <p>
+    Ingatlah: evaluasi yang adil dimulai dari kurikulum yang dipahami. Sebagaimana sabda
+    Rasulullah SAW: <em>"Barangsiapa yang menempuh jalan untuk mencari ilmu, maka Allah
+    akan memudahkan baginya jalan menuju surga."</em> (HR. Muslim). Mari kita tempuh jalan
+    ilmu ini dengan sungguh-sungguh.
+  </p>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>📚 Daftar Pustaka</h3>
+
+    <h4>Pustaka Utama</h4>
+    <ol>
+      <li>Anastasi, A. (1982). <em>Psychological Testing</em> (5th ed.). New York: Macmillan Publishing Co., Inc.</li>
+      <li>Anastasi, A., &amp; Urbina, S. (1997). <em>Psychological Testing</em> (Edisi Bahasa Indonesia). Jakarta: PT Prenhallindo.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2001). <em>A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives</em>. New York: Longman.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2010). <em>Kerangka Dasar untuk Pembelajaran, Pengajaran, dan Asesmen</em>. (A. Prihantoro, Penerj.). Yogyakarta: Pustaka Pelajar.</li>
+      <li>Arikunto, S. (2002). <em>Dasar-dasar Evaluasi Pendidikan</em> (Edisi Revisi). Jakarta: PT Bumi Aksara.</li>
+      <li>Azwar, S. (2005). <em>Tes Prestasi: Fungsi dan Pengembangan Pengukuran Prestasi Belajar</em>. Yogyakarta: Pustaka Belajar.</li>
+      <li>Biggs, J., &amp; Tang, C. (2011). <em>Teaching for Quality Learning at University</em> (4th ed.). Maidenhead: Open University Press.</li>
+      <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah pada Kurikulum Merdeka</em>. Jakarta: Kemendikbudristek.</li>
+      <li>Kemendikbudristek. (2022). <em>Kompilasi Keputusan Kepala BSKAP No. 032/H/KR/2024 tentang Capaian Pembelajaran pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah pada Kurikulum Merdeka</em>. Jakarta: Kemendikbudristek.</li>
+      <li>Sudijono, A. (2011). <em>Pengantar Evaluasi Pendidikan</em>. Jakarta: PT RajaGrafindo Persada.</li>
+      <li>Uno, H. B., &amp; Koni, S. (2012). <em>Assessment Pembelajaran</em>. Jakarta: Bumi Aksara.</li>
+      <li>Wiggins, G., &amp; McTighe, J. (2005). <em>Understanding by Design</em> (2nd ed.). Alexandria, VA: ASCD.</li>
+    </ol>
+
+    <h4>Pustaka Pendukung</h4>
+    <ol>
+      <li>Arifmiboy. (2024). <em>Penguatan Kapasitas Guru MAN 4 Tanah Datar di Bidang Evaluasi Pembelajaran</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2025). <em>Pendampingan Guru Madrasah Tsanawiyah dalam Merancang Asesmen Hasil Belajar</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2023). <em>University Digital Transformation Index in The Malay Family of Countries</em>. Laporan Penelitian Kolaborasi Internasional.</li>
+      <li>Mulyasa, E. (2022). <em>Implementasi Kurikulum Merdeka</em>. Bandung: Remaja Rosdakarya.</li>
+      <li>Prastowo, A. (2022). <em>Panduan Lengkap Kurikulum Merdeka</em>. Yogyakarta: Ar-Ruzz Media.</li>
+    </ol>
+
+    <h4>Pustaka Teoretis Tambahan</h4>
+    <ol>
+      <li>Bloom, B. S. (1956). <em>Taxonomy of Educational Objectives: The Classification of Educational Goals. Handbook I: Cognitive Domain</em>. New York: David McKay.</li>
+      <li>Krathwohl, D. R. (2002). A revision of Bloom's taxonomy: An overview. <em>Theory into Practice</em>, 41(4), 212-218.</li>
+      <li>Marzano, R. J., &amp; Kendall, J. S. (2007). <em>The New Taxonomy of Educational Objectives</em>. Thousand Oaks, CA: Corwin Press.</li>
+      <li>Permendikbud No. 22 Tahun 2022 tentang <em>Standar Proses pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah</em>.</li>
+    </ol>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <div class="chapter-nav">
+    <a href="1.html">← Bab Sebelumnya: Kontrak &amp; Etika</a>
+    <a href="3.html">Bab Selanjutnya: Kisi-Kisi Tes Objektif →</a>
+  </div>
+
+  <!-- ============================================
+       UJI FORMATIF
+       ============================================ -->
+  <section class="test-section" id="uji-formatif">
+    <div class="test-header">
+      <div class="icon">📋</div>
+      <h2>Uji Formatif Pertemuan 2</h2>
+      <p>Bedah Kurikulum: Analisis CP, TP, dan KKTP dalam PAI</p>
+    </div>
+
+    <div class="test-warning">
+      ⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu sebelum mengirim!
+    </div>
+
+    <!-- DATA MAHASISWA -->
+    <h3 style="color: var(--gold); margin-bottom: 1.5rem;">📋 Data Mahasiswa</h3>
+    <form id="studentForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" required>
+        </div>
+        <div class="form-group">
+          <label>NIM <span class="required">*</span></label>
+          <input type="text" id="nim" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>📅 Tanggal Ujian <span class="required">*</span></label>
+          <input type="date" id="tanggal" required>
+        </div>
+        <div class="form-group">
+          <label>Fakultas <span class="required">*</span></label>
+          <select id="fakultas" required>
+            <option value="">Pilih Fakultas</option>
+            <option>FTIK</option>
+            <option>FUAD</option>
+            <option>FSE</option>
+            <option>FDAI</option>
+            <option>FISHUM</option>
+            <option>FDAK</option>
+            <option>FPSB</option>
+            <option>FASAL</option>
+            <option>FAH</option>
+            <option>FEI</option>
+            <option>FST</option>
+            <option>F Kedokteran</option>
+            <option>F Pertanian</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jurusan / Prodi <span class="required">*</span></label>
+          <input type="text" id="prodi" required>
+        </div>
+        <div class="form-group">
+          <label>Konsentrasi</label>
+          <input type="text" id="konsentrasi">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Semester <span class="required">*</span></label>
+          <select id="semester" required>
+            <option value="">Pilih Semester</option>
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+            <option>Semester 5</option>
+            <option>Semester 6</option>
+            <option>Semester 7</option>
+            <option>Semester 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kelas <span class="required">*</span></label>
+          <input type="text" id="kelas" placeholder="Contoh: PAI-3A" required>
+        </div>
+      </div>
+
+      <!-- PILIHAN GANDA -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian A — Pilihan Ganda <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(10 soal × 10 poin = 100)</span></h3>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">1</span>
+        <span class="question-text">Dalam Kurikulum Merdeka, satuan waktu capaian pembelajaran disebut...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q1" value="a"><span>a. Per tahun</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="b"><span>b. Per fase (2-3 tahun)</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="c"><span>c. Per semester</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="d"><span>d. Per bulan</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">2</span>
+        <span class="question-text">KKTP dalam Kurikulum Merdeka menggantikan istilah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q2" value="a"><span>a. KI (Kompetensi Inti)</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="b"><span>b. KD (Kompetensi Dasar)</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="c"><span>c. KKM (Kriteria Ketuntasan Minimal)</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="d"><span>d. Silabus</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">3</span>
+        <span class="question-text">Pendekatan desain kurikulum yang dimulai dari tujuan akhir, kemudian asesmen, baru aktivitas pembelajaran disebut...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q3" value="a"><span>a. Backward design</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="b"><span>b. Forward design</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="c"><span>c. Linear design</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="d"><span>d. Circular design</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">4</span>
+        <span class="question-text">Dalam Taksonomi Bloom Revisi, level kognitif tertinggi adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q4" value="a"><span>a. Menganalisis (C4)</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="b"><span>b. Mengevaluasi (C5)</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="c"><span>c. Menerapkan (C3)</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="d"><span>d. Mencipta (C6)</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">5</span>
+        <span class="question-text">Berapa jumlah elemen mata pelajaran PAI dalam Kurikulum Merdeka?</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q5" value="a"><span>a. 3 elemen</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="b"><span>b. 5 elemen</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="c"><span>c. 7 elemen</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="d"><span>d. 10 elemen</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">6</span>
+        <span class="question-text">Fase D dalam Kurikulum Merdeka mencakup jenjang...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q6" value="a"><span>a. Kelas 1-2 SD/MI</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="b"><span>b. Kelas 5-6 SD/MI</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="c"><span>c. Kelas 7-9 SMP/MTs</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="d"><span>d. Kelas 10 SMA/MA</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">7</span>
+        <span class="question-text">Konsep <em>constructive alignment</em> diperkenalkan oleh...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q7" value="a"><span>a. John Biggs dan Catherine Tang</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="b"><span>b. Grant Wiggins dan Jay McTighe</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="c"><span>c. Benjamin Bloom</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="d"><span>d. Robert Gagné</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">8</span>
+        <span class="question-text">Tujuan Pembelajaran (TP) dalam Kurikulum Merdeka terdiri dari tiga dimensi, <em>kecuali</em>...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q8" value="a"><span>a. Kapasitas</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="b"><span>b. Administrasi</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="c"><span>c. Disposisi</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="d"><span>d. Konten</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">9</span>
+        <span class="question-text">Kata kerja operasional yang tepat untuk level kognitif C4 (Menganalisis) adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q9" value="a"><span>a. Menyebutkan</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="b"><span>b. Menjelaskan</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="c"><span>c. Mendemonstrasikan</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="d"><span>d. Membedakan</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">10</span>
+        <span class="question-text">Tiga pendekatan penentuan KKTP yang direkomendasikan dalam Kurikulum Merdeka <em>kecuali</em>...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q10" value="a"><span>a. Menggunakan deskripsi kriteria</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="b"><span>b. Menggunakan rubrik</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="c"><span>c. Menggunakan nilai rata-rata kelas</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="d"><span>d. Menggunakan contoh karya/hasil</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- ESSAY -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian B — Essay <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(5 soal × 20 poin = 100)</span></h3>
+
+      <div class="essay-block">
+        <span class="question-number">1</span>
+        <span class="question-text">Jelaskan secara komprehensif perbedaan mendasar antara Kurikulum 2013 dan Kurikulum Merdeka, khususnya dalam hal struktur kompetensi, satuan waktu, dan pendekatan asesmen! Berikan analisis kritis Anda!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">2</span>
+        <span class="question-text">Analisis hubungan hierarkis antara CP, TP, dan KKTP dalam Kurikulum Merdeka! Gambarkan alurnya dan jelaskan bagaimana konsep <em>backward design</em> (Wiggins &amp; McTighe) dan <em>constructive alignment</em> (Biggs &amp; Tang) mendasari hubungan tersebut!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">3</span>
+        <span class="question-text">Pilihlah satu CP PAI untuk Fase D (SMP/MTs) pada salah satu elemen (Al-Qur'an Hadis, Akidah, Akhlak, Fikih, atau SPI). Lakukan analisis CP tersebut dengan mengidentifikasi: (a) kata kerja operasional, (b) konten, (c) level kognitif, (d) dimensi pengetahuan, dan (e) kompetensi lintas elemen!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">4</span>
+        <span class="question-text">Berdasarkan CP yang Anda analisis pada soal nomor 3, rumuskan minimal 4 Tujuan Pembelajaran (TP) yang operasional! Untuk setiap TP, tentukan level kognitif (Taksonomi Bloom) dan dimensi pengetahuan (Anderson &amp; Krathwohl)! Jelaskan alasan pemilihan Anda!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">5</span>
+        <span class="question-text">Sebagai calon evaluator PAI, bagaimana Anda menerjemahkan nilai-nilai Islam (<em>itqan</em>, <em>amanah</em>, <em>'adl</em>, <em>ihsan</em>) ke dalam proses analisis CP-TP-KKTP? Berikan contoh konkret penerapannya dan kaitkan dengan QS. Al-Anfal: 27!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="submitTest()">✉️ Kirim Jawaban &amp; Lihat Hasil</button>
+        <button type="button" class="btn btn-secondary" onclick="resetTest()">🔄 Mulai Ulang</button>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="resultPanel">
+        <h3>📊 Hasil Uji Formatif</h3>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="label">Data Mahasiswa</div>
+            <div class="value" id="dataStatus" style="font-size: 1.3rem;">—</div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian A (PG)</div>
+            <div class="value"><span id="scoreA">0</span><small>/100</small></div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian B (Essay)</div>
+            <div class="value"><span id="scoreB">0</span><small>/100</small></div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">Total Skor Akhir</div>
+        <div class="total-score"><span id="totalScore">0</span><small>/100</small></div>
+        <div class="grade-badge" id="gradeBadge">—</div>
+
+        <div class="btn-group" style="margin-top: 2rem;">
+          <button type="button" class="btn btn-secondary" onclick="downloadPDF()">📥 Unduh PDF Lengkap</button>
+          <button type="button" class="btn btn-secondary" onclick="downloadScore()">📊 Unduh Skor Saja</button>
+          <button type="button" class="btn btn-secondary" onclick="emailDosen()">✉️ Kirim Email Dosen</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Dr. Arifmiboy, S. Ag., M. Pd.</span>
+  <span class="ornament">◆</span>
+  <span>Evaluasi Pembelajaran PAI II</span>
+  <span class="ornament">◆</span>
+  <span>UIN Bukittinggi</span>
+</footer>
+
+<script>
+  // ============================================
+  // KUNCI JAWABAN PG
+  // ============================================
+  const answerKey = {
+    q1: 'b', q2: 'c', q3: 'a', q4: 'd', q5: 'b',
+    q6: 'c', q7: 'a', q8: 'b', q9: 'd', q10: 'c'
+  };
+
+  const feedbackText = {
+    q1: 'Dalam Kurikulum Merdeka, CP disusun per fase (2-3 tahun), bukan per tahun seperti Kurikulum 2013.',
+    q2: 'KKTP (Kriteria Ketercapaian Tujuan Pembelajaran) menggantikan KKM (Kriteria Ketuntasan Minimal) dari Kurikulum 2013.',
+    q3: 'Backward design (Wiggins & McTighe, 2005) memulai desain dari tujuan → asesmen → aktivitas.',
+    q4: 'Level kognitif tertinggi dalam Taksonomi Bloom Revisi adalah C6 — Mencipta (Create).',
+    q5: 'PAI terdiri dari 5 elemen: Al-Qur\'an Hadis, Akidah, Akhlak, Fikih, dan Sejarah Peradaban Islam.',
+    q6: 'Fase D mencakup Kelas 7-9 SMP/MTs dengan durasi 3 tahun.',
+    q7: 'Constructive alignment diperkenalkan oleh John Biggs dan Catherine Tang (2011).',
+    q8: 'TP terdiri dari 3 dimensi: Kapasitas, Disposisi, dan Konten. Administrasi bukan bagian dari TP.',
+    q9: '"Membedakan" adalah kata kerja operasional khas C4 (Menganalisis).',
+    q10: 'Tiga pendekatan KKTP: deskripsi kriteria, rubrik, dan contoh karya. Nilai rata-rata kelas bukan pendekatan yang direkomendasikan.'
+  };
+
+  // ============================================
+  // ESSAY COUNTER
+  // ============================================
+  document.querySelectorAll('.essay-answer').forEach(ta => {
+    const counter = ta.nextElementSibling;
+    ta.addEventListener('input', () => {
+      counter.textContent = ta.value.length + ' karakter';
+    });
+  });
+
+  // ============================================
+  // SUBMIT TEST
+  // ============================================
+  function submitTest() {
+    // Validasi data mahasiswa
+    const fields = ['nama', 'nim', 'tanggal', 'fakultas', 'prodi', 'semester', 'kelas'];
+    let dataValid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      if (!el.value.trim()) {
+        dataValid = false;
+        el.style.borderColor = '#d97070';
+      } else {
+        el.style.borderColor = 'rgba(201, 169, 97, 0.25)';
+      }
+    });
+
+    // Validasi PG
+    let pgAnswered = 0;
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) pgAnswered++;
+    }
+
+    // Validasi Essay
+    let essayAnswered = 0;
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      if (ta.value.trim().length >= 20) essayAnswered++;
+    });
+
+    if (!dataValid) {
+      alert('⚠️ Mohon lengkapi semua data mahasiswa terlebih dahulu!');
+      return;
+    }
+    if (pgAnswered < 10) {
+      alert(`⚠️ Mohon jawab semua 10 soal pilihan ganda! (baru ${pgAnswered}/10 terjawab)`);
+      return;
+    }
+    if (essayAnswered < 5) {
+      alert(`⚠️ Mohon jawab semua 5 soal essay dengan minimal 20 karakter! (baru ${essayAnswered}/5 terjawab)`);
+      return;
+    }
+
+    // Hitung skor PG
+    let scoreA = 0;
+    const blocks = document.querySelectorAll('.question-block[data-correct]');
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const currentBlock = blocks[i - 1];
+      const feedback = currentBlock.querySelector('.feedback');
+      const correctAnswer = currentBlock.dataset.correct;
+      const userAnswer = selected.value;
+
+      currentBlock.classList.remove('correct', 'incorrect');
+      currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+        lbl.classList.remove('correct-answer', 'wrong-answer');
+      });
+
+      if (userAnswer === correctAnswer) {
+        scoreA += 10;
+        currentBlock.classList.add('correct');
+        feedback.className = 'feedback show correct';
+        feedback.innerHTML = '✓ <strong>Benar!</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('correct-answer');
+      } else {
+        currentBlock.classList.add('incorrect');
+        feedback.className = 'feedback show incorrect';
+        feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('wrong-answer');
+        currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+          const input = lbl.querySelector('input');
+          if (input.value === correctAnswer) lbl.classList.add('correct-answer');
+        });
+      }
+    }
+
+    // Hitung skor Essay
+    let scoreB = 0;
+    const essays = document.querySelectorAll('.essay-answer');
+    const keywords = [
+      ['ki', 'kd', 'fase', 'kktp', 'kkm', 'fleksibel', 'preskriptif', 'sumatif', 'formatif'],
+      ['cp', 'tp', 'kktp', 'hierarki', 'backward', 'constructive', 'alignment', 'wiggins', 'biggs'],
+      ['cp', 'kata kerja', 'konten', 'level kognitif', 'dimensi', 'elemen', 'bloom', 'anderson'],
+      ['tp', 'tujuan', 'kapasitas', 'konten', 'disposisi', 'operasional', 'bloom', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6'],
+      ['itqan', 'amanah', 'adl', 'ihsan', 'al-anfal', 'evaluasi', 'kktp', 'keadilan', 'integritas']
+    ];
+
+    essays.forEach((ta, idx) => {
+      const text = ta.value.toLowerCase();
+      const length = ta.value.trim().length;
+      let baseScore = 0;
+      if (length >= 200) baseScore = 16;
+      else if (length >= 100) baseScore = 12;
+      else if (length >= 50) baseScore = 8;
+      else baseScore = 4;
+
+      let keywordHits = 0;
+      keywords[idx].forEach(kw => {
+        if (text.includes(kw)) keywordHits++;
+      });
+      const keywordBonus = Math.min(keywordHits * 1, 4);
+      const essayScore = Math.min(baseScore + keywordBonus, 20);
+      scoreB += essayScore;
+    });
+
+    // Total
+    const total = Math.round((scoreA + scoreB) / 2);
+
+    // Grade
+    let grade = 'E';
+    if (total >= 85) grade = 'A';
+    else if (total >= 75) grade = 'B+';
+    else if (total >= 65) grade = 'B';
+    else if (total >= 55) grade = 'C+';
+    else if (total >= 45) grade = 'C';
+    else if (total >= 35) grade = 'D';
+
+    // Tampilkan hasil
+    document.getElementById('dataStatus').textContent = '✓ Lengkap';
+    document.getElementById('dataStatus').style.color = '#8fd98e';
+    document.getElementById('scoreA').textContent = scoreA;
+    document.getElementById('scoreB').textContent = scoreB;
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('gradeBadge').textContent = 'Grade: ' + grade;
+    document.getElementById('resultPanel').classList.add('show');
+    document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ============================================
+  // RESET TEST
+  // ============================================
+  function resetTest() {
+    if (!confirm('Yakin ingin mengulang uji formatif? Semua jawaban akan dihapus.')) return;
+    document.getElementById('studentForm').reset();
+    document.querySelectorAll('.question-block').forEach(b => {
+      b.classList.remove('correct', 'incorrect');
+      b.querySelector('.feedback').className = 'feedback';
+      b.querySelectorAll('.option-label').forEach(l => {
+        l.classList.remove('correct-answer', 'wrong-answer');
+      });
+    });
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      ta.value = '';
+      ta.nextElementSibling.textContent = '0 karakter';
+    });
+    document.getElementById('resultPanel').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ============================================
+  // DOWNLOAD PDF (PRINT)
+  // ============================================
+  function downloadPDF() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html><head><title>Hasil Uji Formatif - ${nama}</title>
+      <style>
+        body { font-family: Georgia, serif; padding: 40px; color: #222; line-height: 1.7; }
+        h1 { color: #8a7340; border-bottom: 2px solid #c9a961; padding-bottom: 10px; }
+        h2 { color: #8a7340; margin-top: 30px; font-size: 1.2rem; }
+        .info { background: #f9f6ee; padding: 15px; border-left: 4px solid #c9a961; margin: 20px 0; }
+        .score-box { text-align: center; font-size: 2rem; color: #8a7340; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #c9a961; color: #fff; }
+        .essay { background: #fafafa; padding: 10px; margin: 10px 0; border-left: 3px solid #c9a961; }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }
+      </style></head><body>
+      <h1>Hasil Uji Formatif Pertemuan 2</h1>
+      <p style="font-style: italic;">Bedah Kurikulum: Analisis CP, TP, dan KKTP dalam PAI</p>
+      <p style="font-style: italic;">Evaluasi Pembelajaran PAI II — Dr. Arifmiboy, S. Ag., M. Pd.</p>
+      <div class="info">
+        <strong>Nama:</strong> ${nama}<br>
+        <strong>NIM:</strong> ${nim}<br>
+        <strong>Prodi:</strong> ${prodi}<br>
+        <strong>Tanggal:</strong> ${document.getElementById('tanggal').value}
+      </div>
+      <div class="score-box">
+        Total Skor: ${total}/100<br>
+        <span style="font-size: 1.2rem;">${grade}</span>
+      </div>
+      <h2>Bagian A — Pilihan Ganda</h2>
+      <table>
+        <tr><th>No</th><th>Soal</th><th>Jawaban Anda</th><th>Kunci</th><th>Status</th></tr>
+        ${Array.from({length: 10}).map((_, i) => {
+          const qName = 'q' + (i+1);
+          const selected = document.querySelector(`input[name="${qName}"]:checked`);
+          const correct = answerKey[qName];
+          const user = selected ? selected.value : '-';
+          const status = user === correct ? '✓ Benar' : '✗ Salah';
+          const qText = document.querySelectorAll('.question-block[data-correct]')[i].querySelector('.question-text').textContent;
+          return `<tr><td>${i+1}</td><td>${qText}</td><td>${user}</td><td>${correct}</td><td>${status}</td></tr>`;
+        }).join('')}
+      </table>
+      <h2>Bagian B — Essay</h2>
+      ${Array.from(document.querySelectorAll('.essay-block')).map((block, i) => {
+        const q = block.querySelector('.question-text').textContent;
+        const a = block.querySelector('.essay-answer').value;
+        return `<div class="essay"><strong>Soal ${i+1}:</strong> ${q}<br><br><em>Jawaban:</em><br>${a.replace(/\n/g, '<br>')}</div>`;
+      }).join('')}
+      <div class="footer">
+        Dokumen ini digenerate otomatis pada ${new Date().toLocaleString('id-ID')}<br>
+        © 2026 Evaluasi Pembelajaran PAI II — UIN Bukittinggi
+      </div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => printWindow.print(), 500);
+  }
+
+  // ============================================
+  // DOWNLOAD SKOR SAJA
+  // ============================================
+  function downloadScore() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const content = `HASIL UJI FORMATIF PERTEMUAN 2
+Bedah Kurikulum: Analisis CP, TP, dan KKTP dalam PAI
+Evaluasi Pembelajaran PAI II
+Dr. Arifmiboy, S. Ag., M. Pd.
+UIN Sjech M. Djamil Djambek Bukittinggi
+========================================
+
+Nama      : ${nama}
+NIM       : ${nim}
+Tanggal   : ${document.getElementById('tanggal').value}
+Prodi     : ${document.getElementById('prodi').value}
+Kelas     : ${document.getElementById('kelas').value}
+
+----------------------------------------
+SKOR
+----------------------------------------
+Bagian A (Pilihan Ganda) : ${scoreA} / 100
+Bagian B (Essay)         : ${scoreB} / 100
+----------------------------------------
+TOTAL SKOR               : ${total} / 100
+GRADE                    : ${grade}
+========================================
+
+Tanggal Cetak: ${new Date().toLocaleString('id-ID')}
+`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Skor_UjiFormatif_P2_${nim}_${nama.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================
+  // EMAIL DOSEN
+  // ============================================
+  function emailDosen() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const kelas = document.getElementById('kelas').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const subject = encodeURIComponent(`Hasil Uji Formatif P2 - ${nama} (${nim})`);
+    const body = encodeURIComponent(
+`Yth. Dr. Arifmiboy, S. Ag., M. Pd.
+
+Berikut saya sampaikan hasil Uji Formatif Pertemuan 2 mata kuliah Evaluasi Pembelajaran PAI II:
+
+Materi: Bedah Kurikulum - Analisis CP, TP, dan KKTP dalam PAI
+
+Data Mahasiswa:
+- Nama : ${nama}
+- NIM  : ${nim}
+- Prodi: ${prodi}
+- Kelas: ${kelas}
+
+Hasil Penilaian:
+- Bagian A (PG)    : ${scoreA}/100
+- Bagian B (Essay) : ${scoreB}/100
+- TOTAL            : ${total}/100
+- Grade            : ${grade}
+
+Terima kasih.
+
+Hormat saya,
+${nama}`
+    );
+
+    window.location.href = `mailto:arifmiboy@uinbukittinggi.ac.id?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>

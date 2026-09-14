@@ -1,0 +1,2405 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 3 — Arsitektur Tes: Merancang Kisi-Kisi Objektif &amp; Esai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e8e4d9;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  :root {
+    --gold: #c9a961;
+    --gold-light: #e4cc8a;
+    --gold-dark: #8a7340;
+    --navy: #0a0e1a;
+    --navy-soft: #141a2e;
+    --cream: #f5efe0;
+    --text-muted: #a8a192;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAVIGATION */
+  .nav {
+    position: sticky;
+    top: 0;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.85);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+  }
+  .hero-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  .hero-meta span strong { color: var(--gold); font-weight: 500; }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--cream);
+    margin: 4rem 0 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .content h2::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 60%;
+    background: var(--gold);
+  }
+  .content h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin: 2.5rem 0 1rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .content h4 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin: 1.8rem 0 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .content p {
+    color: #d4cfc0;
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+    text-align: justify;
+  }
+  .content ul, .content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: #d4cfc0;
+  }
+  .content li { margin-bottom: 0.6rem; }
+  .content strong { color: var(--gold-light); font-weight: 600; }
+  .content em { color: var(--gold); font-style: italic; }
+
+  /* VIDEO BOX */
+  .video-box {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    text-align: center;
+  }
+  .video-box .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .video-box h4 { font-family: 'Playfair Display', serif; color: var(--cream); margin-bottom: 0.5rem; }
+  .video-box p { color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin: 0; }
+
+  /* KEY CONCEPTS */
+  .key-concept {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.6));
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .key-concept h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .key-concept ul { margin-top: 1rem; }
+  .key-concept li strong { color: var(--cream); }
+
+  /* CASE STUDY */
+  .case-study {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .case-study::before {
+    content: '📖';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .case-study h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+  }
+  .case-study .lesson {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(201, 169, 97, 0.3);
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* REFLECTION */
+  .reflection {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.06), transparent);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .reflection h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* TABLE */
+  .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(20, 26, 46, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .content table th {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--navy);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .content table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    color: #d4cfc0;
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  .content table tr:last-child td { border-bottom: none; }
+  .content table tr:hover td { background: rgba(201, 169, 97, 0.05); }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(201, 169, 97, 0.06);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .tip-box h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: rgba(180, 60, 60, 0.08);
+    border: 1px solid rgba(220, 100, 100, 0.3);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .warning-box h4 {
+    color: #e8a0a0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.6));
+    border-left: 4px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 15px;
+    font-size: 5rem;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    opacity: 0.4;
+  }
+  .quote-box .quote-source {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+
+  /* INFOGRAPHIC */
+  .infographic {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+  }
+  .infographic h4 {
+    text-align: center;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .flow-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .flow-item {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.15), rgba(20, 26, 46, 0.6));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 280px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .flow-item strong { color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .flow-arrow { color: var(--gold); font-size: 1.5rem; line-height: 1; }
+
+  /* EXAMPLE BOX */
+  .example-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.7));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .example-box::before {
+    content: '📝';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .example-box h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+  }
+  .example-box .mono {
+    font-family: 'Courier New', monospace;
+    background: rgba(10, 14, 26, 0.6);
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--cream);
+    border-left: 3px solid var(--gold);
+    overflow-x: auto;
+  }
+
+  /* REFERENCES */
+  .references {
+    background: rgba(20, 26, 46, 0.5);
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+  }
+  .references h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-style: normal;
+  }
+  .references h4 {
+    color: var(--gold-light);
+    margin: 1.5rem 0 0.8rem;
+    font-size: 1rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .references ol, .references ul {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .references li { margin-bottom: 0.8rem; }
+  .references em { color: var(--cream); }
+
+  /* CHAPTER NAVIGATION */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    flex-wrap: wrap;
+  }
+  .chapter-nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 3px;
+  }
+  .chapter-nav a:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* FORMATIVE TEST */
+  .test-section {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    margin: 4rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .test-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .test-header .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+  .test-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    padding-left: 0;
+  }
+  .test-header h2::before { display: none; }
+  .test-header p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .test-warning {
+    background: rgba(220, 170, 60, 0.1);
+    border: 1px solid rgba(220, 170, 60, 0.3);
+    color: var(--gold-light);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  /* FORM FIELDS */
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-group label .required { color: #e8a0a0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 4px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(10, 14, 26, 0.9);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+  }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--navy); color: var(--cream); }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* QUESTION BLOCK */
+  .question-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .question-block:hover { border-color: rgba(201, 169, 97, 0.4); }
+  .question-block.correct {
+    border-color: #6abf69;
+    background: rgba(106, 191, 105, 0.08);
+  }
+  .question-block.incorrect {
+    border-color: #d97070;
+    background: rgba(217, 112, 112, 0.08);
+  }
+  .question-number {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.8rem;
+  }
+  .question-text {
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: inline;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: rgba(20, 26, 46, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #d4cfc0;
+    font-size: 0.95rem;
+  }
+  .option-label:hover {
+    background: rgba(201, 169, 97, 0.08);
+    border-color: var(--gold);
+  }
+  .option-label input { margin-top: 3px; accent-color: var(--gold); cursor: pointer; }
+  .option-label input:checked + span { color: var(--gold-light); font-weight: 500; }
+  .option-label.correct-answer {
+    background: rgba(106, 191, 105, 0.15);
+    border-color: #6abf69;
+  }
+  .option-label.wrong-answer {
+    background: rgba(217, 112, 112, 0.15);
+    border-color: #d97070;
+  }
+  .feedback {
+    display: none;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct {
+    background: rgba(106, 191, 105, 0.1);
+    color: #8fd98e;
+    border-left: 3px solid #6abf69;
+  }
+  .feedback.incorrect {
+    background: rgba(217, 112, 112, 0.1);
+    color: #e8a0a0;
+    border-left: 3px solid #d97070;
+  }
+
+  /* ESSAY */
+  .essay-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .essay-block textarea {
+    min-height: 120px;
+    resize: vertical;
+    margin-top: 1rem;
+  }
+  .essay-counter {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* BUTTONS */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201, 169, 97, 0.4);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  /* RESULTS */
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.8));
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .result-panel.show { display: block; animation: fadeIn 0.6s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-panel h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .score-card {
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+  .score-card .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .score-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .score-card .value small { font-size: 1rem; color: var(--text-muted); }
+  .total-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin: 1rem 0;
+    text-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+  }
+  .total-score small { font-size: 1.5rem; color: var(--text-muted); }
+  .grade-badge {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .ornament { color: var(--gold); margin: 0 0.8rem; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.7rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.2rem; }
+    .test-section { padding: 2rem 1.2rem; }
+    .hero-meta { gap: 1rem; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo">EVALUASI <span>PAI II</span></div>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="index.html#pertemuan">Pertemuan</a>
+    <a href="index.html#penulis">Penulis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">Pertemuan Ketiga · OBE 2026</span>
+  <div class="hero-chapter">Bab III</div>
+  <h1>Arsitektur Tes: <em>Merancang Kisi-Kisi</em><br>Objektif &amp; Esai</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">
+    Menyusun <em>table of specification</em> sebagai cetak biru evaluasi pembelajaran PAI
+    yang menjamin validitas isi, reliabilitas, dan keadilan penilaian.
+  </p>
+  <div class="hero-meta">
+    <span><strong>Penulis:</strong> Dr. Arifmiboy, S. Ag., M. Pd.</span>
+    <span><strong>Homebase:</strong> UIN Bukittinggi</span>
+    <span><strong>Bobot:</strong> 5%</span>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PENDAHULUAN -->
+  <h2>Pendahuluan</h2>
+  <p>
+    Seorang arsitek tidak akan membangun gedung tanpa <strong>blueprint</strong>—sebuah cetak biru
+    yang menggambarkan struktur, dimensi, dan fungsi setiap ruang. Demikian pula seorang evaluator
+    pembelajaran: ia tidak akan menyusun instrumen evaluasi tanpa <strong>kisi-kisi</strong>
+    (<em>table of specification</em>)—cetak biru yang menjamin bahwa setiap butir soal mewakili
+    kompetensi yang seharusnya diukur.
+  </p>
+  <p>
+    Kisi-kisi adalah <strong>jembatan epistemologis</strong> antara tujuan pembelajaran (CP-TP)
+    dan instrumen evaluasi. Tanpa kisi-kisi, guru berisiko menyusun soal yang tidak representatif,
+    terlalu sulit atau terlalu mudah, atau bahkan mengukur kompetensi yang tidak diajarkan—sebuah
+    pelanggaran prinsip <em>constructive alignment</em> (Biggs &amp; Tang, 2011).
+  </p>
+  <p>
+    Dalam mata pelajaran PAI, kisi-kisi menjadi semakin krusial karena cakupan materinya yang luas
+    (Al-Qur'an Hadis, Akidah, Akhlak, Fikih, Sejarah Peradaban Islam) dan tuntutan penilaian yang
+    multidimensi (kognitif, afektif, psikomotorik). Kisi-kisi yang baik memastikan bahwa evaluasi
+    PAI tidak hanya mengukur hafalan, tetapi juga pemahaman, aplikasi, analisis, dan internalisasi
+    nilai-nilai Islam.
+  </p>
+
+  <div class="quote-box">
+    Dan janganlah kamu mendekati harta anak yatim, kecuali dengan cara yang lebih baik, hingga dia mencapai usia dewasa. Dan sempurnakanlah takaran apabila kamu menakar, dan timbanglah dengan neraca yang benar. Itulah yang lebih utama (di sisi Allah) dan lebih baik akibatnya.
+    <span class="quote-source">— QS. Al-Isra [17]: 36</span>
+  </div>
+
+  <p>
+    Ayat ini menegaskan prinsip <em>kebenaran timbangan</em>—yang dalam konteks evaluasi
+    diterjemahkan sebagai keadilan instrumen. Kisi-kisi adalah "timbangan" yang memastikan
+    setiap kompetensi mendapat porsi penilaian yang proporsional dan adil.
+  </p>
+
+  <div class="video-box">
+    <div class="icon">🎬</div>
+    <h4>Video: Menyusun Kisi-Kisi Tes yang Efektif</h4>
+    <p>Simak penjelasan komprehensif tentang cara menyusun kisi-kisi tes objektif dan esai yang valid dan reliabel.</p>
+  </div>
+
+  <!-- KONSEP KUNCI -->
+  <div class="key-concept">
+    <h4>🔑 Konsep Kunci</h4>
+    <ul>
+      <li><strong>Kisi-Kisi (Table of Specification):</strong> Matriks yang mendeskripsikan distribusi butir soal berdasarkan materi dan level kognitif.</li>
+      <li><strong>Validitas Isi (Content Validity):</strong> Derajat sejauh mana instrumen mewakili domain yang diukur.</li>
+      <li><strong>Tes Objektif:</strong> Tes dengan jawaban pasti (pilihan ganda, benar-salah, menjodohkan, isian singkat).</li>
+      <li><strong>Tes Esai:</strong> Tes yang menuntut jawaban uraian (uraian terbatas, uraian terbuka).</li>
+      <li><strong>Taksonomi Bloom Revisi:</strong> Enam level kognitif (C1-C6) untuk mengklasifikasi kompetensi.</li>
+      <li><strong>Distribusi Butir:</strong> Proporsi butir soal berdasarkan materi dan level kognitif.</li>
+      <li><strong>Indikator Soal:</strong> Perilaku terukur yang menjadi acuan penyusunan butir soal.</li>
+    </ul>
+  </div>
+
+  <!-- STUDI KASUS 1 -->
+  <div class="case-study">
+    <h4>Studi Kasus 1: Evaluasi Tanpa Kisi-Kisi</h4>
+    <p>
+      Seorang guru PAI di sebuah MTs di Sumatera Barat menyusun 40 soal UAS Fikih tanpa kisi-kisi.
+      Hasilnya, 25 soal (62,5%) hanya tentang "thaharah" padahal materi mencakup 5 bab. Siswa yang
+      menguasai bab lain merasa dirugikan. Analisis pasca-evaluasi menunjukkan bahwa validitas isi
+      tes hanya 0,42 (rendah), dan reliabilitasnya 0,58 (tidak memadai).
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Tanpa kisi-kisi, distribusi butir menjadi tidak proporsional,
+      validitas isi rendah, dan keadilan evaluasi terganggu.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 2 -->
+  <div class="case-study">
+    <h4>Studi Kasus 2: Keberhasilan Kisi-Kisi di MAN 4 Tanah Datar</h4>
+    <p>
+      Dalam kegiatan PKM Berbasis Prodi tahun 2024, tim dosen UIN Bukittinggi mendampingi guru-guru
+      MAN 4 Tanah Datar menyusun kisi-kisi untuk mata pelajaran Fikih Fase E. Setelah pelatihan,
+      guru-guru berhasil menyusun matriks kisi-kisi yang memetakan 5 materi pokok ke dalam 6 level
+      kognitif dengan distribusi 30% C2, 40% C3, 20% C4, dan 10% C5. Hasil uji coba menunjukkan
+      validitas isi 0,87 (sangat baik) dan reliabilitas 0,82 (tinggi).
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Kisi-kisi yang disusun sistematis meningkatkan kualitas
+      instrumen evaluasi secara signifikan.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 3 -->
+  <div class="case-study">
+    <h4>Studi Kasus 3: Kesalahan Umum dalam Kisi-Kisi</h4>
+    <p>
+      Seorang guru PAI menyusun kisi-kisi dengan indikator "Siswa memahami zakat". Indikator ini
+      terlalu abstrak—tidak terukur dan tidak operasional. Ketika diminta menyusun butir soal,
+      guru tersebut bingung menentukan jenis soal dan level kognitif yang tepat. Akibatnya,
+      soal yang dihasilkan tidak selaras dengan indikator, dan evaluasi menjadi tidak valid.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Indikator harus dirumuskan dengan <em>kata kerja operasional</em>
+      (KKO) yang terukur, seperti "menjelaskan", "menghitung", atau "menganalisis"—bukan "memahami"
+      atau "menghayati".
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 4 -->
+  <div class="case-study">
+    <h4>Studi Kasus 4: Kisi-Kisi untuk PAI Berbasis HOTS</h4>
+    <p>
+      Sebuah MA di Bukittinggi menerapkan kebijakan minimal 40% soal HOTS (<em>Higher Order
+      Thinking Skills</em>) dalam setiap evaluasi. Guru PAI menyusun kisi-kisi dengan distribusi:
+      C1 (10%), C2 (20%), C3 (30%), C4 (25%), C5 (10%), C6 (5%). Awalnya siswa kesulitan,
+      tetapi setelah satu semester, kemampuan berpikir kritis dan analitis siswa meningkat
+      signifikan—ditunjukkan oleh peningkatan skor PISA-like assessment sebesar 28%.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Kisi-kisi yang menantang dengan proporsi HOTS yang memadai
+      mendorong pengembangan kompetensi berpikir tingkat tinggi.
+    </div>
+  </div>
+
+  <!-- REFLEKSI -->
+  <div class="reflection">
+    <h4>💭 Refleksi untuk Mahasiswa PAI</h4>
+    <p>
+      Dalam tradisi Islam, konsep <em>mizan</em> (timbangan) dan <em>qisth</em> (keadilan) sangat
+      ditekankan. Rasulullah SAW bersabda: <em>"Seadil-adil manusia adalah orang yang menjadi
+      hakim di antara manusia dan dia menghukumi dengan adil."</em> (HR. Thabrani).
+    </p>
+    <p>
+      Kisi-kisi adalah wujud <em>mizan</em> dalam evaluasi—ia memastikan bahwa setiap siswa
+      dinilai secara adil berdasarkan kompetensi yang seharusnya diukur. Sebagai calon evaluator
+      PAI, renungkan: apakah Anda akan menyusun kisi-kisi dengan sungguh-sungguh, atau hanya
+      sebagai formalitas administratif?
+    </p>
+  </div>
+
+  <!-- LANDASAN TEORETIS -->
+  <h2>3.1 <em>Landasan Teoretis</em> Kisi-Kisi Tes</h2>
+
+  <h3>3.1.1 Konsep <em>Table of Specifications</em> (Gronlund &amp; Linn)</h3>
+  <p>
+    Gronlund dan Linn (1990) memperkenalkan konsep <em>table of specifications</em> (TOS) sebagai
+    instrumen perencanaan tes yang menjamin <strong>validitas isi</strong>. TOS adalah matriks
+    dua dimensi yang memetakan <strong>konten/materi</strong> (baris) dan <strong>level kognitif</strong>
+    (kolom), dengan sel yang menunjukkan jumlah butir soal untuk setiap kombinasi.
+  </p>
+  <p>
+    Menurut Gronlund, TOS memiliki tiga fungsi utama:
+  </p>
+  <ol>
+    <li><strong>Fungsi Perencanaan:</strong> Memastikan distribusi butir sesuai proporsi materi dan level kognitif</li>
+    <li><strong>Fungsi Validasi:</strong> Memastikan tes mengukur apa yang seharusnya diukur</li>
+    <li><strong>Fungsi Dokumentasi:</strong> Menyediakan bukti transparansi penyusunan tes</li>
+  </ol>
+
+  <h3>3.1.2 Validitas Isi (<em>Content Validity</em>)</h3>
+  <p>
+    Crocker dan Algina (1986) mendefinisikan <strong>validitas isi</strong> sebagai derajat
+    sejauh mana instrumen mewakili domain yang diukur. Dalam konteks evaluasi pembelajaran,
+    validitas isi berarti kesesuaian antara butir soal dengan materi yang diajarkan dan
+    kompetensi yang ditargetkan.
+  </p>
+  <p>
+    Validitas isi dapat diukur melalui:
+  </p>
+  <ul>
+    <li><strong>Expert Judgment:</strong> Penilaian ahli terhadap relevansi butir</li>
+    <li><strong>Content Validity Index (CVI):</strong> Indeks kuantitatif validitas isi</li>
+    <li><strong>Lawhe's Content Validity Ratio (CVR):</strong> Rasio validitas isi</li>
+  </ul>
+  <p>
+    Kisi-kisi adalah <em>prasyarat</em> validitas isi—tanpa kisi-kisi, tidak mungkin menjamin
+    bahwa tes mewakili domain secara proporsional.
+  </p>
+
+  <h3>3.1.3 Taksonomi Bloom Revisi dalam Kisi-Kisi</h3>
+  <p>
+    Anderson dan Krathwohl (2001) merevisi Taksonomi Bloom menjadi dua dimensi:
+    <strong>Proses Kognitif</strong> dan <strong>Dimensi Pengetahuan</strong>. Dalam kisi-kisi,
+    dimensi proses kognitif menjadi kolom, sementara dimensi pengetahuan dapat menjadi sub-kolom
+    atau pertimbangan dalam penyusunan indikator.
+  </p>
+
+  <table>
+    <tr>
+      <th>Level</th>
+      <th>Proses Kognitif</th>
+      <th>Kata Kerja Operasional</th>
+      <th>Proporsi Ideal</th>
+    </tr>
+    <tr>
+      <td><strong>C1</strong></td>
+      <td>Mengingat</td>
+      <td>Menyebutkan, menghafal, mengidentifikasi</td>
+      <td>10%</td>
+    </tr>
+    <tr>
+      <td><strong>C2</strong></td>
+      <td>Memahami</td>
+      <td>Menjelaskan, merangkum, mengklasifikasi</td>
+      <td>20%</td>
+    </tr>
+    <tr>
+      <td><strong>C3</strong></td>
+      <td>Menerapkan</td>
+      <td>Menggunakan, mendemonstrasikan, menghitung</td>
+      <td>30%</td>
+    </tr>
+    <tr>
+      <td><strong>C4</strong></td>
+      <td>Menganalisis</td>
+      <td>Membedakan, mengorganisasi, menganalisis</td>
+      <td>25%</td>
+    </tr>
+    <tr>
+      <td><strong>C5</strong></td>
+      <td>Mengevaluasi</td>
+      <td>Memeriksa, mengkritik, menilai</td>
+      <td>10%</td>
+    </tr>
+    <tr>
+      <td><strong>C6</strong></td>
+      <td>Mencipta</td>
+      <td>Merumuskan, merancang, mengkonstruksi</td>
+      <td>5%</td>
+    </tr>
+  </table>
+
+  <h3>3.1.4 Teori Tes Klasik (<em>Classical Test Theory</em>)</h3>
+  <p>
+    Classical Test Theory (CTT) yang dikembangkan oleh Spearman (1904) dan dikembangkan oleh
+    Lord dan Novick (1968) menjadi landasan psikometrik kisi-kisi. Menurut CTT, setiap skor
+    observasi terdiri dari <strong>skor sejati</strong> dan <strong>skor error</strong>:
+  </p>
+  <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); font-style: italic; margin: 1.5rem 0;">
+    X = T + E
+  </p>
+  <p>
+    Kisi-kisi yang baik meminimalkan <em>error</em> dengan memastikan bahwa setiap butir soal
+    benar-benar mengukur kompetensi yang ditargetkan, bukan faktor lain yang tidak relevan.
+  </p>
+
+  <h3>3.1.5 Prinsip Penulisan Butir Soal (Haladyna)</h3>
+  <p>
+    Haladyna (2004) merumuskan 31 prinsip penulisan butir soal pilihan ganda yang menjadi
+    acuan penyusunan kisi-kisi dan butir soal. Beberapa prinsip kunci:
+  </p>
+  <ul>
+    <li>Setiap butir harus mengukur satu kompetensi spesifik</li>
+    <li>Stem (pokok soal) harus jelas dan tidak ambigu</li>
+    <li>Opsi jawaban harus homogen dalam panjang dan struktur</li>
+    <li>Hindari petunjuk terselubung (<em>clue</em>) yang membocorkan jawaban</li>
+    <li>Distraktor harus plausible (masuk akal)</li>
+  </ul>
+
+  <!-- INFOGRAPHIC ALUR -->
+  <div class="infographic">
+    <h4>🔗 Alur Penyusunan Kisi-Kisi Tes</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>1. IDENTIFIKASI CP-TP</strong>
+        Analisis Capaian &amp; Tujuan Pembelajaran
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>2. PETAKAN MATERI</strong>
+        Identifikasi Pokok Bahasan &amp; Sub-Bahan
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>3. TENTUKAN LEVEL KOGNITIF</strong>
+        Distribusi C1-C6 sesuai karakteristik materi
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>4. RUMUSKAN INDIKATOR</strong>
+        Perilaku terukur dengan KKO operasional
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>5. SUSUN MATRIKS KISI-KISI</strong>
+        Tabel materi × level × jumlah butir
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>6. VALIDASI OLEH SEJAWAT</strong>
+        Peer review &amp; expert judgment
+      </div>
+    </div>
+  </div>
+
+  <!-- KOMPONEN KISI-KISI -->
+  <h2>3.2 <em>Komponen</em> Kisi-Kisi Tes</h2>
+
+  <h3>3.2.1 Identitas Tes</h3>
+  <p>
+    Setiap kisi-kisi harus dilengkapi identitas yang jelas:
+  </p>
+  <table>
+    <tr>
+      <th>Komponen</th>
+      <th>Deskripsi</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td><strong>Jenis Sekolah</strong></td>
+      <td>Jenjang dan tipe lembaga</td>
+      <td>MTs / MA / SMP Islam</td>
+    </tr>
+    <tr>
+      <td><strong>Mata Pelajaran</strong></td>
+      <td>Mata pelajaran yang diujikan</td>
+      <td>Fikih / Akidah Akhlak / SPI</td>
+    </tr>
+    <tr>
+      <td><strong>Fase/Kelas</strong></td>
+      <td>Jenjang dan kelas</td>
+      <td>Fase D / Kelas VIII</td>
+    </tr>
+    <tr>
+      <td><strong>Alokasi Waktu</strong></td>
+      <td>Durasi pelaksanaan tes</td>
+      <td>90 menit</td>
+    </tr>
+    <tr>
+      <td><strong>Jumlah Soal</strong></td>
+      <td>Total butir soal</td>
+      <td>40 PG + 5 Esai</td>
+    </tr>
+    <tr>
+      <td><strong>Bentuk Tes</strong></td>
+      <td>Tipe instrumen</td>
+      <td>Pilihan Ganda + Uraian</td>
+    </tr>
+    <tr>
+      <td><strong>Penyusun</strong></td>
+      <td>Nama guru/tim penyusun</td>
+      <td>Dr. Arifmiboy, S. Ag., M. Pd.</td>
+    </tr>
+  </table>
+
+  <h3>3.2.2 Format Kisi-Kisi</h3>
+  <p>
+    Format kisi-kisi yang standar terdiri dari:
+  </p>
+  <ul>
+    <li><strong>Kolom 1:</strong> No. urut</li>
+    <li><strong>Kolom 2:</strong> Materi/Pokok Bahasan</li>
+    <li><strong>Kolom 3:</strong> Kelas/Semester</li>
+    <li><strong>Kolom 4:</strong> Level Kognitif (C1-C6)</li>
+    <li><strong>Kolom 5:</strong> Indikator Soal</li>
+    <li><strong>Kolom 6:</strong> Bentuk Soal (PG/Esai)</li>
+    <li><strong>Kolom 7:</strong> Nomor Soal</li>
+  </ul>
+
+  <!-- PERBANDINGAN TES -->
+  <h2>3.3 <em>Perbandingan</em> Tes Objektif dan Tes Esai</h2>
+  <p>
+    Dalam evaluasi PAI, kedua jenis tes memiliki karakteristik, kelebihan, dan kekurangan yang
+    perlu dipertimbangkan dalam penyusunan kisi-kisi.
+  </p>
+
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>Tes Objektif</th>
+      <th>Tes Esai</th>
+    </tr>
+    <tr>
+      <td><strong>Definisi</strong></td>
+      <td>Tes dengan jawaban pasti dan skor objektif</td>
+      <td>Tes yang menuntut jawaban uraian</td>
+    </tr>
+    <tr>
+      <td><strong>Jenis</strong></td>
+      <td>PG, benar-salah, menjodohkan, isian singkat</td>
+      <td>Uraian terbatas, uraian terbuka</td>
+    </tr>
+    <tr>
+      <td><strong>Cakupan Materi</strong></td>
+      <td>Luas, dapat mewakili banyak kompetensi</td>
+      <td>Terbatas, mendalam pada sedikit topik</td>
+    </tr>
+    <tr>
+      <td><strong>Level Kognitif</strong></td>
+      <td>C1-C5 (terbatas C6)</td>
+      <td>C2-C6 (ideal untuk HOTS)</td>
+    </tr>
+    <tr>
+      <td><strong>Objektivitas Skor</strong></td>
+      <td>Tinggi (skor pasti)</td>
+      <td>Relatif (perlu rubrik)</td>
+    </tr>
+    <tr>
+      <td><strong>Waktu Koreksi</strong></td>
+      <td>Cepat (dapat menggunakan scanner)</td>
+      <td>Lama (manual)</td>
+    </tr>
+    <tr>
+      <td><strong>Biaya Penyusunan</strong></td>
+      <td>Tinggi (butuh banyak butir)</td>
+      <td>Rendah (butir sedikit)</td>
+    </tr>
+    <tr>
+      <td><strong>Kesesuaian untuk PAI</strong></td>
+      <td>Fikih (hitungan zakat), hafalan, fakta sejarah</td>
+      <td>Akhlak (refleksi), analisis ayat, argumentasi</td>
+    </tr>
+  </table>
+
+  <h3>3.3.1 Jenis-Jenis Tes Objektif</h3>
+  <table>
+    <tr>
+      <th>Jenis</th>
+      <th>Karakteristik</th>
+      <th>Contoh dalam PAI</th>
+    </tr>
+    <tr>
+      <td><strong>Pilihan Ganda (PG)</strong></td>
+      <td>Stem + 4-5 opsi, 1 jawaban benar</td>
+      <td>Menentukan hukum jual beli dengan khiyar</td>
+    </tr>
+    <tr>
+      <td><strong>Benar-Salah (B-S)</strong></td>
+      <td>Pernyataan dengan 2 opsi: B atau S</td>
+      <td>Zakat fitrah wajib dikeluarkan sebelum shalat Id</td>
+    </tr>
+    <tr>
+      <td><strong>Menjodohkan (Matching)</strong></td>
+      <td>Pasangan premis-respons</td>
+      <td>Menjodohkan nama khalifah dengan prestasinya</td>
+    </tr>
+    <tr>
+      <td><strong>Isian Singkat</strong></td>
+      <td>Melengkapi kalimat/rumpang</td>
+      <td>Rukun Islam yang kedua adalah ...</td>
+    </tr>
+    <tr>
+      <td><strong>Sebab-Akibat</strong></td>
+      <td>Analisis hubungan kausal</td>
+      <td>Analisis hubungan riba dengan kemiskinan</td>
+    </tr>
+  </table>
+
+  <h3>3.3.2 Jenis-Jenis Tes Esai</h3>
+  <table>
+    <tr>
+      <th>Jenis</th>
+      <th>Karakteristik</th>
+      <th>Contoh dalam PAI</th>
+    </tr>
+    <tr>
+      <td><strong>Uraian Terbatas</strong></td>
+      <td>Jawaban dibatasi aspek tertentu</td>
+      <td>Jelaskan 3 hikmah zakat dengan dalilnya</td>
+    </tr>
+    <tr>
+      <td><strong>Uraian Terbuka</strong></td>
+      <td>Jawaban bebas, analitis-kritis</td>
+      <td>Analisis relevansi konsep zakat dengan pengentasan kemiskinan kontemporer</td>
+    </tr>
+    <tr>
+      <td><strong>Studi Kasus</strong></td>
+      <td>Analisis kasus nyata</td>
+      <td>Analisis hukum transaksi e-commerce dalam perspektif fikih muamalah</td>
+    </tr>
+    <tr>
+      <td><strong>Refleksi</strong></td>
+      <td>Refleksi personal-afektif</td>
+      <td>Refleksi pengalaman menjalankan puasa dan dampaknya pada karakter</td>
+    </tr>
+  </table>
+
+  <!-- CONTOH KISI-KISI -->
+  <h2>3.4 <em>Contoh</em> Kisi-Kisi Tes PAI</h2>
+
+  <h3>3.4.1 Contoh Kisi-Kisi Fikih Fase D (MTs Kelas VIII)</h3>
+  <p>
+    Berikut contoh kisi-kisi untuk mata pelajaran Fikih dengan materi "Jual Beli dan Riba":
+  </p>
+
+  <div class="example-box">
+    <h4>📝 Identitas Tes</h4>
+    <div class="mono">
+Jenis Sekolah    : MTs
+Mata Pelajaran   : Fikih
+Kelas/Semester   : VIII / Ganjil
+Fase             : D
+Alokasi Waktu    : 90 menit
+Jumlah Soal      : 30 PG + 5 Esai
+Bentuk Tes       : Pilihan Ganda + Uraian
+Penyusun         : Tim Guru Fikih MTs
+    </div>
+  </div>
+
+  <h4>Matriks Kisi-Kisi</h4>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Materi</th>
+      <th>Level</th>
+      <th>Indikator Soal</th>
+      <th>Bentuk</th>
+      <th>No. Soal</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Pengertian jual beli</td>
+      <td>C2</td>
+      <td>Disajikan definisi, siswa menentukan makna jual beli secara syar'i</td>
+      <td>PG</td>
+      <td>1, 2</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Rukun &amp; syarat jual beli</td>
+      <td>C2</td>
+      <td>Siswa mengidentifikasi rukun jual beli dari kasus</td>
+      <td>PG</td>
+      <td>3, 4</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Jual beli sah &amp; tidak sah</td>
+      <td>C4</td>
+      <td>Disajikan kasus, siswa menganalisis keabsahan transaksi</td>
+      <td>PG</td>
+      <td>5, 6, 7</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Khiyar dalam jual beli</td>
+      <td>C3</td>
+      <td>Siswa menerapkan jenis khiyar dalam kasus nyata</td>
+      <td>PG</td>
+      <td>8, 9, 10</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Pengertian riba</td>
+      <td>C2</td>
+      <td>Siswa menjelaskan jenis-jenis riba</td>
+      <td>PG</td>
+      <td>11, 12</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Jenis-jenis riba</td>
+      <td>C4</td>
+      <td>Disajikan kasus, siswa membedakan riba fadhl dan nasi'ah</td>
+      <td>PG</td>
+      <td>13, 14, 15</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Dampak riba</td>
+      <td>C4</td>
+      <td>Siswa menganalisis dampak sosial-ekonomi riba</td>
+      <td>PG</td>
+      <td>16, 17</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Alternatif syariah</td>
+      <td>C3</td>
+      <td>Siswa menerapkan konsep perbankan syariah</td>
+      <td>PG</td>
+      <td>18, 19, 20</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Integrasi konsep</td>
+      <td>C5</td>
+      <td>Siswa menilai praktik transaksi modern</td>
+      <td>PG</td>
+      <td>21-30</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Analisis kasus komprehensif</td>
+      <td>C4-C5</td>
+      <td>Siswa menganalisis kasus jual beli online dari perspektif fikih</td>
+      <td>Esai</td>
+      <td>1, 2</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Argumentasi hukum</td>
+      <td>C5</td>
+      <td>Siswa berargumentasi tentang hukum transaksi digital</td>
+      <td>Esai</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Refleksi &amp; aplikasi</td>
+      <td>C6</td>
+      <td>Siswa merancang program literasi keuangan syariah</td>
+      <td>Esai</td>
+      <td>4, 5</td>
+    </tr>
+  </table>
+
+  <h3>3.4.2 Contoh Kisi-Kisi Al-Qur'an Hadis Fase E (MA Kelas X)</h3>
+  <p>
+    Berikut contoh kisi-kisi untuk mata pelajaran Al-Qur'an Hadis dengan materi "Perintah
+    Menuntut Ilmu":
+  </p>
+
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Materi</th>
+      <th>Level</th>
+      <th>Indikator Soal</th>
+      <th>Bentuk</th>
+      <th>No. Soal</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Tajwid Q.S. al-Mujādilah: 11</td>
+      <td>C3</td>
+      <td>Siswa mendemonstrasikan bacaan tajwid dengan benar</td>
+      <td>PG</td>
+      <td>1-5</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Mufradat (kosakata) ayat</td>
+      <td>C1</td>
+      <td>Siswa menerjemahkan kata kunci dari ayat</td>
+      <td>PG</td>
+      <td>6-10</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Isi kandungan ayat</td>
+      <td>C2</td>
+      <td>Siswa menjelaskan makna ayat tentang menuntut ilmu</td>
+      <td>PG</td>
+      <td>11-15</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Keterkaitan ayat-hadis</td>
+      <td>C4</td>
+      <td>Siswa menganalisis hubungan Q.S. al-Mujādilah: 11 dengan hadis terkait</td>
+      <td>PG</td>
+      <td>16-20</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Implementasi nilai</td>
+      <td>C3</td>
+      <td>Siswa mengidentifikasi perilaku menuntut ilmu dalam kehidupan</td>
+      <td>PG</td>
+      <td>21-25</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Analisis kontekstual</td>
+      <td>C4</td>
+      <td>Siswa menganalisis relevansi ayat dengan pendidikan modern</td>
+      <td>Esai</td>
+      <td>1, 2</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Refleksi personal</td>
+      <td>C6</td>
+      <td>Siswa menyusun refleksi pribadi tentang komitmen menuntut ilmu</td>
+      <td>Esai</td>
+      <td>3</td>
+    </tr>
+  </table>
+
+  <!-- LANGKAH PENYUSUNAN -->
+  <h2>3.5 <em>Langkah-Langkah</em> Penyusunan Kisi-Kisi</h2>
+
+  <h3>3.5.1 Tahap Persiapan</h3>
+  <ol>
+    <li><strong>Kajian Dokumen:</strong> Pelajari CP, TP, silabus, dan bahan ajar secara menyeluruh</li>
+    <li><strong>Identifikasi Materi Pokok:</strong> Daftar semua materi yang akan diujikan</li>
+    <li><strong>Analisis Alokasi Waktu:</strong> Pertimbangkan proporsi waktu pembelajaran per materi</li>
+    <li><strong>Tentukan Tujuan Evaluasi:</strong> Formatif, sumatif, atau diagnostik?</li>
+  </ol>
+
+  <h3>3.5.2 Tahap Perumusan Indikator</h3>
+  <p>
+    Indikator adalah <strong>perilaku terukur</strong> yang menjadi acuan penyusunan butir soal.
+    Indikator yang baik memenuhi kriteria <strong>SMART</strong>:
+  </p>
+  <table>
+    <tr>
+      <th>Kriteria</th>
+      <th>Makna</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td><strong>S</strong>pecific</td>
+      <td>Spesifik, tidak ambigu</td>
+      <td>"Menjelaskan 3 rukun jual beli" (bukan "memahami jual beli")</td>
+    </tr>
+    <tr>
+      <td><strong>M</strong>easurable</td>
+      <td>Dapat diukur</td>
+      <td>Menggunakan KKO operasional</td>
+    </tr>
+    <tr>
+      <td><strong>A</strong>chievable</td>
+      <td>Dapat dicapai siswa</td>
+      <td>Sesuai level perkembangan siswa</td>
+    </tr>
+    <tr>
+      <td><strong>R</strong>elevant</strong></td>
+      <td>Relevan dengan TP</td>
+      <td>Selaras dengan capaian yang ditargetkan</td>
+    </tr>
+    <tr>
+      <td><strong>T</strong>ime-bound</td>
+      <td>Dapat diselesaikan dalam waktu tes</td>
+      <td>Proporsional dengan alokasi waktu</td>
+    </tr>
+  </table>
+
+  <h3>3.5.3 Tahap Penyusunan Matriks</h3>
+  <ol>
+    <li><strong>Buat tabel matriks:</strong> Materi (baris) × Level Kognitif (kolom)</li>
+    <li><strong>Isi distribusi butir:</strong> Berdasarkan proporsi materi dan level</li>
+    <li><strong>Tentukan bentuk soal:</strong> PG untuk C1-C3, Esai untuk C4-C6</li>
+    <li><strong>Nomori butir:</strong> Berikan nomor urut untuk setiap butir</li>
+  </ol>
+
+  <h3>3.5.4 Tahap Validasi</h3>
+  <ol>
+    <li><strong>Peer Review:</strong> Minta rekan sejawat menguji kisi-kisi</li>
+    <li><strong>Expert Judgment:</strong> Validasi oleh ahli evaluasi/ahli materi</li>
+    <li><strong>Revisi:</strong> Perbaiki berdasarkan masukan</li>
+    <li><strong>Dokumentasi:</strong> Arsipkan kisi-kisi final sebagai bukti validitas</li>
+  </ol>
+
+  <!-- INFOGRAPHIC DISTRIBUSI -->
+  <div class="infographic">
+    <h4>🔗 Distribusi Ideal Level Kognitif dalam Evaluasi PAI</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>LOTS (Lower Order Thinking Skills) — 30%</strong>
+        C1 (Mengingat) + C2 (Memahami)
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>MOTS (Middle Order Thinking Skills) — 30%</strong>
+        C3 (Menerapkan)
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>HOTS (Higher Order Thinking Skills) — 40%</strong>
+        C4 (Menganalisis) + C5 (Mengevaluasi) + C6 (Mencipta)
+      </div>
+    </div>
+  </div>
+
+  <!-- DIMENSI SPIRITUAL -->
+  <h2>3.6 <em>Dimensi Spiritual</em> Penyusunan Kisi-Kisi</h2>
+  <p>
+    Dalam perspektif Islam, penyusunan kisi-kisi bukan sekadar aktivitas teknis, melainkan
+    bentuk <em>ibadah</em> dan <em>amanah</em> yang akan dipertanggungjawabkan di hadapan Allah SWT.
+  </p>
+
+  <div class="quote-box">
+    Sesungguhnya Allah menyuruh kamu menyampaikan amanat kepada yang berhak menerimanya, dan apabila kamu menetapkan hukum di antara manusia hendaknya kamu menetapkannya dengan adil.
+    <span class="quote-source">— QS. An-Nisa [4]: 58</span>
+  </div>
+
+  <p>
+    Ayat ini menjadi landasan spiritual bagi setiap evaluator: kisi-kisi adalah "amanat" yang
+    harus disampaikan dengan <em>adil</em>—setiap kompetensi mendapat porsi yang proporsional,
+    setiap siswa dinilai berdasarkan capaian yang sebenarnya.
+  </p>
+
+  <table>
+    <tr>
+      <th>Nilai Islam</th>
+      <th>Implementasi dalam Kisi-Kisi</th>
+      <th>Dalil</th>
+    </tr>
+    <tr>
+      <td><strong>Amanah</strong></td>
+      <td>Menyusun kisi-kisi dengan sungguh-sungguh, tidak asal-asalan</td>
+      <td>QS. Al-Anfal: 27</td>
+    </tr>
+    <tr>
+      <td><strong>'Adl</strong></td>
+      <td>Distribusi butir proporsional, tidak memihak materi tertentu</td>
+      <td>QS. An-Nisa: 58</td>
+    </tr>
+    <tr>
+      <td><strong>Ihsan</strong></td>
+      <td>Menyusun kisi-kisi dengan kualitas terbaik</td>
+      <td>HR. Muslim</td>
+    </tr>
+    <tr>
+      <td><strong>Itqan</strong></td>
+      <td>Teliti dan cermat dalam setiap langkah</td>
+      <td>HR. Thabrani</td>
+    </tr>
+    <tr>
+      <td><strong>Tabayyun</strong></td>
+      <td>Validasi oleh sejawat dan ahli sebelum digunakan</td>
+      <td>QS. Al-Hujurat: 6</td>
+    </tr>
+  </table>
+
+  <!-- TIPS -->
+  <div class="tip-box">
+    <h4>💡 Tips Praktis Menyusun Kisi-Kisi</h4>
+    <ul>
+      <li><strong>Gunakan template standar:</strong> Manfaatkan format kisi-kisi yang telah divalidasi Kemendikbudristek</li>
+      <li><strong>Stabilo warna-warni:</strong> Tandai KKO (merah), materi (biru), level kognitif (hijau) dalam CP</li>
+      <li><strong>Konsultasi dengan rekan:</strong> Diskusi dengan guru sejawat untuk memperkaya perspektif</li>
+      <li><strong>Perhatikan proporsi:</strong> Materi yang diajarkan lebih lama mendapat porsi lebih banyak</li>
+      <li><strong>Seimbangkan LOTS-MOTS-HOTS:</strong> Ideal 30-30-40 untuk PAI</li>
+      <li><strong>Gunakan aplikasi:</strong> Manfaatkan Excel, Google Sheets, atau Canva untuk membuat matriks visual</li>
+      <li><strong>Simpan dokumentasi:</strong> Arsipkan kisi-kisi sebagai portofolio profesional</li>
+      <li><strong>Update berkala:</strong> Revisi kisi-kisi setiap tahun berdasarkan evaluasi</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ Kesalahan Umum dalam Kisi-Kisi</h4>
+    <ul>
+      <li>Indikator terlalu abstrak ("memahami", "menghayati")—tidak terukur</li>
+      <li>Distribusi butir tidak proporsional dengan alokasi waktu pembelajaran</li>
+      <li>Level kognitif tidak sesuai dengan karakteristik materi</li>
+      <li>Tidak ada keseimbangan antara tes objektif dan esai</li>
+      <li>Menyalin kisi-kisi guru lain tanpa adaptasi konteks</li>
+      <li>Tidak melakukan validasi oleh sejawat atau ahli</li>
+      <li>Indikator tidak selaras dengan TP yang telah dirumuskan</li>
+      <li>Mengabaikan dimensi afektif dan psikomotorik dalam PAI</li>
+    </ul>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <h2>Kesimpulan</h2>
+  <p>
+    Pertemuan ketiga ini telah menguraikan secara komprehensif tentang kisi-kisi tes sebagai
+    cetak biru evaluasi pembelajaran PAI. Kisi-kisi bukan sekadar dokumen administratif,
+    melainkan <em>instrumen epistemologis</em> yang menjamin validitas isi, reliabilitas,
+    dan keadilan evaluasi.
+  </p>
+  <p>
+    Berdasarkan landasan teoretis dari Gronlund &amp; Linn (TOS), Crocker &amp; Algina (validitas
+    isi), Anderson &amp; Krathwohl (Taksonomi Bloom Revisi), Spearman (CTT), dan Haladyna
+    (prinsip penulisan butir), dapat disimpulkan bahwa kisi-kisi yang baik harus memenuhi
+    kriteria: <strong>komprehensif, proporsional, operasional, terukur, dan tervalidasi</strong>.
+  </p>
+  <p>
+    Sebagai calon evaluator PAI, Anda kini memiliki bekal untuk menyusun kisi-kisi yang
+    menjamin bahwa setiap butir soal mewakili kompetensi yang seharusnya diukur—baik untuk
+    tes objektif maupun esai. Keterampilan ini akan menjadi fondasi bagi pertemuan-pertemuan
+    selanjutnya—mulai dari perumusan butir soal, penyusunan rubrik, uji coba instrumen,
+    hingga analisis validitas dan reliabilitas dengan SPSS.
+  </p>
+  <p>
+    Ingatlah: evaluasi yang adil dimulai dari kisi-kisi yang tepat. Sebagaimana sabda
+    Rasulullah SAW: <em>"Barangsiapa yang tidak memperhatikan urusan umat Islam, maka ia
+    bukan termasuk golongan mereka."</em> (HR. Hakim). Mari kita perhatikan urusan evaluasi
+    dengan sungguh-sungguh—karena ia adalah amanah yang akan dipertanggungjawabkan.
+  </p>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>📚 Daftar Pustaka</h3>
+
+    <h4>Pustaka Utama</h4>
+    <ol>
+      <li>Anastasi, A. (1982). <em>Psychological Testing</em> (5th ed.). New York: Macmillan Publishing Co., Inc.</li>
+      <li>Anastasi, A., &amp; Urbina, S. (1997). <em>Psychological Testing</em> (Edisi Bahasa Indonesia). Jakarta: PT Prenhallindo.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2001). <em>A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives</em>. New York: Longman.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2010). <em>Kerangka Dasar untuk Pembelajaran, Pengajaran, dan Asesmen</em>. (A. Prihantoro, Penerj.). Yogyakarta: Pustaka Pelajar.</li>
+      <li>Arikunto, S. (2002). <em>Dasar-dasar Evaluasi Pendidikan</em> (Edisi Revisi). Jakarta: PT Bumi Aksara.</li>
+      <li>Azwar, S. (2005). <em>Tes Prestasi: Fungsi dan Pengembangan Pengukuran Prestasi Belajar</em>. Yogyakarta: Pustaka Belajar.</li>
+      <li>Crocker, L., &amp; Algina, J. (1986). <em>Introduction to Classical and Modern Test Theory</em>. New York: Holt, Rinehart and Winston.</li>
+      <li>Gronlund, N. E., &amp; Linn, R. L. (1990). <em>Measurement and Evaluation in Teaching</em> (6th ed.). New York: Macmillan.</li>
+      <li>Haladyna, T. M. (2004). <em>Developing and Validating Multiple-Choice Test Items</em> (3rd ed.). Mahwah, NJ: Lawrence Erlbaum Associates.</li>
+      <li>Lord, F. M., &amp; Novick, M. R. (1968). <em>Statistical Theories of Mental Test Scores</em>. Reading, MA: Addison-Wesley.</li>
+      <li>Sudijono, A. (2011). <em>Pengantar Evaluasi Pendidikan</em>. Jakarta: PT RajaGrafindo Persada.</li>
+      <li>Surapranata, S. (2005). <em>Panduan Penulisan Tes Tertulis: Implementasi Kurikulum 2004</em>. Bandung: PT Remaja Rosdakarya.</li>
+      <li>Uno, H. B., &amp; Koni, S. (2012). <em>Assessment Pembelajaran</em>. Jakarta: Bumi Aksara.</li>
+    </ol>
+
+    <h4>Pustaka Pendukung</h4>
+    <ol>
+      <li>Arifmiboy. (2024). <em>Penguatan Kapasitas Guru MAN 4 Tanah Datar di Bidang Evaluasi Pembelajaran</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2025). <em>Pendampingan Guru Madrasah Tsanawiyah dalam Merancang Asesmen Hasil Belajar</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2023). <em>University Digital Transformation Index in The Malay Family of Countries</em>. Laporan Penelitian Kolaborasi Internasional.</li>
+      <li>Kemendikbudristek. (2022). <em>Capaian Pembelajaran pada Pendidikan Anak Usia Dini, Jenjang Pendidikan Dasar, dan Jenjang Pendidikan Menengah pada Kurikulum Merdeka</em>. Jakarta: Kemendikbudristek.</li>
+      <li>Pusat Penilaian Pendidikan Balitbang. (2008). <em>Assesment Berbasis Kelas</em>. Jakarta: Departemen Pendidikan Nasional.</li>
+    </ol>
+
+    <h4>Pustaka Teoretis Tambahan</h4>
+    <ol>
+      <li>Biggs, J., &amp; Tang, C. (2011). <em>Teaching for Quality Learning at University</em> (4th ed.). Maidenhead: Open University Press.</li>
+      <li>Bloom, B. S. (1956). <em>Taxonomy of Educational Objectives: The Classification of Educational Goals. Handbook I: Cognitive Domain</em>. New York: David McKay.</li>
+      <li>Krathwohl, D. R. (2002). A revision of Bloom's taxonomy: An overview. <em>Theory into Practice</em>, 41(4), 212-218.</li>
+      <li>Marzano, R. J., &amp; Kendall, J. S. (2007). <em>The New Taxonomy of Educational Objectives</em>. Thousand Oaks, CA: Corwin Press.</li>
+      <li>Spearman, C. (1904). The proof and measurement of association between two races. <em>American Journal of Psychology</em>, 15, 72-101.</li>
+    </ol>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <div class="chapter-nav">
+    <a href="2.html">← Bab Sebelumnya: Bedah Kurikulum</a>
+    <a href="4.html">Bab Selanjutnya: Instrumen Non-Tes →</a>
+  </div>
+
+  <!-- ============================================
+       UJI FORMATIF
+       ============================================ -->
+  <section class="test-section" id="uji-formatif">
+    <div class="test-header">
+      <div class="icon">📋</div>
+      <h2>Uji Formatif Pertemuan 3</h2>
+      <p>Arsitektur Tes: Merancang Kisi-Kisi Objektif &amp; Esai</p>
+    </div>
+
+    <div class="test-warning">
+      ⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu sebelum mengirim!
+    </div>
+
+    <!-- DATA MAHASISWA -->
+    <h3 style="color: var(--gold); margin-bottom: 1.5rem;">📋 Data Mahasiswa</h3>
+    <form id="studentForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" required>
+        </div>
+        <div class="form-group">
+          <label>NIM <span class="required">*</span></label>
+          <input type="text" id="nim" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>📅 Tanggal Ujian <span class="required">*</span></label>
+          <input type="date" id="tanggal" required>
+        </div>
+        <div class="form-group">
+          <label>Fakultas <span class="required">*</span></label>
+          <select id="fakultas" required>
+            <option value="">Pilih Fakultas</option>
+            <option>FTIK</option>
+            <option>FUAD</option>
+            <option>FSE</option>
+            <option>FDAI</option>
+            <option>FISHUM</option>
+            <option>FDAK</option>
+            <option>FPSB</option>
+            <option>FASAL</option>
+            <option>FAH</option>
+            <option>FEI</option>
+            <option>FST</option>
+            <option>F Kedokteran</option>
+            <option>F Pertanian</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jurusan / Prodi <span class="required">*</span></label>
+          <input type="text" id="prodi" required>
+        </div>
+        <div class="form-group">
+          <label>Konsentrasi</label>
+          <input type="text" id="konsentrasi">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Semester <span class="required">*</span></label>
+          <select id="semester" required>
+            <option value="">Pilih Semester</option>
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+            <option>Semester 5</option>
+            <option>Semester 6</option>
+            <option>Semester 7</option>
+            <option>Semester 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kelas <span class="required">*</span></label>
+          <input type="text" id="kelas" placeholder="Contoh: PAI-3A" required>
+        </div>
+      </div>
+
+      <!-- PILIHAN GANDA -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian A — Pilihan Ganda <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(10 soal × 10 poin = 100)</span></h3>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">1</span>
+        <span class="question-text">Kisi-kisi tes dalam bahasa Inggris disebut...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q1" value="a"><span>a. Test blueprint</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="b"><span>b. Table of specification</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="c"><span>c. Test item</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="d"><span>d. Assessment rubric</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">2</span>
+        <span class="question-text">Tokoh yang memperkenalkan konsep <em>table of specifications</em> adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q2" value="a"><span>a. Benjamin Bloom</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="b"><span>b. John Biggs</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="c"><span>c. Gronlund &amp; Linn</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="d"><span>d. Robert Gagné</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">3</span>
+        <span class="question-text">Validitas isi (<em>content validity</em>) menjamin bahwa...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q3" value="a"><span>a. Instrumen mewakili domain yang diukur</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="b"><span>b. Instrumen konsisten dari waktu ke waktu</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="c"><span>c. Instrumen mudah dikoreksi</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="d"><span>d. Instrumen murah biaya penyusunannya</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">4</span>
+        <span class="question-text">Level kognitif C4 dalam Taksonomi Bloom Revisi adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q4" value="a"><span>a. Mengingat</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="b"><span>b. Memahami</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="c"><span>c. Menerapkan</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="d"><span>d. Menganalisis</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">5</span>
+        <span class="question-text">Proporsi ideal distribusi level kognitif dalam evaluasi PAI (LOTS-MOTS-HOTS) adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q5" value="a"><span>a. 50%-30%-20%</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="b"><span>b. 30%-30%-40%</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="c"><span>c. 20%-30%-50%</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="d"><span>d. 40%-40%-20%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">6</span>
+        <span class="question-text">Kata kerja operasional yang tepat untuk level C3 (Menerapkan) adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q6" value="a"><span>a. Menyebutkan</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="b"><span>b. Menganalisis</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="c"><span>c. Mendemonstrasikan</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="d"><span>d. Merancang</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">7</span>
+        <span class="question-text">Tes yang paling cocok untuk mengukur kemampuan berpikir tingkat tinggi (HOTS) adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q7" value="a"><span>a. Tes esai uraian terbuka</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="b"><span>b. Tes pilihan ganda</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="c"><span>c. Tes benar-salah</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="d"><span>d. Tes menjodohkan</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">8</span>
+        <span class="question-text">Indikator soal yang baik harus memenuhi kriteria SMART. Huruf "M" dalam SMART berarti...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q8" value="a"><span>a. Meaningful</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="b"><span>b. Motivational</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="c"><span>c. Meaningful</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="d"><span>d. Measurable</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">9</span>
+        <span class="question-text">Teori yang menjadi landasan psikometrik kisi-kisi adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q9" value="a"><span>a. Behaviorism Theory</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="b"><span>b. Classical Test Theory (CTT)</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="c"><span>c. Constructivism Theory</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="d"><span>d. Multiple Intelligence Theory</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">10</span>
+        <span class="question-text">Langkah pertama dalam penyusunan kisi-kisi adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q10" value="a"><span>a. Menyusun butir soal</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="b"><span>b. Membuat matriks distribusi</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="c"><span>c. Kajian dokumen CP-TP dan identifikasi materi</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="d"><span>d. Validasi oleh ahli</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- ESSAY -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian B — Essay <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(5 soal × 20 poin = 100)</span></h3>
+
+      <div class="essay-block">
+        <span class="question-number">1</span>
+        <span class="question-text">Jelaskan secara komprehensif konsep <em>table of specifications</em> (TOS) menurut Gronlund &amp; Linn! Uraikan tiga fungsi utama TOS dan berikan contoh penerapannya dalam evaluasi PAI!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">2</span>
+        <span class="question-text">Bandingkan kelebihan dan kekurangan tes objektif dengan tes esai dalam konteks evaluasi PAI! Berikan contoh konkret untuk masing-masing jenis tes pada materi Fikih dan Akidah!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">3</span>
+        <span class="question-text">Pilihlah satu materi PAI (misalnya: zakat, shalat, atau sejarah Nabi). Susunlah kisi-kisi lengkap dengan: (a) identitas tes, (b) matriks materi × level kognitif, (c) indikator soal untuk minimal 5 butir PG dan 2 butir esai, dan (d) justifikasi pemilihan level kognitif!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">4</span>
+        <span class="question-text">Analisislah pentingnya validitas isi dalam evaluasi pembelajaran PAI! Jelaskan bagaimana kisi-kisi menjamin validitas isi, dan uraikan metode-metode yang dapat digunakan untuk mengukur validitas isi (expert judgment, CVI, CVR)!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">5</span>
+        <span class="question-text">Sebagai calon evaluator PAI, bagaimana Anda menerjemahkan nilai-nilai Islam (<em>amanah</em>, <em>'adl</em>, <em>ihsan</em>, <em>itqan</em>, <em>tabayyun</em>) ke dalam proses penyusunan kisi-kisi? Berikan contoh konkret penerapannya dan kaitkan dengan QS. An-Nisa: 58!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="submitTest()">✉️ Kirim Jawaban &amp; Lihat Hasil</button>
+        <button type="button" class="btn btn-secondary" onclick="resetTest()">🔄 Mulai Ulang</button>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="resultPanel">
+        <h3>📊 Hasil Uji Formatif</h3>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="label">Data Mahasiswa</div>
+            <div class="value" id="dataStatus" style="font-size: 1.3rem;">—</div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian A (PG)</div>
+            <div class="value"><span id="scoreA">0</span><small>/100</small></div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian B (Essay)</div>
+            <div class="value"><span id="scoreB">0</span><small>/100</small></div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">Total Skor Akhir</div>
+        <div class="total-score"><span id="totalScore">0</span><small>/100</small></div>
+        <div class="grade-badge" id="gradeBadge">—</div>
+
+        <div class="btn-group" style="margin-top: 2rem;">
+          <button type="button" class="btn btn-secondary" onclick="downloadPDF()">📥 Unduh PDF Lengkap</button>
+          <button type="button" class="btn btn-secondary" onclick="downloadScore()">📊 Unduh Skor Saja</button>
+          <button type="button" class="btn btn-secondary" onclick="emailDosen()">✉️ Kirim Email Dosen</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Dr. Arifmiboy, S. Ag., M. Pd.</span>
+  <span class="ornament">◆</span>
+  <span>Evaluasi Pembelajaran PAI II</span>
+  <span class="ornament">◆</span>
+  <span>UIN Bukittinggi</span>
+</footer>
+
+<script>
+  // ============================================
+  // KUNCI JAWABAN PG
+  // ============================================
+  const answerKey = {
+    q1: 'b', q2: 'c', q3: 'a', q4: 'd', q5: 'b',
+    q6: 'c', q7: 'a', q8: 'd', q9: 'b', q10: 'c'
+  };
+
+  const feedbackText = {
+    q1: 'Table of specification (TOS) adalah istilah teknis untuk kisi-kisi tes dalam literatur evaluasi.',
+    q2: 'Gronlund & Linn (1990) memperkenalkan konsep table of specifications sebagai instrumen perencanaan tes.',
+    q3: 'Validitas isi menjamin bahwa instrumen mewakili domain yang diukur secara proporsional.',
+    q4: 'C4 = Menganalisis (Analyze) dalam Taksonomi Bloom Revisi.',
+    q5: 'Distribusi ideal: LOTS 30% (C1+C2), MOTS 30% (C3), HOTS 40% (C4+C5+C6).',
+    q6: '"Mendemonstrasikan" adalah KKO khas C3 (Menerapkan).',
+    q7: 'Tes esai uraian terbuka paling cocok untuk HOTS karena menuntut analisis, evaluasi, dan kreasi.',
+    q8: 'SMART: Specific, Measurable, Achievable, Relevant, Time-bound.',
+    q9: 'Classical Test Theory (CTT) oleh Spearman (1904) adalah landasan psikometrik kisi-kisi.',
+    q10: 'Langkah pertama adalah kajian dokumen CP-TP dan identifikasi materi pokok.'
+  };
+
+  // ============================================
+  // ESSAY COUNTER
+  // ============================================
+  document.querySelectorAll('.essay-answer').forEach(ta => {
+    const counter = ta.nextElementSibling;
+    ta.addEventListener('input', () => {
+      counter.textContent = ta.value.length + ' karakter';
+    });
+  });
+
+  // ============================================
+  // SUBMIT TEST
+  // ============================================
+  function submitTest() {
+    const fields = ['nama', 'nim', 'tanggal', 'fakultas', 'prodi', 'semester', 'kelas'];
+    let dataValid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      if (!el.value.trim()) {
+        dataValid = false;
+        el.style.borderColor = '#d97070';
+      } else {
+        el.style.borderColor = 'rgba(201, 169, 97, 0.25)';
+      }
+    });
+
+    let pgAnswered = 0;
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) pgAnswered++;
+    }
+
+    let essayAnswered = 0;
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      if (ta.value.trim().length >= 20) essayAnswered++;
+    });
+
+    if (!dataValid) {
+      alert('⚠️ Mohon lengkapi semua data mahasiswa terlebih dahulu!');
+      return;
+    }
+    if (pgAnswered < 10) {
+      alert(`⚠️ Mohon jawab semua 10 soal pilihan ganda! (baru ${pgAnswered}/10 terjawab)`);
+      return;
+    }
+    if (essayAnswered < 5) {
+      alert(`⚠️ Mohon jawab semua 5 soal essay dengan minimal 20 karakter! (baru ${essayAnswered}/5 terjawab)`);
+      return;
+    }
+
+    let scoreA = 0;
+    const blocks = document.querySelectorAll('.question-block[data-correct]');
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const currentBlock = blocks[i - 1];
+      const feedback = currentBlock.querySelector('.feedback');
+      const correctAnswer = currentBlock.dataset.correct;
+      const userAnswer = selected.value;
+
+      currentBlock.classList.remove('correct', 'incorrect');
+      currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+        lbl.classList.remove('correct-answer', 'wrong-answer');
+      });
+
+      if (userAnswer === correctAnswer) {
+        scoreA += 10;
+        currentBlock.classList.add('correct');
+        feedback.className = 'feedback show correct';
+        feedback.innerHTML = '✓ <strong>Benar!</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('correct-answer');
+      } else {
+        currentBlock.classList.add('incorrect');
+        feedback.className = 'feedback show incorrect';
+        feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('wrong-answer');
+        currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+          const input = lbl.querySelector('input');
+          if (input.value === correctAnswer) lbl.classList.add('correct-answer');
+        });
+      }
+    }
+
+    let scoreB = 0;
+    const essays = document.querySelectorAll('.essay-answer');
+    const keywords = [
+      ['gronlund', 'linn', 'table of specification', 'tos', 'perencanaan', 'validasi', 'dokumentasi'],
+      ['objektif', 'esai', 'kelebihan', 'kekurangan', 'fikih', 'akidah', 'pg', 'uraian'],
+      ['kisi-kisi', 'identitas', 'matriks', 'indikator', 'level kognitif', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6'],
+      ['validitas isi', 'content validity', 'expert judgment', 'cvi', 'cvr', 'domain', 'kisi-kisi'],
+      ['amanah', 'adl', 'ihsan', 'itqan', 'tabayyun', 'an-nisa', 'keadilan', 'proporsional']
+    ];
+
+    essays.forEach((ta, idx) => {
+      const text = ta.value.toLowerCase();
+      const length = ta.value.trim().length;
+      let baseScore = 0;
+      if (length >= 200) baseScore = 16;
+      else if (length >= 100) baseScore = 12;
+      else if (length >= 50) baseScore = 8;
+      else baseScore = 4;
+
+      let keywordHits = 0;
+      keywords[idx].forEach(kw => {
+        if (text.includes(kw)) keywordHits++;
+      });
+      const keywordBonus = Math.min(keywordHits * 1, 4);
+      const essayScore = Math.min(baseScore + keywordBonus, 20);
+      scoreB += essayScore;
+    });
+
+    const total = Math.round((scoreA + scoreB) / 2);
+
+    let grade = 'E';
+    if (total >= 85) grade = 'A';
+    else if (total >= 75) grade = 'B+';
+    else if (total >= 65) grade = 'B';
+    else if (total >= 55) grade = 'C+';
+    else if (total >= 45) grade = 'C';
+    else if (total >= 35) grade = 'D';
+
+    document.getElementById('dataStatus').textContent = '✓ Lengkap';
+    document.getElementById('dataStatus').style.color = '#8fd98e';
+    document.getElementById('scoreA').textContent = scoreA;
+    document.getElementById('scoreB').textContent = scoreB;
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('gradeBadge').textContent = 'Grade: ' + grade;
+    document.getElementById('resultPanel').classList.add('show');
+    document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ============================================
+  // RESET TEST
+  // ============================================
+  function resetTest() {
+    if (!confirm('Yakin ingin mengulang uji formatif? Semua jawaban akan dihapus.')) return;
+    document.getElementById('studentForm').reset();
+    document.querySelectorAll('.question-block').forEach(b => {
+      b.classList.remove('correct', 'incorrect');
+      b.querySelector('.feedback').className = 'feedback';
+      b.querySelectorAll('.option-label').forEach(l => {
+        l.classList.remove('correct-answer', 'wrong-answer');
+      });
+    });
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      ta.value = '';
+      ta.nextElementSibling.textContent = '0 karakter';
+    });
+    document.getElementById('resultPanel').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ============================================
+  // DOWNLOAD PDF (PRINT)
+  // ============================================
+  function downloadPDF() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html><head><title>Hasil Uji Formatif - ${nama}</title>
+      <style>
+        body { font-family: Georgia, serif; padding: 40px; color: #222; line-height: 1.7; }
+        h1 { color: #8a7340; border-bottom: 2px solid #c9a961; padding-bottom: 10px; }
+        h2 { color: #8a7340; margin-top: 30px; font-size: 1.2rem; }
+        .info { background: #f9f6ee; padding: 15px; border-left: 4px solid #c9a961; margin: 20px 0; }
+        .score-box { text-align: center; font-size: 2rem; color: #8a7340; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #c9a961; color: #fff; }
+        .essay { background: #fafafa; padding: 10px; margin: 10px 0; border-left: 3px solid #c9a961; }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }
+      </style></head><body>
+      <h1>Hasil Uji Formatif Pertemuan 3</h1>
+      <p style="font-style: italic;">Arsitektur Tes: Merancang Kisi-Kisi Objektif &amp; Esai</p>
+      <p style="font-style: italic;">Evaluasi Pembelajaran PAI II — Dr. Arifmiboy, S. Ag., M. Pd.</p>
+      <div class="info">
+        <strong>Nama:</strong> ${nama}<br>
+        <strong>NIM:</strong> ${nim}<br>
+        <strong>Prodi:</strong> ${prodi}<br>
+        <strong>Tanggal:</strong> ${document.getElementById('tanggal').value}
+      </div>
+      <div class="score-box">
+        Total Skor: ${total}/100<br>
+        <span style="font-size: 1.2rem;">${grade}</span>
+      </div>
+      <h2>Bagian A — Pilihan Ganda</h2>
+      <table>
+        <tr><th>No</th><th>Soal</th><th>Jawaban Anda</th><th>Kunci</th><th>Status</th></tr>
+        ${Array.from({length: 10}).map((_, i) => {
+          const qName = 'q' + (i+1);
+          const selected = document.querySelector(`input[name="${qName}"]:checked`);
+          const correct = answerKey[qName];
+          const user = selected ? selected.value : '-';
+          const status = user === correct ? '✓ Benar' : '✗ Salah';
+          const qText = document.querySelectorAll('.question-block[data-correct]')[i].querySelector('.question-text').textContent;
+          return `<tr><td>${i+1}</td><td>${qText}</td><td>${user}</td><td>${correct}</td><td>${status}</td></tr>`;
+        }).join('')}
+      </table>
+      <h2>Bagian B — Essay</h2>
+      ${Array.from(document.querySelectorAll('.essay-block')).map((block, i) => {
+        const q = block.querySelector('.question-text').textContent;
+        const a = block.querySelector('.essay-answer').value;
+        return `<div class="essay"><strong>Soal ${i+1}:</strong> ${q}<br><br><em>Jawaban:</em><br>${a.replace(/\n/g, '<br>')}</div>`;
+      }).join('')}
+      <div class="footer">
+        Dokumen ini digenerate otomatis pada ${new Date().toLocaleString('id-ID')}<br>
+        © 2026 Evaluasi Pembelajaran PAI II — UIN Bukittinggi
+      </div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => printWindow.print(), 500);
+  }
+
+  // ============================================
+  // DOWNLOAD SKOR SAJA
+  // ============================================
+  function downloadScore() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const content = `HASIL UJI FORMATIF PERTEMUAN 3
+Arsitektur Tes: Merancang Kisi-Kisi Objektif & Esai
+Evaluasi Pembelajaran PAI II
+Dr. Arifmiboy, S. Ag., M. Pd.
+UIN Sjech M. Djamil Djambek Bukittinggi
+========================================
+
+Nama      : ${nama}
+NIM       : ${nim}
+Tanggal   : ${document.getElementById('tanggal').value}
+Prodi     : ${document.getElementById('prodi').value}
+Kelas     : ${document.getElementById('kelas').value}
+
+----------------------------------------
+SKOR
+----------------------------------------
+Bagian A (Pilihan Ganda) : ${scoreA} / 100
+Bagian B (Essay)         : ${scoreB} / 100
+----------------------------------------
+TOTAL SKOR               : ${total} / 100
+GRADE                    : ${grade}
+========================================
+
+Tanggal Cetak: ${new Date().toLocaleString('id-ID')}
+`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Skor_UjiFormatif_P3_${nim}_${nama.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================
+  // EMAIL DOSEN
+  // ============================================
+  function emailDosen() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const kelas = document.getElementById('kelas').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const subject = encodeURIComponent(`Hasil Uji Formatif P3 - ${nama} (${nim})`);
+    const body = encodeURIComponent(
+`Yth. Dr. Arifmiboy, S. Ag., M. Pd.
+
+Berikut saya sampaikan hasil Uji Formatif Pertemuan 3 mata kuliah Evaluasi Pembelajaran PAI II:
+
+Materi: Arsitektur Tes - Merancang Kisi-Kisi Objektif & Esai
+
+Data Mahasiswa:
+- Nama : ${nama}
+- NIM  : ${nim}
+- Prodi: ${prodi}
+- Kelas: ${kelas}
+
+Hasil Penilaian:
+- Bagian A (PG)    : ${scoreA}/100
+- Bagian B (Essay) : ${scoreB}/100
+- TOTAL            : ${total}/100
+- Grade            : ${grade}
+
+Terima kasih.
+
+Hormat saya,
+${nama}`
+    );
+
+    window.location.href = `mailto:arifmiboy@uinbukittinggi.ac.id?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>

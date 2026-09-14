@@ -1,0 +1,2457 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 5 — Seni Merangkai Soal: Butir-Butir Tes Objektif yang Bermutu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e8e4d9;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  :root {
+    --gold: #c9a961;
+    --gold-light: #e4cc8a;
+    --gold-dark: #8a7340;
+    --navy: #0a0e1a;
+    --navy-soft: #141a2e;
+    --cream: #f5efe0;
+    --text-muted: #a8a192;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAVIGATION */
+  .nav {
+    position: sticky;
+    top: 0;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.85);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+  }
+  .hero-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  .hero-meta span strong { color: var(--gold); font-weight: 500; }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--cream);
+    margin: 4rem 0 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .content h2::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 60%;
+    background: var(--gold);
+  }
+  .content h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin: 2.5rem 0 1rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .content h4 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin: 1.8rem 0 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .content p {
+    color: #d4cfc0;
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+    text-align: justify;
+  }
+  .content ul, .content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: #d4cfc0;
+  }
+  .content li { margin-bottom: 0.6rem; }
+  .content strong { color: var(--gold-light); font-weight: 600; }
+  .content em { color: var(--gold); font-style: italic; }
+
+  /* VIDEO BOX */
+  .video-box {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    text-align: center;
+  }
+  .video-box .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .video-box h4 { font-family: 'Playfair Display', serif; color: var(--cream); margin-bottom: 0.5rem; }
+  .video-box p { color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin: 0; }
+
+  /* KEY CONCEPTS */
+  .key-concept {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.6));
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .key-concept h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .key-concept ul { margin-top: 1rem; }
+  .key-concept li strong { color: var(--cream); }
+
+  /* CASE STUDY */
+  .case-study {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .case-study::before {
+    content: '📖';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .case-study h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+  }
+  .case-study .lesson {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(201, 169, 97, 0.3);
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* REFLECTION */
+  .reflection {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.06), transparent);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .reflection h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* TABLE */
+  .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(20, 26, 46, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .content table th {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--navy);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .content table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    color: #d4cfc0;
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  .content table tr:last-child td { border-bottom: none; }
+  .content table tr:hover td { background: rgba(201, 169, 97, 0.05); }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(201, 169, 97, 0.06);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .tip-box h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: rgba(180, 60, 60, 0.08);
+    border: 1px solid rgba(220, 100, 100, 0.3);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .warning-box h4 {
+    color: #e8a0a0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.6));
+    border-left: 4px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 15px;
+    font-size: 5rem;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    opacity: 0.4;
+  }
+  .quote-box .quote-source {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+
+  /* INFOGRAPHIC */
+  .infographic {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+  }
+  .infographic h4 {
+    text-align: center;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .flow-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .flow-item {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.15), rgba(20, 26, 46, 0.6));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 280px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .flow-item strong { color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .flow-arrow { color: var(--gold); font-size: 1.5rem; line-height: 1; }
+
+  /* EXAMPLE BOX */
+  .example-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.7));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .example-box::before {
+    content: '📝';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .example-box h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+  }
+  .example-box .mono {
+    font-family: 'Courier New', monospace;
+    background: rgba(10, 14, 26, 0.6);
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--cream);
+    border-left: 3px solid var(--gold);
+    overflow-x: auto;
+    white-space: pre-line;
+  }
+  .example-box .good {
+    background: rgba(106, 191, 105, 0.1);
+    border-left: 3px solid #6abf69;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    border-radius: 4px;
+  }
+  .example-box .bad {
+    background: rgba(217, 112, 112, 0.1);
+    border-left: 3px solid #d97070;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    border-radius: 4px;
+  }
+  .example-box .label-good,
+  .example-box .label-bad {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .example-box .label-good {
+    background: rgba(106, 191, 105, 0.2);
+    color: #8fd98e;
+  }
+  .example-box .label-bad {
+    background: rgba(217, 112, 112, 0.2);
+    color: #e8a0a0;
+  }
+
+  /* REFERENCES */
+  .references {
+    background: rgba(20, 26, 46, 0.5);
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+  }
+  .references h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-style: normal;
+  }
+  .references h4 {
+    color: var(--gold-light);
+    margin: 1.5rem 0 0.8rem;
+    font-size: 1rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .references ol, .references ul {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .references li { margin-bottom: 0.8rem; }
+  .references em { color: var(--cream); }
+
+  /* CHAPTER NAVIGATION */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    flex-wrap: wrap;
+  }
+  .chapter-nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 3px;
+  }
+  .chapter-nav a:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* FORMATIVE TEST */
+  .test-section {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    margin: 4rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .test-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .test-header .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+  .test-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    padding-left: 0;
+  }
+  .test-header h2::before { display: none; }
+  .test-header p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .test-warning {
+    background: rgba(220, 170, 60, 0.1);
+    border: 1px solid rgba(220, 170, 60, 0.3);
+    color: var(--gold-light);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  /* FORM FIELDS */
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-group label .required { color: #e8a0a0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 4px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(10, 14, 26, 0.9);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+  }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--navy); color: var(--cream); }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* QUESTION BLOCK */
+  .question-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .question-block:hover { border-color: rgba(201, 169, 97, 0.4); }
+  .question-block.correct {
+    border-color: #6abf69;
+    background: rgba(106, 191, 105, 0.08);
+  }
+  .question-block.incorrect {
+    border-color: #d97070;
+    background: rgba(217, 112, 112, 0.08);
+  }
+  .question-number {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.8rem;
+  }
+  .question-text {
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: inline;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: rgba(20, 26, 46, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #d4cfc0;
+    font-size: 0.95rem;
+  }
+  .option-label:hover {
+    background: rgba(201, 169, 97, 0.08);
+    border-color: var(--gold);
+  }
+  .option-label input { margin-top: 3px; accent-color: var(--gold); cursor: pointer; }
+  .option-label input:checked + span { color: var(--gold-light); font-weight: 500; }
+  .option-label.correct-answer {
+    background: rgba(106, 191, 105, 0.15);
+    border-color: #6abf69;
+  }
+  .option-label.wrong-answer {
+    background: rgba(217, 112, 112, 0.15);
+    border-color: #d97070;
+  }
+  .feedback {
+    display: none;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct {
+    background: rgba(106, 191, 105, 0.1);
+    color: #8fd98e;
+    border-left: 3px solid #6abf69;
+  }
+  .feedback.incorrect {
+    background: rgba(217, 112, 112, 0.1);
+    color: #e8a0a0;
+    border-left: 3px solid #d97070;
+  }
+
+  /* ESSAY */
+  .essay-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .essay-block textarea {
+    min-height: 120px;
+    resize: vertical;
+    margin-top: 1rem;
+  }
+  .essay-counter {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* BUTTONS */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201, 169, 97, 0.4);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  /* RESULTS */
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.8));
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .result-panel.show { display: block; animation: fadeIn 0.6s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-panel h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .score-card {
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+  .score-card .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .score-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .score-card .value small { font-size: 1rem; color: var(--text-muted); }
+  .total-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin: 1rem 0;
+    text-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+  }
+  .total-score small { font-size: 1.5rem; color: var(--text-muted); }
+  .grade-badge {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .ornament { color: var(--gold); margin: 0 0.8rem; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.7rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.2rem; }
+    .test-section { padding: 2rem 1.2rem; }
+    .hero-meta { gap: 1rem; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo">EVALUASI <span>PAI II</span></div>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="index.html#pertemuan">Pertemuan</a>
+    <a href="index.html#penulis">Penulis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">Pertemuan Kelima · OBE 2026</span>
+  <div class="hero-chapter">Bab V</div>
+  <h1>Seni Merangkai Soal: <em>Butir-Butir</em><br>Tes Objektif yang Bermutu</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">
+    Merumuskan butir soal tes objektif yang valid, reliabel, dan adil berdasarkan kisi-kisi—
+    karena setiap butir adalah <em>timbangan</em> yang akan menentukan nasib kompetensi siswa.
+  </p>
+  <div class="hero-meta">
+    <span><strong>Penulis:</strong> Dr. Arifmiboy, S. Ag., M. Pd.</span>
+    <span><strong>Homebase:</strong> UIN Bukittinggi</span>
+    <span><strong>Bobot:</strong> 5%</span>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PENDAHULUAN -->
+  <h2>Pendahuluan</h2>
+  <p>
+    Jika kisi-kisi adalah <strong>arsitektur</strong> evaluasi, maka butir soal adalah
+    <strong>bata-bata</strong> yang menyusun bangunan tersebut. Seindah apa pun arsitekturnya,
+    jika batanya rapuh, bangunan akan runtuh. Demikian pula evaluasi pembelajaran: kisi-kisi
+    yang baik tidak akan bermakna jika butir-butir soalnya cacat, ambigu, atau tidak selaras
+    dengan kompetensi yang seharusnya diukur.
+  </p>
+  <p>
+    Merumuskan butir soal tes objektif bukan sekadar aktivitas teknis mengisi template. Ia
+    adalah <em>seni</em>—perpaduan antara ketajaman pedagogis, ketelitian psikometrik, dan
+    kepekaan kontekstual. Seorang penulis butir yang ahli tidak hanya memahami materi, tetapi
+    juga memahami bagaimana siswa berpikir, di mana letak miskonsepsi mereka, dan bagaimana
+    menyusun distraktor yang <em>plausible</em> namun tetap membedakan siswa kompeten dari
+    yang belum.
+  </p>
+  <p>
+    Dalam konteks PAI, tantangan ini menjadi lebih kompleks. Butir soal PAI harus tidak hanya
+    mengukur pengetahuan kognitif, tetapi juga sensitif terhadap dimensi <em>nilai</em>,
+    <em>akhlak</em>, dan <em>spiritualitas</em>. Butir soal tentang hukum fikih harus presisi
+    secara syar'i; butir tentang akhlak harus menyentuh dimensi afektif; butir tentang
+    sejarah peradaban Islam harus kontekstual dan inspiratif.
+  </p>
+  <p>
+    Pertemuan kelima ini akan mengajak mahasiswa untuk menguasai seni merumuskan butir soal
+    tes objektif—mulai dari prinsip-prinsip dasar, kaidah penulisan stem dan opsi, jenis-jenis
+    tes objektif, hingga analisis kualitas butir—khususnya dalam konteks pembelajaran PAI.
+  </p>
+
+  <div class="quote-box">
+    Wahai orang-orang yang beriman, jadilah kamu orang yang benar-benar penegak keadilan, menjadi saksi karena Allah biarpun terhadap dirimu sendiri atau ibu bapa dan kaum kerabatmu.
+    <span class="quote-source">— QS. An-Nisa [4]: 135</span>
+  </div>
+
+  <p>
+    Ayat ini menegaskan prinsip <em>keadilan dalam persaksian</em>—yang dalam konteks evaluasi
+    diterjemahkan sebagai keadilan dalam menyusun butir soal. Setiap butir harus adil: tidak
+    menjebak, tidak bias, tidak memihak, dan tidak menguntungkan kelompok tertentu. Butir soal
+    yang adil adalah cerminan integritas evaluator.
+  </p>
+
+  <div class="video-box">
+    <div class="icon">🎬</div>
+    <h4>Video: Merumuskan Butir Soal Tes Objektif yang Bermutu</h4>
+    <p>Simak penjelasan komprehensif tentang prinsip, kaidah, dan teknik penulisan butir soal tes objektif yang valid dan reliabel.</p>
+  </div>
+
+  <!-- KONSEP KUNCI -->
+  <div class="key-concept">
+    <h4>🔑 Konsep Kunci</h4>
+    <ul>
+      <li><strong>Butir Soal (Item):</strong> Satuan terkecil dari instrumen tes yang mengukur satu kompetensi spesifik.</li>
+      <li><strong>Stem (Pokok Soal):</strong> Bagian butir soal yang berisi pertanyaan atau pernyataan yang harus direspons.</li>
+      <li><strong>Opsi (Option):</strong> Pilihan jawaban yang disediakan untuk direspons oleh siswa.</li>
+      <li><strong>Kunci Jawaban (Key):</strong> Opsi yang benar atau paling benar.</li>
+      <li><strong>Distraktor:</strong> Opsi yang salah namun dibuat <em>plausible</em> (masuk akal) untuk menjebak siswa yang belum kompeten.</li>
+      <li><strong>Tes Objektif:</strong> Tes dengan jawaban pasti dan skor objektif (PG, B-S, menjodohkan, isian singkat).</li>
+      <li><strong>Tingkat Kesukaran (Difficulty Index):</strong> Proporsi siswa yang menjawab benar (0,0-1,0).</li>
+      <li><strong>Daya Beda (Discrimination Index):</strong> Kemampuan butir membedakan siswa pandai dan kurang pandai.</li>
+    </ul>
+  </div>
+
+  <!-- STUDI KASUS 1 -->
+  <div class="case-study">
+    <h4>Studi Kasus 1: Butir Soal yang Menjebak</h4>
+    <p>
+      Seorang guru PAI di sebuah MTs di Bukittinggi menyusun soal PG tentang zakat:
+      "Siapa yang <em>tidak</em> wajib mengeluarkan zakat fitrah?" Opsi: a. Orang kaya,
+      b. Orang miskin yang tidak punya makanan lebih, c. Orang dewasa, d. Anak-anak.
+      Banyak siswa bingung karena kata "tidak" dalam stem membuat logika terbalik.
+      Analisis butir menunjukkan daya beda negatif (-0,15)—siswa pandai justru salah
+      karena terlalu hati-hati, siswa kurang pandai menjawab benar karena kebetulan.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Kata negatif dalam stem (seperti "tidak", "kecuali",
+      "bukan") harus dihindari atau ditebalkan. Butir yang menjebak bukan mengukur kompetensi,
+      melainkan mengukur kehati-hatian membaca.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 2 -->
+  <div class="case-study">
+    <h4>Studi Kasus 2: Keberhasilan di MAN 4 Tanah Datar</h4>
+    <p>
+      Dalam kegiatan PKM Berbasis Prodi tahun 2024, tim dosen UIN Bukittinggi mendampingi
+      guru-guru MAN 4 Tanah Datar menyusun butir soal Fikih berdasarkan kisi-kisi yang telah
+      dibuat. Dengan menerapkan 31 prinsip Haladyna, guru-guru berhasil menyusun 40 butir PG
+      tentang muamalah yang setelah uji coba menunjukkan: validitas rata-rata 0,68 (baik),
+      reliabilitas 0,84 (tinggi), tingkat kesukaran 0,45-0,75 (sedang), dan daya beda 0,30-0,65
+      (baik hingga sangat baik).
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Penerapan prinsip penulisan butir yang sistematis menghasilkan
+      instrumen yang valid, reliabel, dan adil.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 3 -->
+  <div class="case-study">
+    <h4>Studi Kasus 3: Distraktor yang Tidak Plausible</h4>
+    <p>
+      Seorang guru menyusun soal: "Berapa jumlah rakaat shalat Maghrib?" Opsi: a. 2, b. 3,
+      c. 100, d. 1000. Opsi c dan d jelas tidak masuk akal, sehingga siswa yang tidak tahu
+      jawaban pun bisa menjawab benar dengan eliminasi. Butir ini tidak memiliki daya beda—
+      semua siswa menjawab benar, baik yang paham maupun tidak.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Distraktor harus <em>homogen</em> dan <em>plausible</em>.
+      Contoh distraktor yang baik: a. 2, b. 3, c. 4, d. 5—semua angka yang masuk akal sebagai
+      jumlah rakaat shalat.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 4 -->
+  <div class="case-study">
+    <h4>Studi Kasus 4: Butir Soal yang Bias Budaya</h4>
+    <p>
+      Sebuah soal PAI nasional menggunakan konteks "transaksi di pasar saham" untuk mengukur
+      pemahaman fikih muamalah. Siswa di daerah pedesaan Sumatera Barat yang tidak familiar
+      dengan pasar saham mengalami kesulitan—bukan karena tidak paham fikih, tetapi karena
+      tidak paham konteks. Butir ini bias secara budaya dan tidak adil bagi siswa dari latar
+      belakang tertentu.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Butir soal harus bebas dari bias budaya, gender, suku,
+      dan agama. Gunakan konteks yang familiar bagi seluruh siswa atau jelaskan konteks
+      secara memadai dalam stem.
+    </div>
+  </div>
+
+  <!-- REFLEKSI -->
+  <div class="reflection">
+    <h4>💭 Refleksi untuk Mahasiswa PAI</h4>
+    <p>
+      Dalam tradisi Islam, setiap kata memiliki bobot dan konsekuensi. Rasulullah SAW bersabda:
+      <em>"Sesungguhnya seorang hamba mengucapkan satu kata yang ia tidak pikirkan dampaknya,
+      namun dengan kata itu ia terjatuh ke dalam neraka yang jaraknya lebih jauh dari timur
+      dan barat."</em> (HR. Bukhari-Muslim).
+    </p>
+    <p>
+      Demikian pula dengan butir soal—setiap kata yang kita tulis akan berdampak pada penilaian
+      siswa. Kata yang ambigu dapat menjebak; kata yang bias dapat merugikan; kata yang tidak
+      tepat dapat menghasilkan kesimpulan yang salah. Oleh karena itu, penulis butir harus
+      bekerja dengan <em>itqan</em> (kesungguhan) dan <em>tabayyun</em> (verifikasi)—meneliti
+      setiap kata, memverifikasi setiap opsi, dan memastikan setiap butir benar-benar mengukur
+      apa yang seharusnya diukur.
+    </p>
+  </div>
+
+  <!-- LANDASAN TEORETIS -->
+  <h2>5.1 <em>Landasan Teoretis</em> Penulisan Butir Soal</h2>
+
+  <h3>5.1.1 Prinsip Penulisan Butir (Haladyna)</h3>
+  <p>
+    Thomas Haladyna (2004) merumuskan <strong>31 prinsip penulisan butir soal pilihan ganda</strong>
+    yang menjadi standar internasional dalam pengembangan tes. Prinsip-prinsip ini dibagi menjadi
+    tiga kategori:
+  </p>
+  <ol>
+    <li><strong>Prinsip Terkait Konten (12 prinsip):</strong> Setiap butir harus bermakna, mengukur kompetensi penting, sesuai dengan indikator, dll.</li>
+    <li><strong>Prinsip Terkait Detail (9 prinsip):</strong> Gunakan kata-kata sederhana, hindari kata negatif, hindari kata "selalu"/"tidak pernah", dll.</li>
+    <li><strong>Prinsip Terkait Format (10 prinsip):</strong> Stem harus jelas, opsi harus homogen, distraktor harus plausible, dll.</li>
+  </ol>
+
+  <h3>5.1.2 Teori Tes Klasik (Classical Test Theory)</h3>
+  <p>
+    Classical Test Theory (CTT) yang dikembangkan oleh Spearman (1904) dan Lord &amp; Novick
+    (1968) menjadi landasan analisis kualitas butir. Menurut CTT:
+  </p>
+  <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); font-style: italic; margin: 1.5rem 0;">
+    X = T + E
+  </p>
+  <p>
+    Setiap skor observasi (X) terdiri dari skor sejati (T) dan error (E). Butir soal yang
+    baik meminimalkan error dengan cara: (1) mengukur kompetensi yang jelas, (2) menggunakan
+    bahasa yang tidak ambigu, (3) menyediakan distraktor yang berfungsi, dan (4) memiliki
+    daya beda yang tinggi.
+  </p>
+
+  <h3>5.1.3 Taksonomi Bloom dalam Penulisan Butir</h3>
+  <p>
+    Anderson dan Krathwohl (2001) merevisi Taksonomi Bloom menjadi dua dimensi yang menjadi
+    panduan penulisan butir soal:
+  </p>
+  <table>
+    <tr>
+      <th>Level</th>
+      <th>Kata Kerja Operasional</th>
+      <th>Karakteristik Butir</th>
+      <th>Contoh dalam PAI</th>
+    </tr>
+    <tr>
+      <td><strong>C1 — Mengingat</strong></td>
+      <td>Menyebutkan, mengidentifikasi</td>
+      <td>Reproduksi fakta</td>
+      <td>"Rukun Islam yang ketiga adalah..."</td>
+    </tr>
+    <tr>
+      <td><strong>C2 — Memahami</strong></td>
+      <td>Menjelaskan, merangkum</td>
+      <td>Interpretasi makna</td>
+      <td>"Makna syahadat adalah..."</td>
+    </tr>
+    <tr>
+      <td><strong>C3 — Menerapkan</strong></td>
+      <td>Menggunakan, mendemonstrasikan</td>
+      <td>Aplikasi dalam kasus</td>
+      <td>"Hukum transaksi X menurut fikih adalah..."</td>
+    </tr>
+    <tr>
+      <td><strong>C4 — Menganalisis</strong></td>
+      <td>Membedakan, mengorganisasi</td>
+      <td>Analisis hubungan</td>
+      <td>"Perbedaan riba dan jual beli adalah..."</td>
+    </tr>
+    <tr>
+      <td><strong>C5 — Mengevaluasi</strong></td>
+      <td>Memeriksa, mengkritik</td>
+      <td>Penilaian kritis</td>
+      <td>"Ketepatan praktik X menurut syariat..."</td>
+    </tr>
+    <tr>
+      <td><strong>C6 — Mencipta</strong></td>
+      <td>Merumuskan, merancang</td>
+      <td>Kreasi produk baru</td>
+      <td>(Lebih cocok untuk esai/proyek)</td>
+    </tr>
+  </table>
+
+  <h3>5.1.4 Teori Kognitif dalam Penulisan Distraktor</h3>
+  <p>
+    Distraktor yang baik bukan sekadar jawaban salah yang diacak. Menurut Payne et al. (1998),
+    distraktor yang efektif harus mencerminkan <strong>miskonsepsi</strong> atau
+    <strong>kesalahan berpikir</strong> yang umum dilakukan siswa. Dengan memahami pola
+    kesalahan berpikir siswa, penulis butir dapat menyusun distraktor yang benar-benar
+    berfungsi membedakan siswa kompeten dan yang belum.
+  </p>
+  <p>
+    Misalnya, dalam soal tentang zakat, distraktor yang baik adalah jawaban yang mencerminkan
+    kesalahan umum siswa: (1) tertukar antara zakat fitrah dan zakat mal, (2) salah menghitung
+    nisab, (3) keliru menentukan mustahik.
+  </p>
+
+  <h3>5.1.5 Prinsip Keadilan dalam Penulisan Butir</h3>
+  <p>
+    AERA, APA, &amp; NCME (2014) menekankan prinsip <strong>fairness</strong> (keadilan) dalam
+    pengembangan tes. Butir soal harus:
+  </p>
+  <ul>
+    <li><strong>Bebas dari bias:</strong> Tidak menguntungkan atau merugikan kelompok tertentu</li>
+    <li><strong>Aksesibel:</strong> Dapat dipahami oleh seluruh siswa, termasuk yang berkebutuhan khusus</li>
+    <li><strong>Transparan:</strong> Tujuan butir jelas dan tidak menjebak</li>
+    <li><strong>Respek terhadap keberagaman:</strong> Tidak menyinggung SARA</li>
+  </ul>
+
+  <!-- INFOGRAPHIC ALUR -->
+  <div class="infographic">
+    <h4>🔗 Alur Perumusan Butir Soal Objektif</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>1. KAJI KISI-KISI</strong>
+        Pahami indikator, level kognitif, dan materi
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>2. RUMUSKAN STEM</strong>
+        Tulis pertanyaan/pernyataan yang jelas dan spesifik
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>3. TENTUKAN KUNCI JAWABAN</strong>
+        Tetapkan opsi yang benar/paling benar
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>4. SUSUN DISTRaktor</strong>
+        Buat 3-4 opsi salah yang plausible &amp; homogen
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>5. REVIEW &amp; REVISI</strong>
+        Cek kaidah penulisan, bias, dan konsistensi
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>6. UJI COBA &amp; ANALISIS</strong>
+        Hitung validitas, reliabilitas, tingkat kesukaran, daya beda
+      </div>
+    </div>
+  </div>
+
+  <!-- JENIS TES OBJEKTIF -->
+  <h2>5.2 <em>Jenis-Jenis</em> Tes Objektif</h2>
+
+  <h3>5.2.1 Pilihan Ganda (Multiple Choice)</h3>
+  <p>
+    Tes pilihan ganda adalah jenis tes objektif yang paling populer. Terdiri dari
+    <strong>stem</strong> (pokok soal) dan <strong>opsi</strong> (pilihan jawaban).
+    Ada dua bentuk utama:
+  </p>
+  <ul>
+    <li><strong>Bentuk Biasa:</strong> Satu jawaban benar, sisanya distraktor</li>
+    <li><strong>Bentuk Analisis Kasus:</strong> Stimulus (bacaan/data) diikuti beberapa butir</li>
+  </ul>
+
+  <div class="example-box">
+    <h4>📝 Contoh Butir PG yang Baik: Fikih (C3)</h4>
+    <div class="good">
+      <span class="label-good">✓ Baik</span>
+      <p style="margin: 0;">
+        <strong>Stem:</strong> Pak Ahmad membeli 10 gram emas seharga Rp10.000.000 dari toko
+        emas. Pembayaran dilakukan secara tunai dan emas langsung diserahkan. Dalam fikih,
+        transaksi ini termasuk...<br><br>
+        <strong>Opsi:</strong><br>
+        a. Jual beli sah karena memenuhi rukun dan syarat<br>
+        b. Jual beli tidak sah karena tidak ada khiyar<br>
+        c. Jual beli fasid karena ada unsur riba fadhl<br>
+        d. Jual beli gharar karena tidak ada kejelasan
+      </p>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Analisis:</strong> Stem menyajikan kasus kontekstual, opsi homogen (semua tentang
+      status hukum), distraktor plausible (mencerminkan miskonsepsi umum).
+    </p>
+  </div>
+
+  <h3>5.2.2 Benar-Salah (True-False)</h3>
+  <p>
+    Tes benar-salah terdiri dari pernyataan yang harus dinilai benar atau salah oleh siswa.
+    Kelebihannya: mudah disusun, cepat dijawab, cakupan materi luas. Kekurangannya:
+    peluang menebak 50%, sulit mengukur level kognitif tinggi.
+  </p>
+
+  <div class="example-box">
+    <h4>📝 Contoh Butir B-S: Akidah</h4>
+    <div class="good">
+      <span class="label-good">✓ Baik</span>
+      <p style="margin: 0;">
+        "Iman kepada takdir berarti manusia tidak perlu berusaha karena segala sesuatu sudah
+        ditentukan Allah." <strong>[Benar / Salah]</strong>
+      </p>
+    </div>
+    <div class="bad">
+      <span class="label-bad">✗ Kurang Baik</span>
+      <p style="margin: 0;">
+        "Iman kepada takdir itu penting." <strong>[Benar / Salah]</strong>
+      </p>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Analisis:</strong> Butir pertama mengukur pemahaman konseptual (C2), butir kedua
+      terlalu umum dan semua siswa akan menjawab "Benar" (tidak informatif).
+    </p>
+  </div>
+
+  <h3>5.2.3 Menjodohkan (Matching)</h3>
+  <p>
+    Tes menjodohkan terdiri dari <strong>premis</strong> (soal) dan <strong>respons</strong>
+    (pilihan jawaban). Siswa diminta menjodohkan premis dengan respons yang tepat. Efektif
+    untuk mengukur pengetahuan faktual dan konseptual.
+  </p>
+
+  <div class="example-box">
+    <h4>📝 Contoh Tes Menjodohkan: Sejarah Peradaban Islam</h4>
+    <div class="mono">
+JODOHKAN nama tokoh di kolom kiri dengan prestasinya di kolom kanan!
+
+PREMIS:                        RESPON:
+1. Khalid bin Walid             A. Penyusun mushaf Al-Qur'an
+2. Umar bin Khattab             B. Panglima perang "Saifullah"
+3. Zaid bin Tsabit              C. Pendiri Dinasti Umayyah
+4. Muawiyah bin Abu Sufyan      D. Pembentuk badan kepolisian
+                                E. Penakluk Persia
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Kunci:</strong> 1-B, 2-D, 3-A, 4-C (E adalah distraktor)
+    </p>
+  </div>
+
+  <h3>5.2.4 Isian Singkat (Completion)</h3>
+  <p>
+    Tes isian singkat terdiri dari kalimat rumpang yang harus dilengkapi siswa dengan satu
+    kata/frasa. Efektif untuk mengukur ingatan dan pemahaman terminologi.
+  </p>
+
+  <div class="example-box">
+    <h4>📝 Contoh Butir Isian Singkat: Al-Qur'an Hadis</h4>
+    <div class="good">
+      <span class="label-good">✓ Baik</span>
+      <p style="margin: 0;">
+        "Surah al-Mujādilah ayat 11 menegaskan bahwa Allah akan mengangkat derajat orang-orang
+        yang beriman dan orang-orang yang diberi ..."
+      </p>
+    </div>
+    <div class="bad">
+      <span class="label-bad">✗ Kurang Baik</span>
+      <p style="margin: 0;">
+        "Surah al-Mujādilah ayat 11 berbicara tentang ..."
+      </p>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Analisis:</strong> Butir pertama spesifik dan memiliki satu jawaban pasti ("ilmu").
+      Butir kedua terlalu umum dan ambigu.
+    </p>
+  </div>
+
+  <!-- PERBANDINGAN JENIS -->
+  <h3>5.2.5 Perbandingan Jenis Tes Objektif</h3>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>Pilihan Ganda</th>
+      <th>Benar-Salah</th>
+      <th>Menjodohkan</th>
+      <th>Isian Singkat</th>
+    </tr>
+    <tr>
+      <td><strong>Format</strong></td>
+      <td>Stem + 4-5 opsi</td>
+      <td>Pernyataan B/S</td>
+      <td>Premis-Respons</td>
+      <td>Kalimat rumpang</td>
+    </tr>
+    <tr>
+      <td><strong>Peluang Menebak</strong></td>
+      <td>20-25%</td>
+      <td>50%</td>
+      <td>Rendah</td>
+      <td>Rendah</td>
+    </tr>
+    <tr>
+      <td><strong>Level Kognitif</strong></td>
+      <td>C1-C5</td>
+      <td>C1-C3</td>
+      <td>C1-C2</td>
+      <td>C1-C2</td>
+    </tr>
+    <tr>
+      <td><strong>Waktu Penyusunan</strong></td>
+      <td>Lama</td>
+      <td>Cepat</td>
+      <td>Sedang</td>
+      <td>Sedang</td>
+    </tr>
+    <tr>
+      <td><strong>Waktu Koreksi</strong></td>
+      <td>Cepat (scanner)</td>
+      <td>Sangat cepat</td>
+      <td>Cepat</td>
+      <td>Cepat</td>
+    </tr>
+    <tr>
+      <td><strong>Kesesuaian PAI</strong></td>
+      <td>Sangat cocok</td>
+      <td>Cocok untuk fakta</td>
+      <td>Cocok untuk fakta</td>
+      <td>Cocok untuk terminologi</td>
+    </tr>
+  </table>
+
+  <!-- KAIDAH PENULISAN -->
+  <h2>5.3 <em>Kaidah Penulisan</em> Butir Soal Objektif</h2>
+
+  <h3>5.3.1 Kaidah Penulisan Stem</h3>
+  <p>
+    Stem adalah jantung dari butir soal. Stem yang baik akan memandu siswa untuk memahami
+    apa yang ditanyakan. Berikut kaidah penulisan stem:
+  </p>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Kaidah</th>
+      <th>Penjelasan</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Stem harus jelas dan tegas</strong></td>
+      <td>Siswa harus memahami apa yang ditanyakan tanpa harus membaca opsi</td>
+      <td>✓ "Rukun Islam yang ketiga adalah..."<br>✗ "Yang berkaitan dengan ibadah adalah..."</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Hindari kata negatif</strong></td>
+      <td>Kata "tidak", "kecuali", "bukan" membingungkan</td>
+      <td>✓ "Berikut yang merupakan rukun iman adalah..."<br>✗ "Berikut yang BUKAN rukun iman, KECUALI..."</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Jangan memberi petunjuk ke jawaban</strong></td>
+      <td>Hindari kata kunci yang hanya cocok dengan satu opsi</td>
+      <td>✗ "Berapa JUMLAH rakaat shalat Maghrib?" (kata "jumlah" mengarah ke angka)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Gunakan bahasa sederhana</strong></td>
+      <td>Hindari istilah teknis yang tidak diperlukan</td>
+      <td>✓ "Hukum transaksi X adalah..."<br>✗ "Implikasi yuridis transaksi X dalam perspektif fiqh muamalah kontemporer adalah..."</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Stem harus bermakna</strong></td>
+      <td>Pertanyaan harus penting dan relevan</td>
+      <td>✗ "Siapa nama ayah dari kakek buyut Imam Syafi'i?" (tidak bermakna)</td>
+    </tr>
+  </table>
+
+  <h3>5.3.2 Kaidah Penulisan Opsi</h3>
+  <p>
+    Opsi terdiri dari <strong>kunci jawaban</strong> dan <strong>distraktor</strong>. Berikut
+    kaidah penulisan opsi:
+  </p>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Kaidah</th>
+      <th>Penjelasan</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Opsi harus homogen</strong></td>
+      <td>Semua opsi harus sejenis dalam hal panjang, struktur, dan makna</td>
+      <td>✗ a. 3, b. 4, c. "Empat rakaat karena...", d. 1000</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Distraktor harus plausible</strong></td>
+      <td>Opsi salah harus masuk akal agar berfungsi</td>
+      <td>✗ a. 3, b. 4, c. 100, d. 1000<br>✓ a. 2, b. 3, c. 4, d. 5</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Satu jawaban benar/paling benar</strong></td>
+      <td>Hindari opsi yang keduanya bisa dianggap benar</td>
+      <td>✗ a. "Zakat itu wajib" &amp; b. "Zakat itu rukun Islam" (keduanya benar)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Hindari "semua benar"/"semua salah"</strong></td>
+      <td>Opsi ini mengurangi daya beda</td>
+      <td>✗ a. 1 saja, b. 2 saja, c. Semua benar, d. Semua salah</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Urutan opsi logis</strong></td>
+      <td>Untuk angka: urutkan dari kecil ke besar atau sebaliknya</td>
+      <td>✓ a. 2, b. 3, c. 4, d. 5 (bukan: a. 4, b. 2, c. 5, d. 3)</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Panjang opsi relatif sama</strong></td>
+      <td>Opsi yang lebih panjang cenderung menjadi kunci jawaban</td>
+      <td>✗ a. "3", b. "4", c. "5 rakaat karena merupakan shalat wajib...", d. "2"</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Posisi kunci diacak</strong></td>
+      <td>Distribusi kunci harus merata (25% di setiap posisi)</td>
+      <td>✓ Distribusi a, b, c, d relatif seimbang dalam satu paket tes</td>
+    </tr>
+  </table>
+
+  <!-- CONTOH LENGKAP -->
+  <h2>5.4 <em>Contoh</em> Butir Soal PAI per Elemen</h2>
+
+  <h3>5.4.1 Elemen Al-Qur'an Hadis</h3>
+  <div class="example-box">
+    <h4>📝 Butir PG C4: Analisis Ayat</h4>
+    <div class="mono">
+Perhatikan Q.S. al-Mujādilah/58: 11 berikut!
+
+"يَرْفَعِ اللَّهُ الَّذِينَ آمَنُوا مِنكُمْ وَالَّذِينَ أُوتُوا الْعِلْمَ دَرَجَاتٍ"
+
+Ayat tersebut menegaskan bahwa Allah akan mengangkat derajat orang-orang yang beriman dan
+orang-orang yang diberi ilmu. Implikasi ayat ini dalam kehidupan sehari-hari adalah...
+
+a. Umat Islam harus mencari ilmu setinggi mungkin untuk mendapatkan kehormatan
+b. Orang yang beriman tanpa ilmu tetap memiliki derajat tinggi di sisi Allah
+c. Ilmu pengetahuan lebih utama daripada iman dalam Islam
+d. Derajat seseorang di sisi Allah ditentukan oleh kekayaan dan kekuasaan
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Kunci: A</strong> | Level: C4 (Menganalisis implikasi)
+    </p>
+  </div>
+
+  <h3>5.4.2 Elemen Akidah</h3>
+  <div class="example-box">
+    <h4>📝 Butir PG C3: Aplikasi Konsep</h4>
+    <div class="mono">
+Seorang muslim yakin bahwa segala sesuatu terjadi atas kehendak Allah, namun ia tetap
+berusaha dan berdoa. Sikap ini mencerminkan pengamalan iman kepada...
+
+a. Qadha
+b. Qadar
+c. Ikhtiar
+d. Tawakal
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Kunci: B</strong> | Level: C3 (Menerapkan konsep qadar)
+    </p>
+  </div>
+
+  <h3>5.4.3 Elemen Akhlak</h3>
+  <div class="example-box">
+    <h4>📝 Butir PG C4: Analisis Kasus</h4>
+    <div class="mono">
+Ahmad menemukan dompet berisi uang Rp500.000 di jalan. Tidak ada orang yang melihatnya.
+Ahmad berusaha mencari pemiliknya dan akhirnya berhasil mengembalikan dompet tersebut.
+Perilaku Ahmad mencerminkan akhlak...
+
+a. Amanah
+b. Tabligh
+c. Fathanah
+d. Siddiq
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Kunci: A</strong> | Level: C4 (Menganalisis perilaku dalam konteks)
+    </p>
+  </div>
+
+  <h3>5.4.4 Elemen Fikih</h3>
+  <div class="example-box">
+    <h4>📝 Butir PG C3: Aplikasi Hukum</h4>
+    <div class="mono">
+Pak Hasan meminjamkan uang Rp1.000.000 kepada temannya dengan kesepakatan akan dikembalikan
+Rp1.100.000 setelah satu bulan. Tambahan Rp100.000 tersebut dalam fikih termasuk...
+
+a. Jual beli
+b. Riba nasi'ah
+c. Riba fadhl
+d. Hibah
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Kunci: B</strong> | Level: C3 (Menerapkan konsep riba)
+    </p>
+  </div>
+
+  <h3>5.4.5 Elemen Sejarah Peradaban Islam</h3>
+  <div class="example-box">
+    <h4>📝 Butir PG C4: Analisis Sejarah</h4>
+    <div class="mono">
+Salah satu faktor utama kemajuan peradaban Islam pada masa Daulah Abbasiyah adalah...
+
+a. Penaklukan wilayah yang sangat luas
+b. Gerakan penerjemahan buku-buku dari berbagai bahasa ke bahasa Arab
+c. Perang salib yang memperkuat solidaritas umat Islam
+d. Isolasi dari peradaban lain untuk menjaga kemurnian Islam
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      <strong>Kunci: B</strong> | Level: C4 (Menganalisis faktor kemajuan)
+    </p>
+  </div>
+
+  <!-- ANALISIS KUALITAS BUTIR -->
+  <h2>5.5 <em>Analisis Kualitas</em> Butir Soal</h2>
+
+  <h3>5.5.1 Tingkat Kesukaran (Difficulty Index)</h3>
+  <p>
+    Tingkat kesukaran butir diukur dengan indeks P yang menunjukkan proporsi siswa yang
+    menjawab benar. Rumusnya:
+  </p>
+  <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); font-style: italic; margin: 1.5rem 0;">
+    P = B / N
+  </p>
+  <p>
+    Keterangan: B = jumlah siswa yang menjawab benar, N = jumlah peserta tes.
+  </p>
+  <table>
+    <tr>
+      <th>Indeks P</th>
+      <th>Kategori</th>
+      <th>Interpretasi</th>
+    </tr>
+    <tr>
+      <td>0,00 - 0,30</td>
+      <td>Sukar</td>
+      <td>Hanya siswa pandai yang mampu menjawab</td>
+    </tr>
+    <tr>
+      <td>0,31 - 0,70</td>
+      <td>Sedang</td>
+      <td>Ideal — sebagian besar siswa mampu</td>
+    </tr>
+    <tr>
+      <td>0,71 - 1,00</td>
+      <td>Mudah</td>
+      <td>Hampir semua siswa mampu menjawab</td>
+    </tr>
+  </table>
+
+  <h3>5.5.2 Daya Beda (Discrimination Index)</h3>
+  <p>
+    Daya beda butir diukur dengan indeks D yang menunjukkan kemampuan butir membedakan
+    siswa pandai (kelompok atas) dan siswa kurang pandai (kelompok bawah). Rumusnya:
+  </p>
+  <p style="text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--gold); font-style: italic; margin: 1.5rem 0;">
+    D = PA - PB
+  </p>
+  <p>
+    Keterangan: PA = proporsi kelompok atas yang menjawab benar, PB = proporsi kelompok
+    bawah yang menjawab benar.
+  </p>
+  <table>
+    <tr>
+      <th>Indeks D</th>
+      <th>Kategori</th>
+      <th>Tindakan</th>
+    </tr>
+    <tr>
+      <td>0,40 - 1,00</td>
+      <td>Sangat baik</td>
+      <td>Dipertahankan</td>
+    </tr>
+    <tr>
+      <td>0,30 - 0,39</td>
+      <td>Baik</td>
+      <td>Dipertahankan dengan perbaikan kecil</td>
+    </tr>
+    <tr>
+      <td>0,20 - 0,29</td>
+      <td>Cukup</td>
+      <td>Perlu direvisi</td>
+    </tr>
+    <tr>
+      <td>0,10 - 0,19</td>
+      <td>Jelek</td>
+      <td>Dibuang atau direvisi total</td>
+    </tr>
+    <tr>
+      <td>Negatif</td>
+      <td>Sangat jelek</td>
+      <td>Dibuang — siswa pandai justru salah</td>
+    </tr>
+  </table>
+
+  <h3>5.5.3 Analisis Fungsi Distraktor</h3>
+  <p>
+    Distraktor yang baik harus dipilih oleh minimal 5% siswa. Jika suatu distraktor tidak
+    dipilih oleh siapa pun, berarti distraktor tersebut tidak berfungsi dan perlu diganti.
+    Sebaliknya, jika distraktor dipilih oleh banyak siswa pandai, mungkin distraktor tersebut
+    terlalu plausible atau bahkan kunci jawaban yang salah.
+  </p>
+
+  <!-- INFOGRAPHIC KUALITAS -->
+  <div class="infographic">
+    <h4>🔗 Kriteria Butir Soal yang Bermutu</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>VALID</strong>
+        Mengukur kompetensi yang seharusnya diukur (sesuai indikator)
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>RELIABEL</strong>
+        Konsisten hasilnya jika diujikan berulang
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>TINGKAT KESUKARAN SEDANG (0,31-0,70)</strong>
+        Tidak terlalu mudah, tidak terlalu sulit
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>DAYA BEDA BAIK (≥0,30)</strong>
+        Mampu membedakan siswa kompeten dan belum
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>DISTRaktor BERFUNGSI</strong>
+        Setiap distraktor dipilih minimal 5% siswa
+      </div>
+    </div>
+  </div>
+
+  <!-- DIMENSI SPIRITUAL -->
+  <h2>5.6 <em>Dimensi Spiritual</em> Penulisan Butir Soal</h2>
+  <p>
+    Dalam perspektif Islam, menulis butir soal bukan sekadar aktivitas profesional, melainkan
+    bentuk <em>muamalah</em> yang akan dipertanggungjawabkan di hadapan Allah SWT. Setiap butir
+    yang kita tulis akan mempengaruhi nilai siswa, dan nilai tersebut akan mempengaruhi masa
+    depan mereka.
+  </p>
+
+  <div class="quote-box">
+    Sesungguhnya Allah menyuruh kamu menyampaikan amanat kepada yang berhak menerimanya, dan apabila kamu menetapkan hukum di antara manusia hendaknya kamu menetapkannya dengan adil.
+    <span class="quote-source">— QS. An-Nisa [4]: 58</span>
+  </div>
+
+  <table>
+    <tr>
+      <th>Nilai Islam</th>
+      <th>Implementasi dalam Penulisan Butir</th>
+      <th>Dalil</th>
+    </tr>
+    <tr>
+      <td><strong>Shidq (Kejujuran)</strong></td>
+      <td>Tidak memanipulasi kunci jawaban atau mengubah soal setelah ujian</td>
+      <td>QS. At-Taubah: 119</td>
+    </tr>
+    <tr>
+      <td><strong>'Adl (Keadilan)</strong></td>
+      <td>Butir tidak bias, tidak menjebak, adil bagi semua siswa</td>
+      <td>QS. An-Nisa: 135</td>
+    </tr>
+    <tr>
+      <td><strong>Amanah (Tanggung Jawab)</strong></td>
+      <td>Menulis butir dengan sungguh-sungguh, tidak asal-asalan</td>
+      <td>QS. Al-Anfal: 27</td>
+    </tr>
+    <tr>
+      <td><strong>Ihsan (Keunggulan)</strong></td>
+      <td>Menulis butir dengan kualitas terbaik yang memungkinkan</td>
+      <td>HR. Muslim</td>
+    </tr>
+    <tr>
+      <td><strong>Tabayyun (Verifikasi)</strong></td>
+      <td>Mereview dan memvalidasi butir sebelum digunakan</td>
+      <td>QS. Al-Hujurat: 6</td>
+    </tr>
+  </table>
+
+  <!-- TIPS -->
+  <div class="tip-box">
+    <h4>💡 Tips Praktis Menulis Butir Soal</h4>
+    <ul>
+      <li><strong>Mulai dari indikator:</strong> Pastikan setiap butir selaras dengan indikator di kisi-kisi</li>
+      <li><strong>Tulis stem dulu:</strong> Rumuskan pertanyaan dengan jelas sebelum menulis opsi</li>
+      <li><strong>Tentukan kunci jawaban:</strong> Tetapkan opsi yang benar sebelum menulis distraktor</li>
+      <li><strong>Gunakan miskonsepsi sebagai distraktor:</strong> Distraktor yang baik mencerminkan kesalahan berpikir siswa</li>
+      <li><strong>Baca ulang butir:</strong> Pastikan tidak ada kata yang ambigu atau menjebak</li>
+      <li><strong>Minta rekan mereview:</strong> Peer review sangat efektif untuk menemukan kelemahan butir</li>
+      <li><strong>Cek distribusi kunci:</strong> Pastikan posisi kunci jawaban merata (a, b, c, d)</li>
+      <li><strong>Uji coba sebelum digunakan:</strong> Analisis kualitas butir setelah uji coba lapangan</li>
+      <li><strong>Dokumentasikan:</strong> Simpan versi butir, analisis, dan revisi sebagai portofolio</li>
+      <li><strong>Baca literatur:</strong> Perkaya wawasan dengan membaca buku Haladyna, Surapranata, Azwar</li>
+    </ul>
+  </div>
+
+  <div class="warning-box">
+    <h4>⚠️ Kesalahan Umum dalam Penulisan Butir</h4>
+    <ul>
+      <li>Stem terlalu panjang atau berbelit-belit</li>
+      <li>Menggunakan kata negatif (tidak, bukan, kecuali) tanpa penekanan</li>
+      <li>Opsi tidak homogen dalam panjang atau struktur</li>
+      <li>Distraktor tidak plausible (terlalu jelas salah)</li>
+      <li>Ada lebih dari satu jawaban benar</li>
+      <li>Kunci jawaban selalu di posisi tertentu (misalnya selalu "c")</li>
+      <li>Butir mengandung bias budaya, gender, atau agama</li>
+      <li>Bahasa terlalu teknis atau menggunakan istilah yang tidak diajarkan</li>
+      <li>Butir tidak selaras dengan indikator di kisi-kisi</li>
+      <li>Tidak melakukan review atau uji coba sebelum digunakan</li>
+    </ul>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <h2>Kesimpulan</h2>
+  <p>
+    Pertemuan kelima ini telah menguraikan secara komprehensif tentang seni merumuskan butir
+    soal tes objektif yang bermutu. Butir soal bukan sekadar satuan teknis dalam instrumen
+    evaluasi, melainkan <em>timbangan</em> yang akan menentukan keadilan penilaian terhadap
+    siswa.
+  </p>
+  <p>
+    Berdasarkan landasan teoretis dari Haladyna (31 prinsip penulisan butir), Spearman (CTT),
+    Anderson &amp; Krathwohl (Taksonomi Bloom Revisi), Payne (teori distraktor berbasis
+    miskonsepsi), dan AERA/APA/NCME (prinsip fairness), dapat disimpulkan bahwa butir soal
+    yang bermutu harus memenuhi kriteria: <strong>valid, reliabel, memiliki tingkat kesukaran
+    sedang, daya beda baik, distraktor berfungsi, dan bebas dari bias</strong>.
+  </p>
+  <p>
+    Sebagai calon evaluator PAI, Anda kini memiliki bekal untuk merumuskan butir soal tes
+    objektif yang tidak hanya mengukur pengetahuan, tetapi juga menghormati martabat siswa
+    sebagai manusia yang sedang belajar. Keterampilan ini akan menjadi fondasi bagi
+    pertemuan-pertemuan selanjutnya—mulai dari perumusan butir esai, penyusunan butir angket,
+    hingga uji coba instrumen dan analisis kualitas dengan SPSS.
+  </p>
+  <p>
+    Ingatlah: setiap butir yang Anda tulis adalah amanah. Sebagaimana sabda Rasulullah SAW:
+    <em>"Barangsiapa yang diberi amanah, lalu ia mengkhianatinya, maka ia akan datang pada
+    hari kiamat dengan pengkhianatan itu."</em> (HR. Muslim). Mari kita tulis butir soal
+    dengan penuh integritas, keadilan, dan kesungguhan.
+  </p>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>📚 Daftar Pustaka</h3>
+
+    <h4>Pustaka Utama</h4>
+    <ol>
+      <li>Anastasi, A. (1982). <em>Psychological Testing</em> (5th ed.). New York: Macmillan Publishing Co., Inc.</li>
+      <li>Anastasi, A., &amp; Urbina, S. (1997). <em>Psychological Testing</em> (Edisi Bahasa Indonesia). Jakarta: PT Prenhallindo.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2001). <em>A Taxonomy for Learning, Teaching, and Assessing: A Revision of Bloom's Taxonomy of Educational Objectives</em>. New York: Longman.</li>
+      <li>Anderson, L. W., &amp; Krathwohl, D. R. (2010). <em>Kerangka Dasar untuk Pembelajaran, Pengajaran, dan Asesmen</em>. (A. Prihantoro, Penerj.). Yogyakarta: Pustaka Pelajar.</li>
+      <li>Arikunto, S. (2002). <em>Dasar-dasar Evaluasi Pendidikan</em> (Edisi Revisi). Jakarta: PT Bumi Aksara.</li>
+      <li>Azwar, S. (2005). <em>Tes Prestasi: Fungsi dan Pengembangan Pengukuran Prestasi Belajar</em>. Yogyakarta: Pustaka Belajar.</li>
+      <li>Fernandes, H. J. X. (1984). <em>Testing and Measurement</em>. Jakarta: National Education Planning.</li>
+      <li>Guilford, J. P. (1982). <em>Psychometric Methods</em>. Tokyo: Kogakusha Company.</li>
+      <li>Haladyna, T. M. (2004). <em>Developing and Validating Multiple-Choice Test Items</em> (3rd ed.). Mahwah, NJ: Lawrence Erlbaum Associates.</li>
+      <li>Jordan, T. E. (1989). <em>Measurement &amp; Evaluation in Higher Education</em>. (Y. Mujiyanto, Penerj.). Semarang: IKIP Semarang.</li>
+      <li>Naga, D. S. (1992). <em>Pengantar Teori Skor pada Pengukuran Pendidikan</em>. Jakarta: Gunadarma.</li>
+      <li>Sudijono, A. (2011). <em>Pengantar Evaluasi Pendidikan</em>. Jakarta: PT RajaGrafindo Persada.</li>
+      <li>Surapranata, S. (2005). <em>Panduan Penulisan Tes Tertulis: Implementasi Kurikulum 2004</em>. Bandung: PT Remaja Rosdakarya.</li>
+      <li>Uno, H. B., &amp; Koni, S. (2012). <em>Assessment Pembelajaran</em>. Jakarta: Bumi Aksara.</li>
+    </ol>
+
+    <h4>Pustaka Pendukung</h4>
+    <ol>
+      <li>Arifmiboy. (2024). <em>Penguatan Kapasitas Guru MAN 4 Tanah Datar di Bidang Evaluasi Pembelajaran</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2025). <em>Pendampingan Guru Madrasah Tsanawiyah dalam Merancang Asesmen Hasil Belajar</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2023). <em>University Digital Transformation Index in The Malay Family of Countries</em>. Laporan Penelitian Kolaborasi Internasional.</li>
+      <li>Pusat Penilaian Pendidikan Balitbang. (2008). <em>Assesment Berbasis Kelas</em>. Jakarta: Departemen Pendidikan Nasional.</li>
+    </ol>
+
+    <h4>Pustaka Teoretis Tambahan</h4>
+    <ol>
+      <li>AERA, APA, &amp; NCME. (2014). <em>Standards for Educational and Psychological Testing</em>. Washington, DC: AERA.</li>
+      <li>Crocker, L., &amp; Algina, J. (1986). <em>Introduction to Classical and Modern Test Theory</em>. New York: Holt, Rinehart and Winston.</li>
+      <li>Lord, F. M., &amp; Novick, M. R. (1968). <em>Statistical Theories of Mental Test Scores</em>. Reading, MA: Addison-Wesley.</li>
+      <li>Payne, D. G., et al. (1998). <em>Memory: Phenomena, Principles, and Issues</em>. Boston: Allyn &amp; Bacon.</li>
+      <li>Spearman, C. (1904). The proof and measurement of association between two races. <em>American Journal of Psychology</em>, 15, 72-101.</li>
+    </ol>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <div class="chapter-nav">
+    <a href="4.html">← Bab Sebelumnya: Instrumen Non-Tes</a>
+    <a href="6.html">Bab Selanjutnya: Butir Soal Esai →</a>
+  </div>
+
+  <!-- ============================================
+       UJI FORMATIF
+       ============================================ -->
+  <section class="test-section" id="uji-formatif">
+    <div class="test-header">
+      <div class="icon">📋</div>
+      <h2>Uji Formatif Pertemuan 5</h2>
+      <p>Seni Merangkai Soal: Butir-Butir Tes Objektif yang Bermutu</p>
+    </div>
+
+    <div class="test-warning">
+      ⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu sebelum mengirim!
+    </div>
+
+    <!-- DATA MAHASISWA -->
+    <h3 style="color: var(--gold); margin-bottom: 1.5rem;">📋 Data Mahasiswa</h3>
+    <form id="studentForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" required>
+        </div>
+        <div class="form-group">
+          <label>NIM <span class="required">*</span></label>
+          <input type="text" id="nim" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>📅 Tanggal Ujian <span class="required">*</span></label>
+          <input type="date" id="tanggal" required>
+        </div>
+        <div class="form-group">
+          <label>Fakultas <span class="required">*</span></label>
+          <select id="fakultas" required>
+            <option value="">Pilih Fakultas</option>
+            <option>FTIK</option>
+            <option>FUAD</option>
+            <option>FSE</option>
+            <option>FDAI</option>
+            <option>FISHUM</option>
+            <option>FDAK</option>
+            <option>FPSB</option>
+            <option>FASAL</option>
+            <option>FAH</option>
+            <option>FEI</option>
+            <option>FST</option>
+            <option>F Kedokteran</option>
+            <option>F Pertanian</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jurusan / Prodi <span class="required">*</span></label>
+          <input type="text" id="prodi" required>
+        </div>
+        <div class="form-group">
+          <label>Konsentrasi</label>
+          <input type="text" id="konsentrasi">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Semester <span class="required">*</span></label>
+          <select id="semester" required>
+            <option value="">Pilih Semester</option>
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+            <option>Semester 5</option>
+            <option>Semester 6</option>
+            <option>Semester 7</option>
+            <option>Semester 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kelas <span class="required">*</span></label>
+          <input type="text" id="kelas" placeholder="Contoh: PAI-3A" required>
+        </div>
+      </div>
+
+      <!-- PILIHAN GANDA -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian A — Pilihan Ganda <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(10 soal × 10 poin = 100)</span></h3>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">1</span>
+        <span class="question-text">Tokoh yang merumuskan 31 prinsip penulisan butir soal pilihan ganda adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q1" value="a"><span>a. Benjamin Bloom</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="b"><span>b. Thomas Haladyna</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="c"><span>c. Charles Spearman</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="d"><span>d. Frederic Lord</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">2</span>
+        <span class="question-text">Bagian dari butir soal pilihan ganda yang berisi pertanyaan atau pernyataan yang harus direspons siswa disebut...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q2" value="a"><span>a. Stem</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="b"><span>b. Opsi</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="c"><span>c. Distraktor</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="d"><span>d. Kunci jawaban</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">3</span>
+        <span class="question-text">Indeks tingkat kesukaran butir (P) yang ideal adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q3" value="a"><span>a. 0,00 - 0,30</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="b"><span>b. 0,71 - 1,00</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="c"><span>c. 0,31 - 0,70</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="d"><span>d. 1,01 - 1,50</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">4</span>
+        <span class="question-text">Daya beda butir (D) yang menunjukkan kualitas "sangat baik" adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q4" value="a"><span>a. 0,10 - 0,19</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="b"><span>b. 0,20 - 0,29</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="c"><span>c. 0,30 - 0,39</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="d"><span>d. 0,40 - 1,00</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">5</span>
+        <span class="question-text">Peluang menebak pada tes benar-salah adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q5" value="a"><span>a. 25%</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="b"><span>b. 50%</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="c"><span>c. 75%</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="d"><span>d. 100%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">6</span>
+        <span class="question-text">Distraktor yang baik harus memiliki karakteristik...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q6" value="a"><span>a. Plausible (masuk akal) dan homogen</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="b"><span>b. Jelas salah dan mudah dikenali</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="c"><span>c. Lebih panjang dari kunci jawaban</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="d"><span>d. Menggunakan istilah teknis</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">7</span>
+        <span class="question-text">Jika suatu butir soal memiliki daya beda negatif, maka...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q7" value="a"><span>a. Butir sangat baik dan dipertahankan</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="b"><span>b. Butir perlu direvisi kecil</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="c"><span>c. Butir harus dibuang karena siswa pandai justru salah</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="d"><span>d. Butir perlu ditambah distraktornya</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">8</span>
+        <span class="question-text">Menurut Taksonomi Bloom Revisi, level kognitif yang paling tepat untuk butir soal "Analisis implikasi Q.S. al-Mujādilah ayat 11 dalam kehidupan sehari-hari" adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q8" value="a"><span>a. C1 — Mengingat</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="b"><span>b. C2 — Memahami</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="c"><span>c. C3 — Menerapkan</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="d"><span>d. C4 — Menganalisis</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">9</span>
+        <span class="question-text">Kaidah penulisan opsi yang menyatakan bahwa semua pilihan jawaban harus sejenis dalam panjang dan struktur disebut prinsip...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q9" value="a"><span>a. Plausibilitas</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="b"><span>b. Homogenitas</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="c"><span>c. Spesifisitas</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="d"><span>d. Objektivitas</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">10</span>
+        <span class="question-text">Distraktor yang berfungsi dengan baik adalah distraktor yang dipilih oleh minimal...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q10" value="a"><span>a. 1% siswa</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="b"><span>b. 3% siswa</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="c"><span>c. 5% siswa</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="d"><span>d. 10% siswa</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- ESSAY -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian B — Essay <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(5 soal × 20 poin = 100)</span></h3>
+
+      <div class="essay-block">
+        <span class="question-number">1</span>
+        <span class="question-text">Jelaskan secara komprehensif 31 prinsip penulisan butir soal pilihan ganda menurut Haladyna! Kelompokkan ke dalam tiga kategori (konten, detail, format) dan berikan contoh penerapannya dalam penulisan butir soal PAI!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">2</span>
+        <span class="question-text">Bandingkan empat jenis tes objektif (pilihan ganda, benar-salah, menjodohkan, isian singkat) dalam hal format, peluang menebak, level kognitif, waktu penyusunan, dan kesesuaian untuk PAI! Berikan contoh konkret untuk masing-masing jenis!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">3</span>
+        <span class="question-text">Susunlah 3 butir soal pilihan ganda untuk elemen Fikih (Fase D) dengan level kognitif C3, C4, dan C5! Untuk setiap butir, jelaskan: (a) indikator yang diukur, (b) alasan pemilihan level kognitif, (c) justifikasi distraktor, dan (d) kunci jawaban beserta alasannya!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">4</span>
+        <span class="question-text">Analisislah pentingnya tingkat kesukaran dan daya beda dalam evaluasi pembelajaran PAI! Jelaskan bagaimana kedua indeks ini dihitung, interpretasinya, dan tindakan yang perlu diambil jika suatu butir memiliki tingkat kesukaran terlalu mudah atau daya beda negatif!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">5</span>
+        <span class="question-text">Sebagai calon evaluator PAI, bagaimana Anda menerjemahkan nilai-nilai Islam (<em>shidq</em>, <em>'adl</em>, <em>amanah</em>, <em>ihsan</em>, <em>tabayyun</em>) ke dalam proses penulisan butir soal? Berikan contoh konkret penerapannya dan kaitkan dengan QS. An-Nisa: 58!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="submitTest()">✉️ Kirim Jawaban &amp; Lihat Hasil</button>
+        <button type="button" class="btn btn-secondary" onclick="resetTest()">🔄 Mulai Ulang</button>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="resultPanel">
+        <h3>📊 Hasil Uji Formatif</h3>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="label">Data Mahasiswa</div>
+            <div class="value" id="dataStatus" style="font-size: 1.3rem;">—</div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian A (PG)</div>
+            <div class="value"><span id="scoreA">0</span><small>/100</small></div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian B (Essay)</div>
+            <div class="value"><span id="scoreB">0</span><small>/100</small></div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">Total Skor Akhir</div>
+        <div class="total-score"><span id="totalScore">0</span><small>/100</small></div>
+        <div class="grade-badge" id="gradeBadge">—</div>
+
+        <div class="btn-group" style="margin-top: 2rem;">
+          <button type="button" class="btn btn-secondary" onclick="downloadPDF()">📥 Unduh PDF Lengkap</button>
+          <button type="button" class="btn btn-secondary" onclick="downloadScore()">📊 Unduh Skor Saja</button>
+          <button type="button" class="btn btn-secondary" onclick="emailDosen()">✉️ Kirim Email Dosen</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Dr. Arifmiboy, S. Ag., M. Pd.</span>
+  <span class="ornament">◆</span>
+  <span>Evaluasi Pembelajaran PAI II</span>
+  <span class="ornament">◆</span>
+  <span>UIN Bukittinggi</span>
+</footer>
+
+<script>
+  // ============================================
+  // KUNCI JAWABAN PG
+  // ============================================
+  const answerKey = {
+    q1: 'b', q2: 'a', q3: 'c', q4: 'd', q5: 'b',
+    q6: 'a', q7: 'c', q8: 'd', q9: 'b', q10: 'c'
+  };
+
+  const feedbackText = {
+    q1: 'Thomas Haladyna (2004) merumuskan 31 prinsip penulisan butir soal pilihan ganda yang menjadi standar internasional.',
+    q2: 'Stem (pokok soal) adalah bagian butir yang berisi pertanyaan/pernyataan yang harus direspons siswa.',
+    q3: 'Indeks tingkat kesukaran ideal adalah 0,31-0,70 (kategori sedang).',
+    q4: 'Daya beda 0,40-1,00 dikategorikan "sangat baik" dan butir dipertahankan.',
+    q5: 'Tes benar-salah memiliki peluang menebak 50% karena hanya ada 2 opsi (Benar/Salah).',
+    q6: 'Distraktor yang baik harus plausible (masuk akal) dan homogen (sejenis dengan kunci jawaban).',
+    q7: 'Daya beda negatif berarti siswa pandai justru salah menjawab — butir harus dibuang.',
+    q8: '"Analisis implikasi" termasuk level C4 (Menganalisis) karena menuntut siswa mengurai hubungan.',
+    q9: 'Prinsip homogenitas menuntut semua opsi sejenis dalam panjang, struktur, dan makna.',
+    q10: 'Distraktor yang berfungsi baik dipilih oleh minimal 5% siswa. Jika <5%, distraktor tidak berfungsi.'
+  };
+
+  // ============================================
+  // ESSAY COUNTER
+  // ============================================
+  document.querySelectorAll('.essay-answer').forEach(ta => {
+    const counter = ta.nextElementSibling;
+    ta.addEventListener('input', () => {
+      counter.textContent = ta.value.length + ' karakter';
+    });
+  });
+
+  // ============================================
+  // SUBMIT TEST
+  // ============================================
+  function submitTest() {
+    const fields = ['nama', 'nim', 'tanggal', 'fakultas', 'prodi', 'semester', 'kelas'];
+    let dataValid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      if (!el.value.trim()) {
+        dataValid = false;
+        el.style.borderColor = '#d97070';
+      } else {
+        el.style.borderColor = 'rgba(201, 169, 97, 0.25)';
+      }
+    });
+
+    let pgAnswered = 0;
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) pgAnswered++;
+    }
+
+    let essayAnswered = 0;
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      if (ta.value.trim().length >= 20) essayAnswered++;
+    });
+
+    if (!dataValid) {
+      alert('⚠️ Mohon lengkapi semua data mahasiswa terlebih dahulu!');
+      return;
+    }
+    if (pgAnswered < 10) {
+      alert(`⚠️ Mohon jawab semua 10 soal pilihan ganda! (baru ${pgAnswered}/10 terjawab)`);
+      return;
+    }
+    if (essayAnswered < 5) {
+      alert(`⚠️ Mohon jawab semua 5 soal essay dengan minimal 20 karakter! (baru ${essayAnswered}/5 terjawab)`);
+      return;
+    }
+
+    let scoreA = 0;
+    const blocks = document.querySelectorAll('.question-block[data-correct]');
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const currentBlock = blocks[i - 1];
+      const feedback = currentBlock.querySelector('.feedback');
+      const correctAnswer = currentBlock.dataset.correct;
+      const userAnswer = selected.value;
+
+      currentBlock.classList.remove('correct', 'incorrect');
+      currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+        lbl.classList.remove('correct-answer', 'wrong-answer');
+      });
+
+      if (userAnswer === correctAnswer) {
+        scoreA += 10;
+        currentBlock.classList.add('correct');
+        feedback.className = 'feedback show correct';
+        feedback.innerHTML = '✓ <strong>Benar!</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('correct-answer');
+      } else {
+        currentBlock.classList.add('incorrect');
+        feedback.className = 'feedback show incorrect';
+        feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('wrong-answer');
+        currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+          const input = lbl.querySelector('input');
+          if (input.value === correctAnswer) lbl.classList.add('correct-answer');
+        });
+      }
+    }
+
+    let scoreB = 0;
+    const essays = document.querySelectorAll('.essay-answer');
+    const keywords = [
+      ['haladyna', '31 prinsip', 'konten', 'detail', 'format', 'stem', 'opsi', 'distraktor'],
+      ['pilihan ganda', 'benar salah', 'menjodohkan', 'isian singkat', 'peluang menebak', 'level kognitif'],
+      ['c3', 'c4', 'c5', 'indikator', 'distraktor', 'kunci jawaban', 'fikih', 'plausible'],
+      ['tingkat kesukaran', 'daya beda', 'indeks p', 'indeks d', 'interpretasi', 'revisi', 'dibuang'],
+      ['shidq', 'adl', 'amanah', 'ihsan', 'tabayyun', 'an-nisa', 'keadilan', 'integritas']
+    ];
+
+    essays.forEach((ta, idx) => {
+      const text = ta.value.toLowerCase();
+      const length = ta.value.trim().length;
+      let baseScore = 0;
+      if (length >= 200) baseScore = 16;
+      else if (length >= 100) baseScore = 12;
+      else if (length >= 50) baseScore = 8;
+      else baseScore = 4;
+
+      let keywordHits = 0;
+      keywords[idx].forEach(kw => {
+        if (text.includes(kw)) keywordHits++;
+      });
+      const keywordBonus = Math.min(keywordHits * 1, 4);
+      const essayScore = Math.min(baseScore + keywordBonus, 20);
+      scoreB += essayScore;
+    });
+
+    const total = Math.round((scoreA + scoreB) / 2);
+
+    let grade = 'E';
+    if (total >= 85) grade = 'A';
+    else if (total >= 75) grade = 'B+';
+    else if (total >= 65) grade = 'B';
+    else if (total >= 55) grade = 'C+';
+    else if (total >= 45) grade = 'C';
+    else if (total >= 35) grade = 'D';
+
+    document.getElementById('dataStatus').textContent = '✓ Lengkap';
+    document.getElementById('dataStatus').style.color = '#8fd98e';
+    document.getElementById('scoreA').textContent = scoreA;
+    document.getElementById('scoreB').textContent = scoreB;
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('gradeBadge').textContent = 'Grade: ' + grade;
+    document.getElementById('resultPanel').classList.add('show');
+    document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ============================================
+  // RESET TEST
+  // ============================================
+  function resetTest() {
+    if (!confirm('Yakin ingin mengulang uji formatif? Semua jawaban akan dihapus.')) return;
+    document.getElementById('studentForm').reset();
+    document.querySelectorAll('.question-block').forEach(b => {
+      b.classList.remove('correct', 'incorrect');
+      b.querySelector('.feedback').className = 'feedback';
+      b.querySelectorAll('.option-label').forEach(l => {
+        l.classList.remove('correct-answer', 'wrong-answer');
+      });
+    });
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      ta.value = '';
+      ta.nextElementSibling.textContent = '0 karakter';
+    });
+    document.getElementById('resultPanel').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ============================================
+  // DOWNLOAD PDF (PRINT)
+  // ============================================
+  function downloadPDF() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html><head><title>Hasil Uji Formatif - ${nama}</title>
+      <style>
+        body { font-family: Georgia, serif; padding: 40px; color: #222; line-height: 1.7; }
+        h1 { color: #8a7340; border-bottom: 2px solid #c9a961; padding-bottom: 10px; }
+        h2 { color: #8a7340; margin-top: 30px; font-size: 1.2rem; }
+        .info { background: #f9f6ee; padding: 15px; border-left: 4px solid #c9a961; margin: 20px 0; }
+        .score-box { text-align: center; font-size: 2rem; color: #8a7340; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #c9a961; color: #fff; }
+        .essay { background: #fafafa; padding: 10px; margin: 10px 0; border-left: 3px solid #c9a961; }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }
+      </style></head><body>
+      <h1>Hasil Uji Formatif Pertemuan 5</h1>
+      <p style="font-style: italic;">Seni Merangkai Soal: Butir-Butir Tes Objektif yang Bermutu</p>
+      <p style="font-style: italic;">Evaluasi Pembelajaran PAI II — Dr. Arifmiboy, S. Ag., M. Pd.</p>
+      <div class="info">
+        <strong>Nama:</strong> ${nama}<br>
+        <strong>NIM:</strong> ${nim}<br>
+        <strong>Prodi:</strong> ${prodi}<br>
+        <strong>Tanggal:</strong> ${document.getElementById('tanggal').value}
+      </div>
+      <div class="score-box">
+        Total Skor: ${total}/100<br>
+        <span style="font-size: 1.2rem;">${grade}</span>
+      </div>
+      <h2>Bagian A — Pilihan Ganda</h2>
+      <table>
+        <tr><th>No</th><th>Soal</th><th>Jawaban Anda</th><th>Kunci</th><th>Status</th></tr>
+        ${Array.from({length: 10}).map((_, i) => {
+          const qName = 'q' + (i+1);
+          const selected = document.querySelector(`input[name="${qName}"]:checked`);
+          const correct = answerKey[qName];
+          const user = selected ? selected.value : '-';
+          const status = user === correct ? '✓ Benar' : '✗ Salah';
+          const qText = document.querySelectorAll('.question-block[data-correct]')[i].querySelector('.question-text').textContent;
+          return `<tr><td>${i+1}</td><td>${qText}</td><td>${user}</td><td>${correct}</td><td>${status}</td></tr>`;
+        }).join('')}
+      </table>
+      <h2>Bagian B — Essay</h2>
+      ${Array.from(document.querySelectorAll('.essay-block')).map((block, i) => {
+        const q = block.querySelector('.question-text').textContent;
+        const a = block.querySelector('.essay-answer').value;
+        return `<div class="essay"><strong>Soal ${i+1}:</strong> ${q}<br><br><em>Jawaban:</em><br>${a.replace(/\n/g, '<br>')}</div>`;
+      }).join('')}
+      <div class="footer">
+        Dokumen ini digenerate otomatis pada ${new Date().toLocaleString('id-ID')}<br>
+        © 2026 Evaluasi Pembelajaran PAI II — UIN Bukittinggi
+      </div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => printWindow.print(), 500);
+  }
+
+  // ============================================
+  // DOWNLOAD SKOR SAJA
+  // ============================================
+  function downloadScore() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const content = `HASIL UJI FORMATIF PERTEMUAN 5
+Seni Merangkai Soal: Butir-Butir Tes Objektif yang Bermutu
+Evaluasi Pembelajaran PAI II
+Dr. Arifmiboy, S. Ag., M. Pd.
+UIN Sjech M. Djamil Djambek Bukittinggi
+========================================
+
+Nama      : ${nama}
+NIM       : ${nim}
+Tanggal   : ${document.getElementById('tanggal').value}
+Prodi     : ${document.getElementById('prodi').value}
+Kelas     : ${document.getElementById('kelas').value}
+
+----------------------------------------
+SKOR
+----------------------------------------
+Bagian A (Pilihan Ganda) : ${scoreA} / 100
+Bagian B (Essay)         : ${scoreB} / 100
+----------------------------------------
+TOTAL SKOR               : ${total} / 100
+GRADE                    : ${grade}
+========================================
+
+Tanggal Cetak: ${new Date().toLocaleString('id-ID')}
+`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Skor_UjiFormatif_P5_${nim}_${nama.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================
+  // EMAIL DOSEN
+  // ============================================
+  function emailDosen() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const kelas = document.getElementById('kelas').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const subject = encodeURIComponent(`Hasil Uji Formatif P5 - ${nama} (${nim})`);
+    const body = encodeURIComponent(
+`Yth. Dr. Arifmiboy, S. Ag., M. Pd.
+
+Berikut saya sampaikan hasil Uji Formatif Pertemuan 5 mata kuliah Evaluasi Pembelajaran PAI II:
+
+Materi: Seni Merangkai Soal - Butir-Butir Tes Objektif yang Bermutu
+
+Data Mahasiswa:
+- Nama : ${nama}
+- NIM  : ${nim}
+- Prodi: ${prodi}
+- Kelas: ${kelas}
+
+Hasil Penilaian:
+- Bagian A (PG)    : ${scoreA}/100
+- Bagian B (Essay) : ${scoreB}/100
+- TOTAL            : ${total}/100
+- Grade            : ${grade}
+
+Terima kasih.
+
+Hormat saya,
+${nama}`
+    );
+
+    window.location.href = `mailto:arifmiboy@uinbukittinggi.ac.id?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>

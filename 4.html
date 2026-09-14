@@ -1,0 +1,2458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertemuan 4 — Mengembangkan Kisi-Kisi Instrumen Non-Tes (Angket) untuk Aspek Afektif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0e1a;
+    color: #e8e4d9;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  :root {
+    --gold: #c9a961;
+    --gold-light: #e4cc8a;
+    --gold-dark: #8a7340;
+    --navy: #0a0e1a;
+    --navy-soft: #141a2e;
+    --cream: #f5efe0;
+    --text-muted: #a8a192;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(201, 169, 97, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 80%, rgba(201, 169, 97, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAVIGATION */
+  .nav {
+    position: sticky;
+    top: 0;
+    padding: 1.2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba(10, 14, 26, 0.85);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    font-weight: 600;
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; font-weight: 400; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    padding: 6rem 3rem 4rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.15);
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.2rem;
+    border: 1px solid var(--gold);
+    border-radius: 30px;
+  }
+  .hero-chapter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: var(--gold);
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '◆';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold);
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+  .hero-meta span strong { color: var(--gold); font-weight: 500; }
+
+  /* CONTENT */
+  .content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    color: var(--cream);
+    margin: 4rem 0 1.5rem;
+    font-weight: 600;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .content h2::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 4px; height: 60%;
+    background: var(--gold);
+  }
+  .content h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+  .content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    margin: 2.5rem 0 1rem;
+    font-weight: 500;
+    font-style: italic;
+  }
+  .content h4 {
+    font-size: 1.1rem;
+    color: var(--cream);
+    margin: 1.8rem 0 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .content p {
+    color: #d4cfc0;
+    margin-bottom: 1.2rem;
+    font-size: 1.02rem;
+    text-align: justify;
+  }
+  .content ul, .content ol {
+    margin: 1rem 0 1.5rem 1.5rem;
+    color: #d4cfc0;
+  }
+  .content li { margin-bottom: 0.6rem; }
+  .content strong { color: var(--gold-light); font-weight: 600; }
+  .content em { color: var(--gold); font-style: italic; }
+
+  /* VIDEO BOX */
+  .video-box {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    text-align: center;
+  }
+  .video-box .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .video-box h4 { font-family: 'Playfair Display', serif; color: var(--cream); margin-bottom: 0.5rem; }
+  .video-box p { color: var(--text-muted); font-size: 0.9rem; font-style: italic; margin: 0; }
+
+  /* KEY CONCEPTS */
+  .key-concept {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.6));
+    border-left: 3px solid var(--gold);
+    padding: 1.8rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .key-concept h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .key-concept ul { margin-top: 1rem; }
+  .key-concept li strong { color: var(--cream); }
+
+  /* CASE STUDY */
+  .case-study {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.2);
+    border-radius: 6px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .case-study::before {
+    content: '📖';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .case-study h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+  }
+  .case-study .lesson {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(201, 169, 97, 0.3);
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  /* REFLECTION */
+  .reflection {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.06), transparent);
+    border: 1px dashed var(--gold);
+    border-radius: 6px;
+    padding: 1.8rem;
+    margin: 2rem 0;
+  }
+  .reflection h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* TABLE */
+  .content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    background: rgba(20, 26, 46, 0.5);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .content table th {
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+    color: var(--navy);
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .content table td {
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.1);
+    color: #d4cfc0;
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  .content table tr:last-child td { border-bottom: none; }
+  .content table tr:hover td { background: rgba(201, 169, 97, 0.05); }
+
+  /* TIP BOX */
+  .tip-box {
+    background: rgba(201, 169, 97, 0.06);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .tip-box h4 {
+    color: var(--gold);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* WARNING BOX */
+  .warning-box {
+    background: rgba(180, 60, 60, 0.08);
+    border: 1px solid rgba(220, 100, 100, 0.3);
+    border-radius: 6px;
+    padding: 1.5rem 1.8rem;
+    margin: 2rem 0;
+  }
+  .warning-box h4 {
+    color: #e8a0a0;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* QUOTE BOX */
+  .quote-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.6));
+    border-left: 4px solid var(--gold);
+    border-radius: 0 6px 6px 0;
+    padding: 2rem 2.5rem;
+    margin: 2.5rem 0;
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 15px;
+    font-size: 5rem;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    opacity: 0.4;
+  }
+  .quote-box .quote-source {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: var(--gold);
+    font-style: normal;
+    letter-spacing: 1px;
+  }
+
+  /* INFOGRAPHIC */
+  .infographic {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.8), rgba(10, 14, 26, 0.9));
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin: 2.5rem 0;
+  }
+  .infographic h4 {
+    text-align: center;
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .flow-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: center;
+  }
+  .flow-item {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.15), rgba(20, 26, 46, 0.6));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    text-align: center;
+    min-width: 280px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .flow-item strong { color: var(--gold); display: block; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .flow-arrow { color: var(--gold); font-size: 1.5rem; line-height: 1; }
+
+  /* EXAMPLE BOX */
+  .example-box {
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.08), rgba(20, 26, 46, 0.7));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2.5rem 0;
+    position: relative;
+  }
+  .example-box::before {
+    content: '📝';
+    position: absolute;
+    top: -15px; left: 20px;
+    background: var(--navy);
+    padding: 0 10px;
+    font-size: 1.3rem;
+  }
+  .example-box h4 {
+    color: var(--gold);
+    margin-top: 0.5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+  }
+  .example-box .mono {
+    font-family: 'Courier New', monospace;
+    background: rgba(10, 14, 26, 0.6);
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--cream);
+    border-left: 3px solid var(--gold);
+    overflow-x: auto;
+    white-space: pre-line;
+  }
+
+  /* REFERENCES */
+  .references {
+    background: rgba(20, 26, 46, 0.5);
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    padding: 2.5rem 2rem;
+    margin: 3rem 0;
+  }
+  .references h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    font-style: normal;
+  }
+  .references h4 {
+    color: var(--gold-light);
+    margin: 1.5rem 0 0.8rem;
+    font-size: 1rem;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .references ol, .references ul {
+    margin-top: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .references li { margin-bottom: 0.8rem; }
+  .references em { color: var(--cream); }
+
+  /* CHAPTER NAVIGATION */
+  .chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(201, 169, 97, 0.2);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+    flex-wrap: wrap;
+  }
+  .chapter-nav a {
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s;
+    padding: 0.7rem 1.5rem;
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 3px;
+  }
+  .chapter-nav a:hover {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+
+  /* FORMATIVE TEST */
+  .test-section {
+    background: linear-gradient(135deg, rgba(20, 26, 46, 0.9), rgba(10, 14, 26, 0.95));
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    margin: 4rem 0;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+  .test-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(201, 169, 97, 0.2);
+  }
+  .test-header .icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+  .test-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--cream);
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+    padding-left: 0;
+  }
+  .test-header h2::before { display: none; }
+  .test-header p {
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    margin: 0;
+  }
+  .test-warning {
+    background: rgba(220, 170, 60, 0.1);
+    border: 1px solid rgba(220, 170, 60, 0.3);
+    color: var(--gold-light);
+    padding: 1rem 1.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  /* FORM FIELDS */
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-group label .required { color: #e8a0a0; }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.25);
+    border-radius: 4px;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(10, 14, 26, 0.9);
+    box-shadow: 0 0 0 3px rgba(201, 169, 97, 0.1);
+  }
+  .form-group select { cursor: pointer; }
+  .form-group select option { background: var(--navy); color: var(--cream); }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  /* QUESTION BLOCK */
+  .question-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .question-block:hover { border-color: rgba(201, 169, 97, 0.4); }
+  .question-block.correct {
+    border-color: #6abf69;
+    background: rgba(106, 191, 105, 0.08);
+  }
+  .question-block.incorrect {
+    border-color: #d97070;
+    background: rgba(217, 112, 112, 0.08);
+  }
+  .question-number {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-right: 0.8rem;
+  }
+  .question-text {
+    color: var(--cream);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: inline;
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1rem;
+  }
+  .option-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.7rem 1rem;
+    background: rgba(20, 26, 46, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.1);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #d4cfc0;
+    font-size: 0.95rem;
+  }
+  .option-label:hover {
+    background: rgba(201, 169, 97, 0.08);
+    border-color: var(--gold);
+  }
+  .option-label input { margin-top: 3px; accent-color: var(--gold); cursor: pointer; }
+  .option-label input:checked + span { color: var(--gold-light); font-weight: 500; }
+  .option-label.correct-answer {
+    background: rgba(106, 191, 105, 0.15);
+    border-color: #6abf69;
+  }
+  .option-label.wrong-answer {
+    background: rgba(217, 112, 112, 0.15);
+    border-color: #d97070;
+  }
+  .feedback {
+    display: none;
+    margin-top: 0.8rem;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .feedback.show { display: block; }
+  .feedback.correct {
+    background: rgba(106, 191, 105, 0.1);
+    color: #8fd98e;
+    border-left: 3px solid #6abf69;
+  }
+  .feedback.incorrect {
+    background: rgba(217, 112, 112, 0.1);
+    color: #e8a0a0;
+    border-left: 3px solid #d97070;
+  }
+
+  /* ESSAY */
+  .essay-block {
+    background: rgba(10, 14, 26, 0.5);
+    border: 1px solid rgba(201, 169, 97, 0.15);
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .essay-block textarea {
+    min-height: 120px;
+    resize: vertical;
+    margin-top: 1rem;
+  }
+  .essay-counter {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* BUTTONS */
+  .btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--navy);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(201, 169, 97, 0.4);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  /* RESULTS */
+  .result-panel {
+    display: none;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(20, 26, 46, 0.8));
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+  .result-panel.show { display: block; animation: fadeIn 0.6s ease; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .result-panel h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  .score-card {
+    background: rgba(10, 14, 26, 0.6);
+    border: 1px solid rgba(201, 169, 97, 0.3);
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+  .score-card .label {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .score-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .score-card .value small { font-size: 1rem; color: var(--text-muted); }
+  .total-score {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold);
+    font-weight: 700;
+    margin: 1rem 0;
+    text-shadow: 0 0 30px rgba(201, 169, 97, 0.4);
+  }
+  .total-score small { font-size: 1.5rem; color: var(--text-muted); }
+  .grade-badge {
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 30px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 2rem;
+    border-top: 1px solid rgba(201, 169, 97, 0.15);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+  footer .ornament { color: var(--gold); margin: 0 0.8rem; }
+
+  @media (max-width: 768px) {
+    .nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links a { font-size: 0.7rem; }
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .content { padding: 3rem 1.2rem; }
+    .test-section { padding: 2rem 1.2rem; }
+    .hero-meta { gap: 1rem; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="nav-logo">EVALUASI <span>PAI II</span></div>
+  <div class="nav-links">
+    <a href="index.html">Beranda</a>
+    <a href="index.html#pertemuan">Pertemuan</a>
+    <a href="index.html#penulis">Penulis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-badge">Pertemuan Keempat · OBE 2026</span>
+  <div class="hero-chapter">Bab IV</div>
+  <h1>Menyentuh <em>Ranah Rasa:</em><br>Instrumen Non-Tes untuk Aspek Afektif</h1>
+  <div class="hero-divider"></div>
+  <p class="hero-subtitle">
+    Merancang kisi-kisi angket yang presisi untuk mengukur sikap, nilai, minat, dan motivasi
+    siswa dalam pembelajaran PAI—karena pendidikan bukan hanya soal kognisi, melainkan juga hati.
+  </p>
+  <div class="hero-meta">
+    <span><strong>Penulis:</strong> Dr. Arifmiboy, S. Ag., M. Pd.</span>
+    <span><strong>Homebase:</strong> UIN Bukittinggi</span>
+    <span><strong>Bobot:</strong> 5%</span>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- PENDAHULUAN -->
+  <h2>Pendahuluan</h2>
+  <p>
+    Pendidikan Agama Islam tidak hanya bertujuan mentransfer <strong>pengetahuan</strong> tentang
+    agama, tetapi juga membentuk <strong>sikap</strong>, <strong>nilai</strong>, dan <strong>karakter</strong>
+    religius peserta didik. Inilah mengapa ranah afektif memiliki posisi sentral dalam evaluasi PAI—ia
+    adalah <em>jantung</em> dari pendidikan agama itu sendiri.
+  </p>
+  <p>
+    Namun, mengukur ranah afektif jauh lebih kompleks daripada mengukur ranah kognitif. Jika tes
+    objektif dapat dengan mudah menguji hafalan atau pemahaman, maka mengukur <em>seberapa tulus</em>
+    seorang siswa beribadah, <em>seberapa dalam</em> penghayatannya terhadap nilai-nilai Islam, atau
+    <em>seberapa kuat</em> motivasinya untuk mengamalkan ajaran agama—memerlukan instrumen yang
+    berbeda: <strong>instrumen non-tes</strong>.
+  </p>
+  <p>
+    Instrumen non-tes—khususnya <strong>angket (kuesioner)</strong>—adalah alat ukur yang dirancang
+    untuk menangkap fenomena internal yang tidak dapat diobservasi secara langsung: sikap, minat,
+    motivasi, nilai, persepsi, dan kecenderungan perilaku. Dalam konteks PAI, angket menjadi
+    instrumen strategis untuk mengevaluasi keberhasilan pembentukan karakter religius peserta didik.
+  </p>
+  <p>
+    Pertemuan keempat ini akan mengajak mahasiswa untuk memahami filosofi, landasan teoretis,
+    jenis-jenis skala, dan teknik penyusunan kisi-kisi angket yang valid dan reliabel—khususnya
+    untuk mengukur aspek afektif dalam pembelajaran PAI.
+  </p>
+
+  <div class="quote-box">
+    Apakah kamu mengira bahwa Kami menciptakan kamu tanpa tujuan dan bahwa kamu tidak akan dikembalikan kepada Kami? Maka Mahatinggi Allah, Raja Yang Hak; tidak ada tuhan selain Dia, Pemilik Arasy yang mulia.
+    <span class="quote-source">— QS. Al-Mu'minun [23]: 115-116</span>
+  </div>
+
+  <p>
+    Ayat ini mengingatkan kita bahwa segala sesuatu—termasuk sikap, nilai, dan motivasi manusia—
+    diciptakan dengan tujuan dan akan dipertanggungjawabkan. Dalam evaluasi PAI, mengukur ranah
+    afektif bukan sekadar aktivitas teknis, melainkan upaya memahami <em>makna</em> di balik
+    perilaku religius peserta didik.
+  </p>
+
+  <div class="video-box">
+    <div class="icon">🎬</div>
+    <h4>Video: Mengukur Ranah Afektif dalam PAI</h4>
+    <p>Simak penjelasan komprehensif tentang cara menyusun angket yang valid untuk mengukur sikap, nilai, dan motivasi religius siswa.</p>
+  </div>
+
+  <!-- KONSEP KUNCI -->
+  <div class="key-concept">
+    <h4>🔑 Konsep Kunci</h4>
+    <ul>
+      <li><strong>Instrumen Non-Tes:</strong> Alat ukur yang tidak memiliki jawaban benar atau salah, digunakan untuk mengukur aspek afektif, psikomotorik, dan latar belakang.</li>
+      <li><strong>Angket (Kuesioner):</strong> Daftar pernyataan tertulis yang dijawab responden untuk mengukur sikap, minat, motivasi, atau persepsi.</li>
+      <li><strong>Ranah Afektif:</strong> Domain pembelajaran yang berkaitan dengan sikap, nilai, emosi, dan perasaan (Krathwohl et al., 1964).</li>
+      <li><strong>Skala Likert:</strong> Skala pengukuran sikap dengan 5-7 tingkat persetujuan (Sangat Setuju s.d. Sangat Tidak Setuju).</li>
+      <li><strong>Skala Thurstone:</strong> Skala dengan pernyataan berbobot yang dipilih berdasarkan nilai skala oleh para ahli.</li>
+      <li><strong>Skala Guttman:</strong> Skala dikotomis (ya-tidak) dengan struktur kumulatif hierarkis.</li>
+      <li><strong>Semantic Differential:</strong> Skala dengan pasangan kata sifat berlawanan untuk mengukur konotasi suatu konsep.</li>
+      <li><strong>Kisi-Kisi Angket:</strong> Matriks yang memetakan konstruk afektif ke dalam indikator dan butir pernyataan.</li>
+    </ul>
+  </div>
+
+  <!-- STUDI KASUS 1 -->
+  <div class="case-study">
+    <h4>Studi Kasus 1: Mengukur yang Tak Terukur</h4>
+    <p>
+      Seorang guru PAI di sebuah MTs di Bukittinggi ingin mengetahui apakah metode pembelajaran
+      yang ia terapkan berhasil membentuk sikap religius siswa. Ia hanya menggunakan tes tertulis
+      tentang hukum-hukum fikih. Hasilnya, 85% siswa mendapat nilai A. Namun, ketika ia melakukan
+      observasi, banyak siswa yang tidak shalat berjamaah, tidak berakhlak sopan, dan tidak
+      menunjukkan perilaku religius yang diharapkan.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Tes kognitif tidak dapat mengukur sikap dan perilaku religius.
+      Guru perlu menggunakan instrumen non-tes (angket, observasi, jurnal refleksi) untuk mengukur
+      ranah afektif secara komprehensif.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 2 -->
+  <div class="case-study">
+    <h4>Studi Kasus 2: Keberhasilan Angket di MAN 4 Tanah Datar</h4>
+    <p>
+      Dalam kegiatan PKM Berbasis Prodi tahun 2024, tim dosen UIN Bukittinggi mendampingi guru-guru
+      MAN 4 Tanah Datar menyusun angket sikap religius untuk mata pelajaran Akidah Akhlak. Angket
+      dikembangkan dengan 4 dimensi: (1) keyakinan beragama, (2) ibadah mahdhah, (3) akhlak sosial,
+      dan (4) toleransi beragama. Setelah uji coba pada 120 siswa, angket menunjukkan validitas
+      0,78 dan reliabilitas 0,85 (sangat baik). Hasil angket digunakan untuk merancang program
+      penguatan karakter religius yang tepat sasaran.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Angket yang disusun dengan metodologi yang tepat dapat
+      memberikan informasi berharga untuk perbaikan pembelajaran PAI.
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 3 -->
+  <div class="case-study">
+    <h4>Studi Kasus 3: Kesalahan Umum dalam Angket</h4>
+    <p>
+      Seorang guru menyusun angket "Sikap terhadap Shalat" dengan pernyataan: "Shalat itu penting."
+      Hampir 100% siswa menjawab "Sangat Setuju". Pernyataan ini tidak informatif karena bersifat
+      <em>socially desirable</em>—siswa menjawab sesuai harapan sosial, bukan sikap sebenarnya.
+      Akibatnya, data angket tidak mencerminkan sikap religius siswa yang sesungguhnya.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Pernyataan angket harus menghindari bias <em>social desirability</em>.
+      Gunakan pernyataan yang lebih spesifik dan kontekstual, seperti "Saya merasa berat bangun
+      subuh untuk shalat" atau "Saya lebih memilih bermain game daripada shalat berjamaah".
+    </div>
+  </div>
+
+  <!-- STUDI KASUS 4 -->
+  <div class="case-study">
+    <h4>Studi Kasus 4: Angket untuk Mengukur Motivasi Belajar PAI</h4>
+    <p>
+      Sebuah penelitian di UIN Bukittinggi mengembangkan angket motivasi belajar PAI berdasarkan
+      teori ARCS Keller. Angket terdiri dari 4 dimensi: <em>Attention</em>, <em>Relevance</em>,
+      <em>Confidence</em>, dan <em>Satisfaction</em>, dengan 24 butir pernyataan. Hasil analisis
+      menunjukkan bahwa dimensi <em>Relevance</em> memiliki skor terendah (2,8 dari 5), yang
+      mengindikasikan bahwa siswa belum melihat relevansi PAI dengan kehidupan mereka. Temuan ini
+      menjadi dasar perancangan pembelajaran PAI yang lebih kontekstual.
+    </p>
+    <div class="lesson">
+      <strong>Pembelajaran:</strong> Angket yang dirancang berdasarkan teori yang kokoh dapat
+      memberikan diagnosis yang akurat untuk perbaikan pembelajaran.
+    </div>
+  </div>
+
+  <!-- REFLEKSI -->
+  <div class="reflection">
+    <h4>💭 Refleksi untuk Mahasiswa PAI</h4>
+    <p>
+      Dalam tradisi Islam, konsep <em>niyat</em> (niat) dan <em>ikhlas</em> memiliki posisi sentral.
+      Rasulullah SAW bersabda: <em>"Sesungguhnya segala amal perbuatan tergantung pada niatnya."</em>
+      (HR. Bukhari-Muslim). Namun, niat dan keikhlasan adalah fenomena internal yang tidak dapat
+      diobservasi secara langsung—ia hanya diketahui oleh Allah dan pemiliknya.
+    </p>
+    <p>
+      Di sinilah tantangan evaluasi afektif dalam PAI: bagaimana mengukur sesuatu yang bersifat
+      internal dan personal? Angket, observasi, dan refleksi adalah upaya manusia untuk mendekati
+      pemahaman atas fenomena ini—dengan kesadaran bahwa pengukuran kita tidak akan pernah sempurna,
+      karena hanya Allah yang Maha Mengetahui isi hati.
+    </p>
+  </div>
+
+  <!-- LANDASAN TEORETIS -->
+  <h2>4.1 <em>Landasan Teoretis</em> Instrumen Non-Tes dan Ranah Afektif</h2>
+
+  <h3>4.1.1 Taksonomi Ranah Afektif (Krathwohl et al.)</h3>
+  <p>
+    Krathwohl, Bloom, dan Masia (1964) mengembangkan taksonomi ranah afektif yang terdiri dari
+    lima level hierarkis:
+  </p>
+  <table>
+    <tr>
+      <th>Level</th>
+      <th>Proses Afektif</th>
+      <th>Deskripsi</th>
+      <th>Contoh dalam PAI</th>
+    </tr>
+    <tr>
+      <td><strong>A1</strong></td>
+      <td>Receiving (Menerima)</td>
+      <td>Kesediaan untuk memperhatikan fenomena</td>
+      <td>Siswa mendengarkan ayat Al-Qur'an dengan penuh perhatian</td>
+    </tr>
+    <tr>
+      <td><strong>A2</strong></td>
+      <td>Responding (Merespons)</td>
+      <td>Aktif berpartisipasi dalam fenomena</td>
+      <td>Siswa aktif mengikuti diskusi tentang akhlak</td>
+    </tr>
+    <tr>
+      <td><strong>A3</strong></td>
+      <td>Valuing (Menghargai)</td>
+      <td>Memberikan nilai pada fenomena</td>
+      <td>Siswa meyakini bahwa kejujuran adalah nilai penting</td>
+    </tr>
+    <tr>
+      <td><strong>A4</strong></td>
+      <td>Organization (Mengorganisasi)</td>
+      <td>Mengintegrasikan nilai ke dalam sistem</td>
+      <td>Siswa menyelaraskan nilai-nilai Islam dalam kehidupan</td>
+    </tr>
+    <tr>
+      <td><strong>A5</strong></td>
+      <td>Characterization (Karakterisasi)</td>
+      <td>Nilai menjadi bagian dari karakter</td>
+      <td>Siswa konsisten berakhlak mulia dalam segala situasi</td>
+    </tr>
+  </table>
+
+  <h3>4.1.2 Teori Sikap (Attitude Theory)</h3>
+  <p>
+    Sikap adalah <strong>kecenderungan psikologis</strong> yang diekspresikan melalui evaluasi
+    entitas tertentu dengan derajat favorabilitas tertentu (Eagly &amp; Chaiken, 1993). Sikap
+    memiliki tiga komponen (<em>tri-component model</em>):
+  </p>
+  <ul>
+    <li><strong>Kognitif:</strong> Pengetahuan dan keyakinan tentang objek sikap</li>
+    <li><strong>Afektif:</strong> Perasaan dan emosi terhadap objek sikap</li>
+    <li><strong>Behavioral:</strong> Kecenderungan bertindak terhadap objek sikap</li>
+  </ul>
+  <p>
+    Dalam konteks PAI, sikap religius mencakup ketiga komponen ini. Misalnya, sikap terhadap
+    shalat: (1) <em>kognitif</em>—meyakini kewajiban shalat, (2) <em>afektif</em>—merasa tenang
+    saat shalat, (3) <em>behavioral</em>—konsisten melaksanakan shalat.
+  </p>
+
+  <h3>4.1.3 Teori Skala Pengukuran (Stevens)</h3>
+  <p>
+    Stevens (1946) mengklasifikasikan skala pengukuran menjadi empat level:
+  </p>
+  <table>
+    <tr>
+      <th>Level Skala</th>
+      <th>Karakteristik</th>
+      <th>Contoh</th>
+      <th>Statistik yang Sesuai</th>
+    </tr>
+    <tr>
+      <td><strong>Nominal</strong></td>
+      <td>Kategori tanpa urutan</td>
+      <td>Jenis kelamin, agama</td>
+      <td>Modus, chi-square</td>
+    </tr>
+    <tr>
+      <td><strong>Ordinal</strong></td>
+      <td>Kategori dengan urutan</td>
+      <td>Peringkat kelas, tingkat kepuasan</td>
+      <td>Median, Spearman</td>
+    </tr>
+    <tr>
+      <td><strong>Interval</strong></td>
+      <td>Jarak sama, tanpa nol absolut</td>
+      <td>Skala Likert, suhu</td>
+      <td>Mean, SD, Pearson</td>
+    </tr>
+    <tr>
+      <td><strong>Rasio</strong></td>
+      <td>Jarak sama, dengan nol absolut</td>
+      <td>Berat, tinggi, waktu</td>
+      <td>Semua statistik</td>
+    </tr>
+  </table>
+  <p>
+    Angket dalam evaluasi PAI umumnya menggunakan skala <strong>interval</strong> (Likert) atau
+    <strong>ordinal</strong> (Guttman), yang memungkinkan analisis statistik parametrik atau
+    non-parametrik.
+  </p>
+
+  <h3>4.1.4 Teori Respons Butir (<em>Item Response Theory</em>)</h3>
+  <p>
+    Selain Classical Test Theory (CTT), <em>Item Response Theory</em> (IRT) yang dikembangkan oleh
+    Lord (1980) dan Rasch (1960) menawarkan pendekatan modern dalam pengembangan instrumen non-tes.
+    IRT menekankan bahwa probabilitas respons responden terhadap butir tergantung pada:
+  </p>
+  <ul>
+    <li><strong>Kemampuan/trait responden:</strong> Tingkat sikap, motivasi, atau nilai yang dimiliki</li>
+    <li><strong>Karakteristik butir:</strong> Tingkat kesulitan, daya beda, dan pseudo-chance</li>
+  </ul>
+  <p>
+    Dalam konteks angket PAI, IRT membantu memastikan bahwa butir-butir pernyataan dapat membedakan
+    siswa dengan tingkat religiusitas yang berbeda secara akurat.
+  </p>
+
+  <h3>4.1.5 Teori Motivasi ARCS (Keller)</h3>
+  <p>
+    Keller (1987) memperkenalkan model ARCS yang relevan untuk mengukur motivasi belajar PAI:
+  </p>
+  <ul>
+    <li><strong>Attention:</strong> Seberapa tertarik siswa terhadap pembelajaran PAI</li>
+    <li><strong>Relevance:</strong> Seberapa relevan PAI dengan kehidupan siswa</li>
+    <li><strong>Confidence:</strong> Seberapa yakin siswa mampu menguasai materi PAI</li>
+    <li><strong>Satisfaction:</strong> Seberapa puas siswa dengan pengalaman belajar PAI</li>
+  </ul>
+  <p>
+    Angket motivasi PAI berbasis ARCS telah banyak dikembangkan dan divalidasi dalam konteks
+    pendidikan Islam di Indonesia.
+  </p>
+
+  <!-- INFOGRAPHIC ALUR -->
+  <div class="infographic">
+    <h4>🔗 Alur Penyusunan Kisi-Kisi Angket</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>1. IDENTIFIKASI KONSTRUK</strong>
+        Tentukan aspek afektif yang diukur (sikap, minat, motivasi, nilai)
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>2. OPERASIONALISASI</strong>
+        Jabarkan konstruk ke dalam dimensi dan indikator
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>3. PILIH SKALA PENGUKURAN</strong>
+        Likert, Thurstone, Guttman, atau Semantic Differential
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>4. SUSUN MATRIKS KISI-KISI</strong>
+        Dimensi × Indikator × Jumlah Butir × Tipe Pernyataan
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>5. TULIS BUTIR PERNYATAAN</strong>
+        Pernyataan favorable &amp; unfavorable (reverse scoring)
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>6. VALIDASI &amp; UJI COBA</strong>
+        Expert judgment + uji coba lapangan + analisis butir
+      </div>
+    </div>
+  </div>
+
+  <!-- JENIS-JENIS SKALA -->
+  <h2>4.2 <em>Jenis-Jenis Skala</em> Pengukuran Afektif</h2>
+
+  <h3>4.2.1 Skala Likert</h3>
+  <p>
+    Skala Likert dikembangkan oleh Rensis Likert (1932) dan merupakan skala yang paling populer
+    dalam penelitian sosial dan pendidikan. Skala ini menggunakan pernyataan yang direspons dengan
+    tingkat persetujuan.
+  </p>
+
+  <table>
+    <tr>
+      <th>Skor</th>
+      <th>Favorable (+)</th>
+      <th>Unfavorable (−)</th>
+    </tr>
+    <tr>
+      <td><strong>5</strong></td>
+      <td>Sangat Setuju (SS)</td>
+      <td>Sangat Tidak Setuju (STS)</td>
+    </tr>
+    <tr>
+      <td><strong>4</strong></td>
+      <td>Setuju (S)</td>
+      <td>Tidak Setuju (TS)</td>
+    </tr>
+    <tr>
+      <td><strong>3</strong></td>
+      <td>Ragu-ragu / Netral (N)</td>
+      <td>Ragu-ragu / Netral (N)</td>
+    </tr>
+    <tr>
+      <td><strong>2</strong></td>
+      <td>Tidak Setuju (TS)</td>
+      <td>Setuju (S)</td>
+    </tr>
+    <tr>
+      <td><strong>1</strong></td>
+      <td>Sangat Tidak Setuju (STS)</td>
+      <td>Sangat Setuju (SS)</td>
+    </tr>
+  </table>
+
+  <div class="example-box">
+    <h4>📝 Contoh Butir Skala Likert: Sikap terhadap Shalat</h4>
+    <div class="mono">
+1. Saya merasa tenang setelah melaksanakan shalat.       [SS - S - N - TS - STS]
+2. Shalat berjamaah lebih utama daripada shalat sendiri. [SS - S - N - TS - STS]
+3. Saya merasa berat bangun subuh untuk shalat. (−)      [SS - S - N - TS - STS]
+4. Shalat adalah tiang agama.                            [SS - S - N - TS - STS]
+5. Saya lebih memilih bermain game daripada shalat. (−)  [SS - S - N - TS - STS]
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      Catatan: Butir (−) adalah pernyataan unfavorable yang memerlukan <em>reverse scoring</em>.
+    </p>
+  </div>
+
+  <h3>4.2.2 Skala Thurstone</h3>
+  <p>
+    Skala Thurstone dikembangkan oleh Louis Leon Thurstone (1928). Skala ini menggunakan
+    pernyataan yang telah dibobot oleh para ahli pada rentang 1-11. Responden hanya memilih
+    pernyataan yang disetujuinya, dan skor akhir adalah rata-rata bobot pernyataan yang dipilih.
+  </p>
+
+  <table>
+    <tr>
+      <th>Langkah</th>
+      <th>Deskripsi</th>
+    </tr>
+    <tr>
+      <td>1. Kumpulkan pernyataan</td>
+      <td>Kumpulkan 80-120 pernyataan tentang konstruk yang diukur</td>
+    </tr>
+    <tr>
+      <td>2. Penilaian ahli</td>
+      <td>Para ahli menilai setiap pernyataan pada skala 1-11</td>
+    </tr>
+    <tr>
+      <td>3. Hitung nilai skala</td>
+      <td>Hitung median dan Q (quartile deviation) setiap pernyataan</td>
+    </tr>
+    <tr>
+      <td>4. Seleksi butir</td>
+      <td>Pilih 20-30 butir dengan Q terkecil (konsensus tinggi)</td>
+    </tr>
+    <tr>
+      <td>5. Administrasi</td>
+      <td>Responden memilih pernyataan yang disetujui</td>
+    </tr>
+  </table>
+
+  <h3>4.2.3 Skala Guttman</h3>
+  <p>
+    Skala Guttman dikembangkan oleh Louis Guttman (1944). Skala ini bersifat <strong>dikotomis</strong>
+    (ya-tidak, benar-salah) dan memiliki struktur <strong>kumulatif hierarkis</strong>—artinya
+    seseorang yang menyetujui pernyataan sulit akan menyetujui pernyataan yang lebih mudah.
+  </p>
+
+  <div class="example-box">
+    <h4>📝 Contoh Skala Guttman: Tingkat Religiusitas</h4>
+    <div class="mono">
+1. Apakah Anda percaya kepada Allah?                          [Ya / Tidak]
+2. Apakah Anda melaksanakan shalat lima waktu?                [Ya / Tidak]
+3. Apakah Anda melaksanakan shalat sunnah rawatib?            [Ya / Tidak]
+4. Apakah Anda rutin membaca Al-Qur'an setiap hari?           [Ya / Tidak]
+5. Apakah Anda rutin melaksanakan shalat malam (tahajud)?     [Ya / Tidak]
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      Pola respons yang konsisten: Ya-Ya-Ya-Ya-Ya (tingkat religiusitas tinggi) atau
+      Ya-Ya-Tidak-Tidak-Tidak (tingkat religiusitas sedang).
+    </p>
+  </div>
+
+  <h3>4.2.4 Semantic Differential</h3>
+  <p>
+    Skala Semantic Differential dikembangkan oleh Osgood, Suci, dan Tannenbaum (1957). Skala
+    ini menggunakan <strong>pasangan kata sifat berlawanan</strong> untuk mengukur konotasi
+    suatu konsep.
+  </p>
+
+  <div class="example-box">
+    <h4>📝 Contoh Semantic Differential: Persepsi terhadap PAI</h4>
+    <div class="mono">
+Bagaimana persepsi Anda terhadap mata pelajaran PAI?
+
+Menarik      ○  ○  ○  ○  ○  ○  ○      Membosankan
+Mudah        ○  ○  ○  ○  ○  ○  ○      Sulit
+Bermanfaat   ○  ○  ○  ○  ○  ○  ○      Tidak berguna
+Menyenangkan ○  ○  ○  ○  ○  ○  ○      Menekan
+Relevan      ○  ○  ○  ○  ○  ○  ○      Tidak relevan
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+      Skala 7 titik dengan pasangan kata sifat berlawanan di setiap ujung.
+    </p>
+  </div>
+
+  <!-- PERBANDINGAN SKALA -->
+  <h3>4.2.5 Perbandingan Jenis-Jenis Skala</h3>
+  <table>
+    <tr>
+      <th>Aspek</th>
+      <th>Skala Likert</th>
+      <th>Skala Thurstone</th>
+      <th>Skala Guttman</th>
+      <th>Semantic Differential</th>
+    </tr>
+    <tr>
+      <td><strong>Format Respons</strong></td>
+      <td>5-7 tingkat persetujuan</td>
+      <td>Pilih pernyataan yang disetujui</td>
+      <td>Ya / Tidak</td>
+      <td>Pasangan kata sifat berlawanan</td>
+    </tr>
+    <tr>
+      <td><strong>Tingkat Kesulitan</strong></td>
+      <td>Mudah disusun</td>
+      <td>Sulit (perlu ahli)</td>
+      <td>Sedang</td>
+      <td>Sedang</td>
+    </tr>
+    <tr>
+      <td><strong>Waktu Respons</strong></td>
+      <td>Cepat</td>
+      <td>Sedang</td>
+      <td>Cepat</td>
+      <td>Cepat</td>
+    </tr>
+    <tr>
+      <td><strong>Level Skala</strong></td>
+      <td>Interval</td>
+      <td>Interval</td>
+      <td>Ordinal</td>
+      <td>Interval</td>
+    </tr>
+    <tr>
+      <td><strong>Kelemahan Utama</strong></td>
+      <td>Social desirability bias</td>
+      <td>Subjektivitas ahli</td>
+      <td>Hanya untuk konstruk unidimensi</td>
+      <td>Interpretasi subjektif</td>
+    </tr>
+    <tr>
+      <td><strong>Kesesuaian untuk PAI</strong></td>
+      <td>Sangat cocok</td>
+      <td>Cukup cocok</td>
+      <td>Cocok untuk hierarki</td>
+      <td>Cocok untuk persepsi</td>
+    </tr>
+  </table>
+
+  <!-- KOMPONEN KISI-KISI ANGKET -->
+  <h2>4.3 <em>Komponen Kisi-Kisi</em> Angket Afektif</h2>
+
+  <h3>4.3.1 Identitas Angket</h3>
+  <table>
+    <tr>
+      <th>Komponen</th>
+      <th>Deskripsi</th>
+      <th>Contoh</th>
+    </tr>
+    <tr>
+      <td><strong>Jenis Sekolah</strong></td>
+      <td>Jenjang dan tipe lembaga</td>
+      <td>MTs / MA / SMP Islam</td>
+    </tr>
+    <tr>
+      <td><strong>Mata Pelajaran</strong></td>
+      <td>Mata pelajaran yang dievaluasi</td>
+      <td>Akidah Akhlak / Fikih / PAI</td>
+    </tr>
+    <tr>
+      <td><strong>Konstruk yang Diukur</strong></td>
+      <td>Aspek afektif target</td>
+      <td>Sikap religius / Motivasi belajar PAI</td>
+    </tr>
+    <tr>
+      <td><strong>Target Responden</strong></td>
+      <td>Siswa/kelas yang diukur</td>
+      <td>Siswa kelas VIII MTs</td>
+    </tr>
+    <tr>
+      <td><strong>Jumlah Butir</strong></td>
+      <td>Total pernyataan</td>
+      <td>30 butir</td>
+    </tr>
+    <tr>
+      <td><strong>Skala yang Digunakan</strong></td>
+      <td>Tipe skala</td>
+      <td>Skala Likert 5 titik</td>
+    </tr>
+    <tr>
+      <td><strong>Penyusun</strong></td>
+      <td>Nama guru/tim penyusun</td>
+      <td>Tim Guru PAI MTs</td>
+    </tr>
+  </table>
+
+  <h3>4.3.2 Format Kisi-Kisi Angket</h3>
+  <p>
+    Kisi-kisi angket terdiri dari kolom-kolom berikut:
+  </p>
+  <ul>
+    <li><strong>Kolom 1:</strong> No. urut</li>
+    <li><strong>Kolom 2:</strong> Dimensi/Konstruk</li>
+    <li><strong>Kolom 3:</strong> Indikator</li>
+    <li><strong>Kolom 4:</strong> Jumlah Butir</li>
+    <li><strong>Kolom 5:</strong> Nomor Butir</li>
+    <li><strong>Kolom 6:</strong> Tipe Pernyataan (Favorable/Unfavorable)</li>
+  </ul>
+
+  <!-- CONTOH KISI-KISI -->
+  <h2>4.4 <em>Contoh</em> Kisi-Kisi Angket PAI</h2>
+
+  <h3>4.4.1 Contoh Kisi-Kisi: Sikap Religius Siswa MTs</h3>
+
+  <div class="example-box">
+    <h4>📝 Identitas Angket</h4>
+    <div class="mono">
+Jenis Sekolah        : MTs
+Mata Pelajaran       : Akidah Akhlak
+Konstruk yang Diukur : Sikap Religius
+Target Responden     : Siswa Kelas VIII
+Jumlah Butir         : 30 butir
+Skala                : Likert 5 titik
+Penyusun             : Tim Guru Akidah Akhlak
+    </div>
+  </div>
+
+  <h4>Matriks Kisi-Kisi</h4>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Dimensi</th>
+      <th>Indikator</th>
+      <th>Jml Butir</th>
+      <th>No. Butir</th>
+      <th>Tipe</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Keyakinan Beragama</strong></td>
+      <td>1.1 Meyakini rukun iman<br>1.2 Meyakini takdir Allah<br>1.3 Meyakini hari akhir</td>
+      <td>6</td>
+      <td>1-6</td>
+      <td>4F + 2U</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Ibadah Mahdhah</strong></td>
+      <td>2.1 Konsisten shalat 5 waktu<br>2.2 Melaksanakan shalat sunnah<br>2.3 Membaca Al-Qur'an</td>
+      <td>8</td>
+      <td>7-14</td>
+      <td>5F + 3U</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Akhlak Sosial</strong></td>
+      <td>3.1 Berbuat jujur<br>3.2 Menghormati orang tua<br>3.3 Tolong-menolong<br>3.4 Menjaga lisan</td>
+      <td>10</td>
+      <td>15-24</td>
+      <td>7F + 3U</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Toleransi Beragama</strong></td>
+      <td>4.1 Menghargai perbedaan<br>4.2 Tidak memaksakan agama<br>4.3 Hidup berdampingan</td>
+      <td>6</td>
+      <td>25-30</td>
+      <td>4F + 2U</td>
+    </tr>
+    <tr style="background: rgba(201, 169, 97, 0.1);">
+      <td colspan="3"><strong>TOTAL</strong></td>
+      <td><strong>30</strong></td>
+      <td>1-30</td>
+      <td>20F + 10U</td>
+    </tr>
+  </table>
+  <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+    Keterangan: F = Favorable (pernyataan positif), U = Unfavorable (pernyataan negatif/reverse scoring)
+  </p>
+
+  <h3>4.4.2 Contoh Butir Pernyataan</h3>
+  <div class="example-box">
+    <h4>📝 Contoh Butir Pernyataan Angket Sikap Religius</h4>
+    <div class="mono">
+DIMENSI 1: Keyakinan Beragama
+1.  Saya yakin bahwa Allah selalu mengawasi perbuatan saya.          (F)
+2.  Saya percaya bahwa segala sesuatu terjadi atas kehendak Allah.   (F)
+3.  Saya merasa takut jika melakukan dosa.                          (F)
+4.  Saya ragu bahwa doa akan dikabulkan Allah.                      (U)
+5.  Saya yakin bahwa surga dan neraka itu nyata.                    (F)
+6.  Saya merasa bahwa takdir Allah tidak adil.                      (U)
+
+DIMENSI 2: Ibadah Mahdhah
+7.  Saya melaksanakan shalat lima waktu tepat waktu.                (F)
+8.  Saya merasa malas untuk shalat subuh.                           (U)
+9.  Saya rutin membaca Al-Qur'an setiap hari.                       (F)
+10. Saya lebih memilih tidur daripada shalat malam.                 (U)
+11. Saya melaksanakan shalat sunnah rawatib.                        (F)
+12. Saya merasa berat untuk berpuasa sunnah.                        (U)
+
+DIMENSI 3: Akhlak Sosial
+13. Saya selalu berkata jujur meskipun dalam situasi sulit.         (F)
+14. Saya menyontek saat ujian.                                      (U)
+15. Saya membantu teman yang kesulitan tanpa diminta.               (F)
+16. Saya membicarakan keburukan orang lain (ghibah).               (U)
+17. Saya menghormati orang tua dan guru.                            (F)
+18. Saya memaafkan kesalahan orang lain.                            (F)
+19. Saya mudah marah dan sulit mengendalikan emosi.                (U)
+
+DIMENSI 4: Toleransi Beragama
+20. Saya menghormati teman yang berbeda agama.                      (F)
+21. Saya tidak mau berteman dengan yang berbeda agama.              (U)
+22. Saya bersedia bekerja sama dengan siapa pun tanpa memandang agama. (F)
+23. Saya merasa bahwa agama saya paling benar dan agama lain salah. (U)
+24. Saya menghargai perbedaan pendapat dalam beragama.              (F)
+25. Saya memaksakan pendapat saya kepada orang lain.                (U)
+    </div>
+  </div>
+
+  <h3>4.4.3 Contoh Kisi-Kisi: Motivasi Belajar PAI</h3>
+  <table>
+    <tr>
+      <th>No</th>
+      <th>Dimensi (ARCS)</th>
+      <th>Indikator</th>
+      <th>Jml Butir</th>
+      <th>No. Butir</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Attention</strong></td>
+      <td>1.1 Persepsi terhadap kebaruan materi<br>1.2 Rasa ingin tahu<br>1.3 Variasi metode</td>
+      <td>6</td>
+      <td>1-6</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Relevance</strong></td>
+      <td>2.1 Pengalaman masa lalu<br>2.2 Kebutuhan saat ini<br>2.3 Nilai masa depan</td>
+      <td>6</td>
+      <td>7-12</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Confidence</strong></td>
+      <td>3.1 Ekspektasi keberhasilan<br>3.2 Kesulitan yang wajar<br>3.3 Kontrol atas hasil</td>
+      <td>6</td>
+      <td>13-18</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Satisfaction</strong></td>
+      <td>4.1 Kepuasan intrinsik<br>4.2 Penghargaan ekstrinsik<br>4.3 Keadilan evaluasi</td>
+      <td>6</td>
+      <td>19-24</td>
+    </tr>
+    <tr style="background: rgba(201, 169, 97, 0.1);">
+      <td colspan="3"><strong>TOTAL</strong></td>
+      <td><strong>24</strong></td>
+      <td>1-24</td>
+    </tr>
+  </table>
+
+  <!-- LANGKAH PENYUSUNAN -->
+  <h2>4.5 <em>Langkah-Langkah</em> Penyusunan Kisi-Kisi Angket</h2>
+
+  <h3>4.5.1 Tahap Persiapan</h3>
+  <ol>
+    <li><strong>Identifikasi Konstruk:</strong> Tentukan aspek afektif yang akan diukur (sikap, minat, motivasi, nilai, persepsi)</li>
+    <li><strong>Kajian Literatur:</strong> Pelajari teori dan penelitian terdahulu tentang konstruk</li>
+    <li><strong>Definisi Konseptual:</strong> Rumuskan definisi konstruk secara operasional</li>
+    <li><strong>Definisi Operasional:</strong> Jabarkan konstruk ke dalam dimensi dan indikator</li>
+  </ol>
+
+  <h3>4.5.2 Tahap Operasionalisasi Konstruk</h3>
+  <p>
+    Operasionalisasi adalah proses mengubah konstruk abstrak menjadi indikator yang terukur.
+    Contoh operasionalisasi konstruk "Sikap Religius":
+  </p>
+  <table>
+    <tr>
+      <th>Dimensi</th>
+      <th>Indikator</th>
+      <th>Contoh Pernyataan</th>
+    </tr>
+    <tr>
+      <td>Keyakinan</td>
+      <td>Meyakini rukun iman</td>
+      <td>"Saya yakin bahwa Allah Maha Melihat"</td>
+    </tr>
+    <tr>
+      <td>Ibadah</td>
+      <td>Konsisten shalat 5 waktu</td>
+      <td>"Saya shalat lima waktu tepat waktu"</td>
+    </tr>
+    <tr>
+      <td>Akhlak</td>
+      <td>Berbuat jujur</td>
+      <td>"Saya berkata jujur meski dalam situasi sulit"</td>
+    </tr>
+    <tr>
+      <td>Toleransi</td>
+      <td>Menghargai perbedaan</td>
+      <td>"Saya menghormati teman yang berbeda agama"</td>
+    </tr>
+  </table>
+
+  <h3>4.5.3 Tahap Penulisan Butir</h3>
+  <p>
+    Prinsip penulisan butir angket yang baik:
+  </p>
+  <ul>
+    <li><strong>Spesifik:</strong> Satu butir untuk satu ide</li>
+    <li><strong>Jelas:</strong> Bahasa sederhana, tidak ambigu</li>
+    <li><strong>Tidak sugestif:</strong> Tidak mengarahkan jawaban</li>
+    <li><strong>Menghindari double negative:</strong> Jangan gunakan "tidak" dua kali</li>
+    <li><strong>Seimbang:</strong> Proporsi favorable dan unfavorable (ideal 2:1 atau 3:1)</li>
+    <li><strong>Relevan:</strong> Sesuai dengan indikator dan konteks responden</li>
+    <li><strong>Menghindari social desirability:</strong> Jangan terlalu "suci" sehingga responden menjawab sesuai harapan sosial</li>
+  </ul>
+
+  <div class="warning-box">
+    <h4>⚠️ Kesalahan Umum dalam Penulisan Butir Angket</h4>
+    <ul>
+      <li>Pernyataan terlalu umum: "Agama itu penting" (semua orang setuju)</li>
+      <li>Double-barreled: "Saya shalat dan membaca Al-Qur'an setiap hari" (dua ide dalam satu butir)</li>
+      <li>Leading question: "Sebagai muslim yang baik, Anda pasti shalat, bukan?"</li>
+      <li>Menggunakan istilah teknis yang tidak dipahami responden</li>
+      <li>Tidak ada keseimbangan antara pernyataan favorable dan unfavorable</li>
+      <li>Pernyataan mengandung unsur SARA atau menyinggung perasaan</li>
+      <li>Jumlah butir terlalu sedikit (tidak reliabel) atau terlalu banyak (responden lelah)</li>
+    </ul>
+  </div>
+
+  <h3>4.5.4 Tahap Validasi dan Uji Coba</h3>
+  <ol>
+    <li><strong>Expert Judgment:</strong> Minta 3-5 ahli menilai relevansi dan kejelasan butir</li>
+    <li><strong>Content Validity Index (CVI):</strong> Hitung indeks validitas isi</li>
+    <li><strong>Uji Coba Lapangan:</strong> Adminstrasikan pada 30-100 responden</li>
+    <li><strong>Analisis Butir:</strong> Hitung validitas (korelasi item-total) dan reliabilitas (Cronbach's Alpha)</li>
+    <li><strong>Revisi:</strong> Buang butir yang tidak valid atau membingungkan</li>
+    <li><strong>Finalisasi:</strong> Susun angket final yang siap digunakan</li>
+  </ol>
+
+  <!-- INFOGRAPHIC PROPORSI -->
+  <div class="infographic">
+    <h4>🔗 Proporsi Ideal Butir Favorable &amp; Unfavorable</h4>
+    <div class="flow-chart">
+      <div class="flow-item">
+        <strong>PERNYATAAN FAVORABLE (+) — 60-70%</strong>
+        Pernyataan positif yang menunjukkan sikap/nilai yang diharapkan
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>PERNYATAAN UNFAVORABLE (−) — 30-40%</strong>
+        Pernyataan negatif yang di-reverse scoring untuk mengontrol bias
+      </div>
+      <div class="flow-arrow">▼</div>
+      <div class="flow-item">
+        <strong>TUJUAN: MENGONTROL RESPONSE BIAS</strong>
+        Mencegah acquiescence bias &amp; social desirability bias
+      </div>
+    </div>
+  </div>
+
+  <!-- DIMENSI SPIRITUAL -->
+  <h2>4.6 <em>Dimensi Spiritual</em> Pengukuran Aspek Afektif dalam PAI</h2>
+  <p>
+    Mengukur aspek afektif dalam PAI memiliki dimensi spiritual yang unik. Berbeda dengan
+    pengukuran kognitif yang bersifat objektif, pengukuran afektif menyentuh wilayah <em>qalb</em>
+    (hati) yang dalam tradisi Islam merupakan ranah sakral antara hamba dan Tuhannya.
+  </p>
+
+  <div class="quote-box">
+    Ingatlah, hanya kepada Allah-lah kembali segala urusan. Ketahuilah, sesungguhnya Allah Maha Mengetahui isi hati.
+    <span class="quote-source">— QS. Hud [11]: 123 (adaptasi)</span>
+  </div>
+
+  <p>
+    Oleh karena itu, pengukuran afektif dalam PAI harus dilakukan dengan:
+  </p>
+  <table>
+    <tr>
+      <th>Prinsip</th>
+      <th>Implementasi</th>
+      <th>Dalil</th>
+    </tr>
+    <tr>
+      <td><strong>Husnuzan</strong></td>
+      <td>Berprasangka baik kepada responden; tidak menghakimi</td>
+      <td>HR. Bukhari</td>
+    </tr>
+    <tr>
+      <td><strong>Sitr</strong></td>
+      <td>Menjaga kerahasiaan respons; tidak membuka aib</td>
+      <td>HR. Muslim</td>
+    </tr>
+    <tr>
+      <td><strong>Amanah</strong></td>
+      <td>Menggunakan data untuk kebaikan, bukan merugikan</td>
+      <td>QS. Al-Anfal: 27</td>
+    </tr>
+    <tr>
+      <td><strong>Ihsan</strong></td>
+      <td>Menyusun instrumen dengan kualitas terbaik</td>
+      <td>HR. Muslim</td>
+    </tr>
+    <tr>
+      <td><strong>Tawadhu</strong></td>
+      <td>Sadar bahwa pengukuran tidak sempurna; hanya Allah yang Maha Mengetahui</td>
+      <td>QS. Al-Isra: 85</td>
+    </tr>
+  </table>
+
+  <!-- TIPS -->
+  <div class="tip-box">
+    <h4>💡 Tips Praktis Menyusun Angket PAI</h4>
+    <ul>
+      <li><strong>Gunakan teori yang kokoh:</strong> Jangan menyusun angket tanpa landasan teoretis yang jelas</li>
+      <li><strong>Operasionalisasikan konstruk:</strong> Jabarkan konstruk abstrak ke dalam indikator yang terukur</li>
+      <li><strong>Variasikan tipe pernyataan:</strong> Campur favorable dan unfavorable untuk mengontrol bias</li>
+      <li><strong>Gunakan bahasa yang sesuai:</strong> Sesuaikan dengan usia dan latar belakang responden</li>
+      <li><strong>Uji coba sebelum digunakan:</strong> Lakukan uji coba pada minimal 30 responden</li>
+      <li><strong>Analisis butir:</strong> Buang butir yang tidak valid atau tidak reliabel</li>
+      <li><strong>Jaga kerahasiaan:</strong> Pastikan respons responden bersifat anonim dan rahasia</li>
+      <li><strong>Kombinasikan dengan instrumen lain:</strong> Triangulasi dengan observasi, wawancara, atau jurnal refleksi</li>
+      <li><strong>Gunakan aplikasi:</strong> Manfaatkan Google Forms, Qualtrics, atau SPSS untuk analisis</li>
+      <li><strong>Dokumentasikan:</strong> Simpan kisi-kisi, butir, dan hasil analisis sebagai portofolio</li>
+    </ul>
+  </div>
+
+  <!-- KESIMPULAN -->
+  <h2>Kesimpulan</h2>
+  <p>
+    Pertemuan keempat ini telah menguraikan secara komprehensif tentang instrumen non-tes
+    (khususnya angket) untuk mengukur aspek afektif dalam pembelajaran PAI. Ranah afektif—
+    yang mencakup sikap, nilai, minat, dan motivasi—memiliki posisi sentral dalam pendidikan
+    agama, karena ia menyentuh dimensi <em>qalb</em> (hati) yang menjadi esensi keimanan.
+  </p>
+  <p>
+    Berdasarkan landasan teoretis dari Krathwohl (taksonomi afektif), Eagly &amp; Chaiken (teori
+    sikap), Stevens (skala pengukuran), Lord (IRT), dan Keller (ARCS), dapat disimpulkan bahwa
+    penyusunan angket yang baik harus memenuhi kriteria: <strong>berlandasan teori, teroperasionalisasi
+    dengan jelas, menggunakan skala yang tepat, proporsional antara favorable dan unfavorable, serta
+    tervalidasi secara empiris</strong>.
+  </p>
+  <p>
+    Sebagai calon evaluator PAI, Anda kini memiliki bekal untuk menyusun kisi-kisi angket yang
+    dapat mengukur aspek afektif secara presisi—mulai dari sikap religius, motivasi belajar PAI,
+    hingga internalisasi nilai-nilai Islam. Keterampilan ini akan menjadi fondasi bagi
+    pertemuan-pertemuan selanjutnya—mulai dari perumusan butir angket, uji coba instrumen,
+    hingga analisis validitas dan reliabilitas dengan SPSS.
+  </p>
+  <p>
+    Ingatlah: mengukur ranah afektif bukan sekadar aktivitas teknis, melainkan upaya memahami
+    <em>makna</em> di balik perilaku religius peserta didik. Sebagaimana sabda Rasulullah SAW:
+    <em>"Agama adalah nasihat (sikap tulus)."</em> (HR. Muslim). Mari kita susun instrumen yang
+    dapat menangkap ketulusan itu dengan penuh amanah dan keadilan.
+  </p>
+
+  <!-- REFERENCES -->
+  <div class="references">
+    <h3>📚 Daftar Pustaka</h3>
+
+    <h4>Pustaka Utama</h4>
+    <ol>
+      <li>Anastasi, A. (1982). <em>Psychological Testing</em> (5th ed.). New York: Macmillan Publishing Co., Inc.</li>
+      <li>Anastasi, A., &amp; Urbina, S. (1997). <em>Psychological Testing</em> (Edisi Bahasa Indonesia). Jakarta: PT Prenhallindo.</li>
+      <li>Arikunto, S. (2002). <em>Dasar-dasar Evaluasi Pendidikan</em> (Edisi Revisi). Jakarta: PT Bumi Aksara.</li>
+      <li>Azwar, S. (2005). <em>Tes Prestasi: Fungsi dan Pengembangan Pengukuran Prestasi Belajar</em>. Yogyakarta: Pustaka Belajar.</li>
+      <li>Azwar, S. (2012). <em>Penyusunan Skala Psikologi</em> (Edisi ke-3). Yogyakarta: Pustaka Pelajar.</li>
+      <li>Eagly, A. H., &amp; Chaiken, S. (1993). <em>The Psychology of Attitudes</em>. Fort Worth: Harcourt Brace Jovanovich.</li>
+      <li>Guttman, L. (1944). A basis for scaling qualitative data. <em>American Sociological Review</em>, 9(6), 695-700.</li>
+      <li>Keller, J. M. (1987). Development and use of the ARCS model of instructional design. <em>Journal of Instructional Development</em>, 10(3), 2-10.</li>
+      <li>Krathwohl, D. R., Bloom, B. S., &amp; Masia, B. B. (1964). <em>Taxonomy of Educational Objectives: The Classification of Educational Goals. Handbook II: Affective Domain</em>. New York: David McKay.</li>
+      <li>Likert, R. (1932). A technique for the measurement of attitudes. <em>Archives of Psychology</em>, 140, 1-55.</li>
+      <li>Lord, F. M. (1980). <em>Applications of Item Response Theory to Practical Testing Problems</em>. Hillsdale, NJ: Lawrence Erlbaum Associates.</li>
+      <li>Milfayetty, S. (2012). <em>Assesmen Non Tes</em>. Medan: Program Pascasarjana Unimed.</li>
+      <li>Osgood, C. E., Suci, G. J., &amp; Tannenbaum, P. H. (1957). <em>The Measurement of Meaning</em>. Urbana: University of Illinois Press.</li>
+      <li>Sudijono, A. (2011). <em>Pengantar Evaluasi Pendidikan</em>. Jakarta: PT RajaGrafindo Persada.</li>
+      <li>Stevens, S. S. (1946). On the theory of scales of measurement. <em>Science</em>, 103(2684), 677-680.</li>
+      <li>Thurstone, L. L. (1928). Attitudes can be measured. <em>American Journal of Sociology</em>, 33(4), 529-554.</li>
+      <li>Uno, H. B., &amp; Koni, S. (2012). <em>Assessment Pembelajaran</em>. Jakarta: Bumi Aksara.</li>
+    </ol>
+
+    <h4>Pustaka Pendukung</h4>
+    <ol>
+      <li>Arifmiboy. (2024). <em>Penguatan Kapasitas Guru MAN 4 Tanah Datar di Bidang Evaluasi Pembelajaran</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2025). <em>Pendampingan Guru Madrasah Tsanawiyah dalam Merancang Asesmen Hasil Belajar</em>. Laporan PKM Berbasis Prodi.</li>
+      <li>Arifmiboy. (2023). <em>University Digital Transformation Index in The Malay Family of Countries</em>. Laporan Penelitian Kolaborasi Internasional.</li>
+      <li>Pusat Penilaian Pendidikan Balitbang. (2008). <em>Assesment Berbasis Kelas</em>. Jakarta: Departemen Pendidikan Nasional.</li>
+    </ol>
+
+    <h4>Pustaka Teoretis Tambahan</h4>
+    <ol>
+      <li>Crocker, L., &amp; Algina, J. (1986). <em>Introduction to Classical and Modern Test Theory</em>. New York: Holt, Rinehart and Winston.</li>
+      <li>DeVellis, R. F. (2016). <em>Scale Development: Theory and Applications</em> (4th ed.). Thousand Oaks: SAGE.</li>
+      <li>Nunnally, J. C., &amp; Bernstein, I. H. (1994). <em>Psychometric Theory</em> (3rd ed.). New York: McGraw-Hill.</li>
+      <li>Rasch, G. (1960). <em>Probabilistic Models for Some Intelligence and Attainment Tests</em>. Copenhagen: Danish Institute for Educational Research.</li>
+    </ol>
+  </div>
+
+  <!-- CHAPTER NAVIGATION -->
+  <div class="chapter-nav">
+    <a href="3.html">← Bab Sebelumnya: Kisi-Kisi Tes Objektif &amp; Esai</a>
+    <a href="5.html">Bab Selanjutnya: Butir Soal Tes Objektif →</a>
+  </div>
+
+  <!-- ============================================
+       UJI FORMATIF
+       ============================================ -->
+  <section class="test-section" id="uji-formatif">
+    <div class="test-header">
+      <div class="icon">📋</div>
+      <h2>Uji Formatif Pertemuan 4</h2>
+      <p>Menyentuh Ranah Rasa: Instrumen Non-Tes untuk Aspek Afektif</p>
+    </div>
+
+    <div class="test-warning">
+      ⚠️ Mohon lengkapi semua data dan jawaban terlebih dahulu sebelum mengirim!
+    </div>
+
+    <!-- DATA MAHASISWA -->
+    <h3 style="color: var(--gold); margin-bottom: 1.5rem;">📋 Data Mahasiswa</h3>
+    <form id="studentForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="nama" required>
+        </div>
+        <div class="form-group">
+          <label>NIM <span class="required">*</span></label>
+          <input type="text" id="nim" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>📅 Tanggal Ujian <span class="required">*</span></label>
+          <input type="date" id="tanggal" required>
+        </div>
+        <div class="form-group">
+          <label>Fakultas <span class="required">*</span></label>
+          <select id="fakultas" required>
+            <option value="">Pilih Fakultas</option>
+            <option>FTIK</option>
+            <option>FUAD</option>
+            <option>FSE</option>
+            <option>FDAI</option>
+            <option>FISHUM</option>
+            <option>FDAK</option>
+            <option>FPSB</option>
+            <option>FASAL</option>
+            <option>FAH</option>
+            <option>FEI</option>
+            <option>FST</option>
+            <option>F Kedokteran</option>
+            <option>F Pertanian</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Jurusan / Prodi <span class="required">*</span></label>
+          <input type="text" id="prodi" required>
+        </div>
+        <div class="form-group">
+          <label>Konsentrasi</label>
+          <input type="text" id="konsentrasi">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Semester <span class="required">*</span></label>
+          <select id="semester" required>
+            <option value="">Pilih Semester</option>
+            <option>Semester 1</option>
+            <option>Semester 2</option>
+            <option>Semester 3</option>
+            <option>Semester 4</option>
+            <option>Semester 5</option>
+            <option>Semester 6</option>
+            <option>Semester 7</option>
+            <option>Semester 8</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Kelas <span class="required">*</span></label>
+          <input type="text" id="kelas" placeholder="Contoh: PAI-3A" required>
+        </div>
+      </div>
+
+      <!-- PILIHAN GANDA -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian A — Pilihan Ganda <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(10 soal × 10 poin = 100)</span></h3>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">1</span>
+        <span class="question-text">Instrumen non-tes digunakan untuk mengukur...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q1" value="a"><span>a. Pengetahuan kognitif</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="b"><span>b. Aspek afektif, psikomotorik, dan latar belakang</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="c"><span>c. Kemampuan akademik</span></label>
+          <label class="option-label"><input type="radio" name="q1" value="d"><span>d. Prestasi belajar</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">2</span>
+        <span class="question-text">Taksonomi ranah afektif dikembangkan oleh...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q2" value="a"><span>a. Benjamin Bloom</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="b"><span>b. Robert Gagné</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="c"><span>c. Krathwohl, Bloom, dan Masia</span></label>
+          <label class="option-label"><input type="radio" name="q2" value="d"><span>d. John Keller</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">3</span>
+        <span class="question-text">Level tertinggi dalam taksonomi ranah afektif adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q3" value="a"><span>a. Characterization (Karakterisasi)</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="b"><span>b. Organization (Mengorganisasi)</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="c"><span>c. Valuing (Menghargai)</span></label>
+          <label class="option-label"><input type="radio" name="q3" value="d"><span>d. Responding (Merespons)</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">4</span>
+        <span class="question-text">Skala Likert menggunakan format respons...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q4" value="a"><span>a. Ya / Tidak</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="b"><span>b. Pilihan ganda dengan 4 opsi</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="c"><span>c. Pasangan kata sifat berlawanan</span></label>
+          <label class="option-label"><input type="radio" name="q4" value="d"><span>d. Tingkat persetujuan (5-7 titik)</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">5</span>
+        <span class="question-text">Model ARCS Keller terdiri dari empat dimensi, <em>kecuali</em>...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q5" value="a"><span>a. Attention</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="b"><span>b. Assessment</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="c"><span>c. Relevance</span></label>
+          <label class="option-label"><input type="radio" name="q5" value="d"><span>d. Satisfaction</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">6</span>
+        <span class="question-text">Skala Guttman bersifat...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q6" value="a"><span>a. Interval dengan 5 tingkat</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="b"><span>b. Berbobot berdasarkan penilaian ahli</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="c"><span>c. Dikotomis dengan struktur kumulatif hierarkis</span></label>
+          <label class="option-label"><input type="radio" name="q6" value="d"><span>d. Menggunakan pasangan kata sifat berlawanan</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="a">
+        <span class="question-number">7</span>
+        <span class="question-text">Pernyataan unfavorable dalam angket bertujuan untuk...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q7" value="a"><span>a. Mengontrol response bias dan acquiescence</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="b"><span>b. Memudahkan responden menjawab</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="c"><span>c. Menambah jumlah butir</span></label>
+          <label class="option-label"><input type="radio" name="q7" value="d"><span>d. Mengurangi waktu respons</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="d">
+        <span class="question-number">8</span>
+        <span class="question-text">Semantic Differential dikembangkan oleh...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q8" value="a"><span>a. Rensis Likert</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="b"><span>b. Louis Thurstone</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="c"><span>c. Louis Guttman</span></label>
+          <label class="option-label"><input type="radio" name="q8" value="d"><span>d. Osgood, Suci, dan Tannenbaum</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="b">
+        <span class="question-number">9</span>
+        <span class="question-text">Dalam taksonomi afektif, level "Valuing" berarti...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q9" value="a"><span>a. Kesediaan untuk memperhatikan fenomena</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="b"><span>b. Memberikan nilai pada fenomena</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="c"><span>c. Aktif berpartisipasi dalam fenomena</span></label>
+          <label class="option-label"><input type="radio" name="q9" value="d"><span>d. Nilai menjadi bagian dari karakter</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <div class="question-block" data-correct="c">
+        <span class="question-number">10</span>
+        <span class="question-text">Proporsi ideal antara pernyataan favorable dan unfavorable dalam angket adalah...</span>
+        <div class="options">
+          <label class="option-label"><input type="radio" name="q10" value="a"><span>a. 50% : 50%</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="b"><span>b. 80% : 20%</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="c"><span>c. 60-70% : 30-40%</span></label>
+          <label class="option-label"><input type="radio" name="q10" value="d"><span>d. 90% : 10%</span></label>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- ESSAY -->
+      <h3 style="color: var(--gold); margin: 2.5rem 0 1rem;">✍️ Bagian B — Essay <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: normal;">(5 soal × 20 poin = 100)</span></h3>
+
+      <div class="essay-block">
+        <span class="question-number">1</span>
+        <span class="question-text">Jelaskan secara komprehensif taksonomi ranah afektif menurut Krathwohl, Bloom, dan Masia! Uraikan lima level hierarkis beserta contohnya dalam konteks pembelajaran PAI!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">2</span>
+        <span class="question-text">Bandingkan empat jenis skala pengukuran afektif (Likert, Thurstone, Guttman, Semantic Differential) dalam hal format respons, tingkat kesulitan, level skala, dan kesesuaian untuk PAI! Berikan contoh konkret untuk masing-masing skala!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">3</span>
+        <span class="question-text">Pilihlah satu konstruk afektif dalam PAI (misalnya: sikap religius, motivasi belajar PAI, atau internalisasi nilai Islam). Lakukan operasionalisasi konstruk tersebut dengan menjabarkannya ke dalam minimal 4 dimensi dan 12 indikator! Susunlah kisi-kisi angket lengkap dengan jumlah butir dan tipe pernyataan!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">4</span>
+        <span class="question-text">Analisislah pentingnya keseimbangan antara pernyataan favorable dan unfavorable dalam angket! Jelaskan konsep <em>response bias</em>, <em>acquiescence bias</em>, dan <em>social desirability bias</em>! Berikan contoh butir pernyataan yang rentan terhadap bias-bias tersebut dan cara mengatasinya!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <div class="essay-block">
+        <span class="question-number">5</span>
+        <span class="question-text">Sebagai calon evaluator PAI, bagaimana Anda menerjemahkan nilai-nilai Islam (<em>husnuzan</em>, <em>sitr</em>, <em>amanah</em>, <em>ihsan</em>, <em>tawadhu</em>) ke dalam proses penyusunan dan administrasi angket afektif? Berikan contoh konkret penerapannya!</span>
+        <textarea class="essay-answer" placeholder="Tuliskan jawaban Anda di sini..."></textarea>
+        <div class="essay-counter">0 karakter</div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary" onclick="submitTest()">✉️ Kirim Jawaban &amp; Lihat Hasil</button>
+        <button type="button" class="btn btn-secondary" onclick="resetTest()">🔄 Mulai Ulang</button>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="resultPanel">
+        <h3>📊 Hasil Uji Formatif</h3>
+        <div class="score-grid">
+          <div class="score-card">
+            <div class="label">Data Mahasiswa</div>
+            <div class="value" id="dataStatus" style="font-size: 1.3rem;">—</div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian A (PG)</div>
+            <div class="value"><span id="scoreA">0</span><small>/100</small></div>
+          </div>
+          <div class="score-card">
+            <div class="label">Bagian B (Essay)</div>
+            <div class="value"><span id="scoreB">0</span><small>/100</small></div>
+          </div>
+        </div>
+        <div style="margin-top: 1.5rem; color: var(--text-muted); font-size: 0.9rem;">Total Skor Akhir</div>
+        <div class="total-score"><span id="totalScore">0</span><small>/100</small></div>
+        <div class="grade-badge" id="gradeBadge">—</div>
+
+        <div class="btn-group" style="margin-top: 2rem;">
+          <button type="button" class="btn btn-secondary" onclick="downloadPDF()">📥 Unduh PDF Lengkap</button>
+          <button type="button" class="btn btn-secondary" onclick="downloadScore()">📊 Unduh Skor Saja</button>
+          <button type="button" class="btn btn-secondary" onclick="emailDosen()">✉️ Kirim Email Dosen</button>
+        </div>
+      </div>
+    </form>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Dr. Arifmiboy, S. Ag., M. Pd.</span>
+  <span class="ornament">◆</span>
+  <span>Evaluasi Pembelajaran PAI II</span>
+  <span class="ornament">◆</span>
+  <span>UIN Bukittinggi</span>
+</footer>
+
+<script>
+  // ============================================
+  // KUNCI JAWABAN PG
+  // ============================================
+  const answerKey = {
+    q1: 'b', q2: 'c', q3: 'a', q4: 'd', q5: 'b',
+    q6: 'c', q7: 'a', q8: 'd', q9: 'b', q10: 'c'
+  };
+
+  const feedbackText = {
+    q1: 'Instrumen non-tes digunakan untuk mengukur aspek afektif, psikomotorik, dan latar belakang—bukan pengetahuan kognitif.',
+    q2: 'Taksonomi ranah afektif dikembangkan oleh Krathwohl, Bloom, dan Masia (1964).',
+    q3: 'Level tertinggi dalam taksonomi afektif adalah A5 — Characterization (Karakterisasi), di mana nilai menjadi bagian dari karakter.',
+    q4: 'Skala Likert menggunakan format tingkat persetujuan (biasanya 5-7 titik).',
+    q5: 'ARCS = Attention, Relevance, Confidence, Satisfaction. Assessment bukan bagian dari ARCS.',
+    q6: 'Skala Guttman bersifat dikotomis (ya-tidak) dengan struktur kumulatif hierarkis.',
+    q7: 'Pernyataan unfavorable bertujuan mengontrol response bias dan acquiescence bias.',
+    q8: 'Semantic Differential dikembangkan oleh Osgood, Suci, dan Tannenbaum (1957).',
+    q9: 'Valuing (A3) berarti memberikan nilai pada fenomena—tahap di mana seseorang mulai menghargai sesuatu.',
+    q10: 'Proporsi ideal: 60-70% favorable dan 30-40% unfavorable untuk mengontrol bias.'
+  };
+
+  // ============================================
+  // ESSAY COUNTER
+  // ============================================
+  document.querySelectorAll('.essay-answer').forEach(ta => {
+    const counter = ta.nextElementSibling;
+    ta.addEventListener('input', () => {
+      counter.textContent = ta.value.length + ' karakter';
+    });
+  });
+
+  // ============================================
+  // SUBMIT TEST
+  // ============================================
+  function submitTest() {
+    const fields = ['nama', 'nim', 'tanggal', 'fakultas', 'prodi', 'semester', 'kelas'];
+    let dataValid = true;
+    fields.forEach(f => {
+      const el = document.getElementById(f);
+      if (!el.value.trim()) {
+        dataValid = false;
+        el.style.borderColor = '#d97070';
+      } else {
+        el.style.borderColor = 'rgba(201, 169, 97, 0.25)';
+      }
+    });
+
+    let pgAnswered = 0;
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      if (selected) pgAnswered++;
+    }
+
+    let essayAnswered = 0;
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      if (ta.value.trim().length >= 20) essayAnswered++;
+    });
+
+    if (!dataValid) {
+      alert('⚠️ Mohon lengkapi semua data mahasiswa terlebih dahulu!');
+      return;
+    }
+    if (pgAnswered < 10) {
+      alert(`⚠️ Mohon jawab semua 10 soal pilihan ganda! (baru ${pgAnswered}/10 terjawab)`);
+      return;
+    }
+    if (essayAnswered < 5) {
+      alert(`⚠️ Mohon jawab semua 5 soal essay dengan minimal 20 karakter! (baru ${essayAnswered}/5 terjawab)`);
+      return;
+    }
+
+    let scoreA = 0;
+    const blocks = document.querySelectorAll('.question-block[data-correct]');
+    for (let i = 1; i <= 10; i++) {
+      const selected = document.querySelector(`input[name="q${i}"]:checked`);
+      const currentBlock = blocks[i - 1];
+      const feedback = currentBlock.querySelector('.feedback');
+      const correctAnswer = currentBlock.dataset.correct;
+      const userAnswer = selected.value;
+
+      currentBlock.classList.remove('correct', 'incorrect');
+      currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+        lbl.classList.remove('correct-answer', 'wrong-answer');
+      });
+
+      if (userAnswer === correctAnswer) {
+        scoreA += 10;
+        currentBlock.classList.add('correct');
+        feedback.className = 'feedback show correct';
+        feedback.innerHTML = '✓ <strong>Benar!</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('correct-answer');
+      } else {
+        currentBlock.classList.add('incorrect');
+        feedback.className = 'feedback show incorrect';
+        feedback.innerHTML = '✗ <strong>Kurang tepat.</strong> ' + feedbackText['q' + i];
+        selected.parentElement.classList.add('wrong-answer');
+        currentBlock.querySelectorAll('.option-label').forEach(lbl => {
+          const input = lbl.querySelector('input');
+          if (input.value === correctAnswer) lbl.classList.add('correct-answer');
+        });
+      }
+    }
+
+    let scoreB = 0;
+    const essays = document.querySelectorAll('.essay-answer');
+    const keywords = [
+      ['krathwohl', 'bloom', 'masia', 'afektif', 'receiving', 'responding', 'valuing', 'organization', 'characterization'],
+      ['likert', 'thurstone', 'guttman', 'semantic', 'differential', 'skala', 'format', 'respons'],
+      ['konstruk', 'dimensi', 'indikator', 'operasionalisasi', 'kisi-kisi', 'butir', 'favorable', 'unfavorable'],
+      ['response bias', 'acquiescence', 'social desirability', 'favorable', 'unfavorable', 'reverse', 'keseimbangan'],
+      ['husnuzan', 'sitr', 'amanah', 'ihsan', 'tawadhu', 'kerahasiaan', 'integritas', 'angket']
+    ];
+
+    essays.forEach((ta, idx) => {
+      const text = ta.value.toLowerCase();
+      const length = ta.value.trim().length;
+      let baseScore = 0;
+      if (length >= 200) baseScore = 16;
+      else if (length >= 100) baseScore = 12;
+      else if (length >= 50) baseScore = 8;
+      else baseScore = 4;
+
+      let keywordHits = 0;
+      keywords[idx].forEach(kw => {
+        if (text.includes(kw)) keywordHits++;
+      });
+      const keywordBonus = Math.min(keywordHits * 1, 4);
+      const essayScore = Math.min(baseScore + keywordBonus, 20);
+      scoreB += essayScore;
+    });
+
+    const total = Math.round((scoreA + scoreB) / 2);
+
+    let grade = 'E';
+    if (total >= 85) grade = 'A';
+    else if (total >= 75) grade = 'B+';
+    else if (total >= 65) grade = 'B';
+    else if (total >= 55) grade = 'C+';
+    else if (total >= 45) grade = 'C';
+    else if (total >= 35) grade = 'D';
+
+    document.getElementById('dataStatus').textContent = '✓ Lengkap';
+    document.getElementById('dataStatus').style.color = '#8fd98e';
+    document.getElementById('scoreA').textContent = scoreA;
+    document.getElementById('scoreB').textContent = scoreB;
+    document.getElementById('totalScore').textContent = total;
+    document.getElementById('gradeBadge').textContent = 'Grade: ' + grade;
+    document.getElementById('resultPanel').classList.add('show');
+    document.getElementById('resultPanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  // ============================================
+  // RESET TEST
+  // ============================================
+  function resetTest() {
+    if (!confirm('Yakin ingin mengulang uji formatif? Semua jawaban akan dihapus.')) return;
+    document.getElementById('studentForm').reset();
+    document.querySelectorAll('.question-block').forEach(b => {
+      b.classList.remove('correct', 'incorrect');
+      b.querySelector('.feedback').className = 'feedback';
+      b.querySelectorAll('.option-label').forEach(l => {
+        l.classList.remove('correct-answer', 'wrong-answer');
+      });
+    });
+    document.querySelectorAll('.essay-answer').forEach(ta => {
+      ta.value = '';
+      ta.nextElementSibling.textContent = '0 karakter';
+    });
+    document.getElementById('resultPanel').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ============================================
+  // DOWNLOAD PDF (PRINT)
+  // ============================================
+  function downloadPDF() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html><head><title>Hasil Uji Formatif - ${nama}</title>
+      <style>
+        body { font-family: Georgia, serif; padding: 40px; color: #222; line-height: 1.7; }
+        h1 { color: #8a7340; border-bottom: 2px solid #c9a961; padding-bottom: 10px; }
+        h2 { color: #8a7340; margin-top: 30px; font-size: 1.2rem; }
+        .info { background: #f9f6ee; padding: 15px; border-left: 4px solid #c9a961; margin: 20px 0; }
+        .score-box { text-align: center; font-size: 2rem; color: #8a7340; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #c9a961; color: #fff; }
+        .essay { background: #fafafa; padding: 10px; margin: 10px 0; border-left: 3px solid #c9a961; }
+        .footer { margin-top: 40px; text-align: center; font-size: 0.85rem; color: #666; border-top: 1px solid #ddd; padding-top: 15px; }
+      </style></head><body>
+      <h1>Hasil Uji Formatif Pertemuan 4</h1>
+      <p style="font-style: italic;">Menyentuh Ranah Rasa: Instrumen Non-Tes untuk Aspek Afektif</p>
+      <p style="font-style: italic;">Evaluasi Pembelajaran PAI II — Dr. Arifmiboy, S. Ag., M. Pd.</p>
+      <div class="info">
+        <strong>Nama:</strong> ${nama}<br>
+        <strong>NIM:</strong> ${nim}<br>
+        <strong>Prodi:</strong> ${prodi}<br>
+        <strong>Tanggal:</strong> ${document.getElementById('tanggal').value}
+      </div>
+      <div class="score-box">
+        Total Skor: ${total}/100<br>
+        <span style="font-size: 1.2rem;">${grade}</span>
+      </div>
+      <h2>Bagian A — Pilihan Ganda</h2>
+      <table>
+        <tr><th>No</th><th>Soal</th><th>Jawaban Anda</th><th>Kunci</th><th>Status</th></tr>
+        ${Array.from({length: 10}).map((_, i) => {
+          const qName = 'q' + (i+1);
+          const selected = document.querySelector(`input[name="${qName}"]:checked`);
+          const correct = answerKey[qName];
+          const user = selected ? selected.value : '-';
+          const status = user === correct ? '✓ Benar' : '✗ Salah';
+          const qText = document.querySelectorAll('.question-block[data-correct]')[i].querySelector('.question-text').textContent;
+          return `<tr><td>${i+1}</td><td>${qText}</td><td>${user}</td><td>${correct}</td><td>${status}</td></tr>`;
+        }).join('')}
+      </table>
+      <h2>Bagian B — Essay</h2>
+      ${Array.from(document.querySelectorAll('.essay-block')).map((block, i) => {
+        const q = block.querySelector('.question-text').textContent;
+        const a = block.querySelector('.essay-answer').value;
+        return `<div class="essay"><strong>Soal ${i+1}:</strong> ${q}<br><br><em>Jawaban:</em><br>${a.replace(/\n/g, '<br>')}</div>`;
+      }).join('')}
+      <div class="footer">
+        Dokumen ini digenerate otomatis pada ${new Date().toLocaleString('id-ID')}<br>
+        © 2026 Evaluasi Pembelajaran PAI II — UIN Bukittinggi
+      </div>
+      </body></html>
+    `);
+    printWindow.document.close();
+    setTimeout(() => printWindow.print(), 500);
+  }
+
+  // ============================================
+  // DOWNLOAD SKOR SAJA
+  // ============================================
+  function downloadScore() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const content = `HASIL UJI FORMATIF PERTEMUAN 4
+Menyentuh Ranah Rasa: Instrumen Non-Tes untuk Aspek Afektif
+Evaluasi Pembelajaran PAI II
+Dr. Arifmiboy, S. Ag., M. Pd.
+UIN Sjech M. Djamil Djambek Bukittinggi
+========================================
+
+Nama      : ${nama}
+NIM       : ${nim}
+Tanggal   : ${document.getElementById('tanggal').value}
+Prodi     : ${document.getElementById('prodi').value}
+Kelas     : ${document.getElementById('kelas').value}
+
+----------------------------------------
+SKOR
+----------------------------------------
+Bagian A (Pilihan Ganda) : ${scoreA} / 100
+Bagian B (Essay)         : ${scoreB} / 100
+----------------------------------------
+TOTAL SKOR               : ${total} / 100
+GRADE                    : ${grade}
+========================================
+
+Tanggal Cetak: ${new Date().toLocaleString('id-ID')}
+`;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `Skor_UjiFormatif_P4_${nim}_${nama.replace(/\s+/g, '_')}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ============================================
+  // EMAIL DOSEN
+  // ============================================
+  function emailDosen() {
+    const nama = document.getElementById('nama').value;
+    const nim = document.getElementById('nim').value;
+    const prodi = document.getElementById('prodi').value;
+    const kelas = document.getElementById('kelas').value;
+    const scoreA = document.getElementById('scoreA').textContent;
+    const scoreB = document.getElementById('scoreB').textContent;
+    const total = document.getElementById('totalScore').textContent;
+    const grade = document.getElementById('gradeBadge').textContent;
+
+    const subject = encodeURIComponent(`Hasil Uji Formatif P4 - ${nama} (${nim})`);
+    const body = encodeURIComponent(
+`Yth. Dr. Arifmiboy, S. Ag., M. Pd.
+
+Berikut saya sampaikan hasil Uji Formatif Pertemuan 4 mata kuliah Evaluasi Pembelajaran PAI II:
+
+Materi: Menyentuh Ranah Rasa - Instrumen Non-Tes untuk Aspek Afektif
+
+Data Mahasiswa:
+- Nama : ${nama}
+- NIM  : ${nim}
+- Prodi: ${prodi}
+- Kelas: ${kelas}
+
+Hasil Penilaian:
+- Bagian A (PG)    : ${scoreA}/100
+- Bagian B (Essay) : ${scoreB}/100
+- TOTAL            : ${total}/100
+- Grade            : ${grade}
+
+Terima kasih.
+
+Hormat saya,
+${nama}`
+    );
+
+    window.location.href = `mailto:arifmiboy@uinbukittinggi.ac.id?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>
